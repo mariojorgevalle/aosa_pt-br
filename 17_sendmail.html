@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice 3.3  (Unix)">
+	<META NAME="AUTHOR" CONTENT="ruhan ">
+	<META NAME="CREATED" CONTENT="20110614;15385600">
+	<META NAME="CHANGEDBY" CONTENT="ruhan ">
+	<META NAME="CHANGED" CONTENT="20110621;16232300">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		P.western { so-language: pt-BR }
+		A:link { so-language: zxx }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" DIR="LTR">
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Sans-serif"><FONT SIZE=6>Capítulo
+17. Sendmail</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Sans-serif"><FONT SIZE=6><U><A HREF="http://www.aosabook.org/en/intro.html#allman-eric"><I>Eric
+Allman</I></A></U></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Sans-serif"><FONT SIZE=3>	</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Sans-serif"><FONT SIZE=3>Grande
+parte das pessoas pensa no correio eletrônico como o programa com o
+qual eles interagem – seus clientes de e-mail, tecnicamente
+conhecido como Mail User Agent (MUA). Mas outra importante parte do
+correio eletrônico é o software que transfere o e-mail do remetente
+para o destinatário – o Mail Transfer Agent (MTA). O primeiro MTA
+da internet, e ainda o que mais prevalece, foi o sendmail.</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Sans-serif"><FONT SIZE=3>O
+Sendmail foi criado antes de a Internet oficialmente existir. Ele tem
+sido um sucesso extraordinário, tendo crescido de 1981, quando não
+era tão óbvio que a Internet seria mais do que acadêmica e testada
+com apenas alguns hosts, até hoje, com mais de 800 milhões de hosts
+até Janeiro de 2011. O Sendmail continua entre as mais usadas
+implementações de SMTP da Internet.</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Sans-serif"><FONT SIZE=5><I>17.1.
+Era uma vez...</I></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="Sans-serif"><FONT SIZE=3><SPAN STYLE="background: #ffffff">As
+primeiras versões do programa que viria a ser conhecido como o
+sendmail foram escritas em 1980.&nbsp;Tudo começou como um rápido
+hack para encaminhar mensagens entre diferentes redes.&nbsp;A
+Internet estava sendo desenvolvida mas, não era funcional naquele
+momento.&nbsp;Na verdade, muitas redes diferentes tinham sido
+propostas sem nenhum consenso óbvio emergente.&nbsp;A Arpanet estava
+em uso nos Estados Unidos e a Internet vinha sendo projetada como uma
+atualização mas, a Europa havia jogado o seu peso em cima do
+esforços da OSI (Open Systems Interconnect), e por um tempo parecia
+que a OSI poderia triunfar.&nbsp;Ambas usavam linhas alugadas das
+companhias telefônicas;  nos EUA a velocidade era de 56 Kbps.&nbsp;</SPAN></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-weight: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="Sans-serif"><FONT SIZE=3><SPAN STYLE="background: #ffffff">Provavelmente
+a rede de maior sucesso da época, em termos de número de
+computadores e pessoas conectadas, foi a rede UUCP, o que era incomum
+na medida em que ela não tinha absolutamente nenhuma autoridade
+central.&nbsp;Ela foi, de certo modo, a original rede peer-to-peer,
+que atropelou as linhas telefônicas dial-up - 9600 bps era o mais
+rápido disponível há algum tempo.&nbsp;A rede mais rápida (menos
+de 3 Mbps) foi baseada na Ethernet da Xerox, que rodavaum protocolo
+chamado XNS (Xerox Network Systems) - mas que não trabalhavam fora
+de uma instalação local.&nbsp;<BR></SPAN></FONT></FONT></FONT><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="Sans-serif"><FONT SIZE=3><SPAN STYLE="background: #ffffff">O
+ambiente da época era bastante diferente do que existe hoje.&nbsp;Os
+computadores eram muito heterogêneos, na medida em que não havia
+ainda um acordo para usar bytes de 8 bits.&nbsp;Por exemplo, algumas
+máquinas usavam o PDP-10 (palavras de 36 bits, bytes de 9 bit), o
+PDP-11 (palavras de 16 bits, bytes de 8 bits), o CDC 6000 (palavras
+de 60 bits, caracteres de 6 bits), a IBM&nbsp;360 (palavras de 32
+bits, bytes de 8 bits), o XDS 940, o ICL 470 ou Sigma 7.&nbsp;Uma das
+plataformas esperançosas era o Unix, que na época veio da Bell
+Laboratories.&nbsp;A maioria das máquinas baseadas em Unix tinham
+espaços de endereços de 16 bits: na época o PDP-11 era a máquina
+Unix principal, com Data General  8/32 e o VAX-11/780 apenas
+aparecendo.&nbsp;Linhas de execução não existiam – na verdade, o
+conceito de processos dinâmicos ainda era bastante novo (o Unix os
+tinha, mas sistemas “sérios” tais como o OS/360 da IBM não).&nbsp;O
+bloqueio de arquivos não era suportado no kernel do Unix (mas era
+possível fazer alguns truques usando links de sistemas de
+arquivos).&nbsp;</SPAN></FONT></FONT></FONT></P>
+</BODY>
+</HTML>
