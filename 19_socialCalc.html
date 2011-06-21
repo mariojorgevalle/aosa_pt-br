@@ -1,0 +1,1456 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice 3.3  (Unix)">
+	<META NAME="AUTHOR" CONTENT="Rebeca ">
+	<META NAME="CREATED" CONTENT="20110606;22172600">
+	<META NAME="CHANGEDBY" CONTENT="Rebeca ">
+	<META NAME="CHANGED" CONTENT="20110609;71800">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		P.western { so-language: pt-BR }
+		A:link { so-language: zxx }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" DIR="LTR">
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>Capítulo
+19. SocialCalc </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><I><B><A HREF="http://www.aosabook.org/en/intro.html#tang-audrey"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Audrey
+Tang</FONT></FONT></FONT></A></B></I></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>A história das
+planilhas eletrônicas abranje mais de trinta anos. O primeiro
+programa de planilha eletrônica, o VisiCalc, foi concebido por Dab
+Bricklin em 1978 e lançado em 1979. O conceito original era bastante
+simples: uma tabela que se estende infinitamente em duas dimensões,
+suas células são preenchidas com textos, números e fórmulas. As
+fórmulas são compostas por operadores aritméticos normais e várias
+funções nativas, e cada fórmula pode usar o  conteúdo atual de
+outras células como valores. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Embora a idéia(? 1)
+seja simples, possuia muitas aplicações: contabilidade, estoque e
+gerenciamento de listas são apenas algumas delas. As possibilidades
+eram praticamente ilimitadas. Todas estas utilizações colocaram a
+VisiCalc como aplicativo essencial(? 2) na primeira era do computador
+pessoal. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Nas décadas seguintes,
+sucessores como o Lotus 1-2-3 e o Excel fizeram melhorias
+incrementais, mas a idéia central permaneceu a mesma. A maioria das
+planilhas eram armazenadas como arquivos no disco e carregada na
+memória quando abertas para edição. A colaboração era
+particularmente difícil no modelo baseado em arquivo: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Cada usuário
+precisava instalar uma versão do editor de planilhas. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Listas de discussões
+por e-mail(? 3), pastas compartilhadas, ou a configuração de um
+sistema de controle de versão dedicado, tudo sobrecarregando o
+sistema(? 4). </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* O monitoramento de
+mudanças era limitado. Por exemplo, o Excel não mantém um
+histórico para mudança na formatação e alterações nos
+comentários das células. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Atualizações na
+formatação ou fórmulas nos templates(? 5) requeriam meticulosas
+alterações nos arquivos que usavam esse modelo. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Felizmente, um novo
+modelo colaborativo surgiu para resolver estas questões com uma
+simplicidade elegante. Esse é o modelo wiki, inventado por Ward
+Cunningham em 1994, e popularizado pela Wikipedia no início dos anos
+2000. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Em vez de arquivos, o
+modelo wiki é apresentado em páginas hospedadas em servidores,
+editáveis no navegador(? 6) sem a necessidade de um software
+especial. Essas páginas de hipertexto podem facilmente serem ligadas
+umas as outras, e até mesmo incluir partes de outras páginas a fim
+de formarem uma página maior. Todos os membros podem visualizar e
+editar a última versão por padrão, com histórico de revisão
+sendo automaticamente gerenciado pelo servidor. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Inspirado no modelo
+wiki, Dan Bricklin começou a trabalhar na WikiCalc em 2005. Tendo
+como objetivo combinar a facilidade de autoria e a edição múltipla
+de wikis com a formatação visual e a idéia de calcular das
+planilhas. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+1) Traduzi “metaphor” como idéia </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+2) Não sei o que seria um “killer app” , traduzi como aplicativo
+essencial</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+3) Traduzi, “ping pong e-mail” como listas de discussões por
+email, mas não sei se é o mais correto.</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+4)  <SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">bookkeeping
+overhead – contabilidade sobrecarregada?</SPAN></SPAN></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+5) traduz templates?</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+6) navegador ou browser?</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><I><B>19.1.
+WikiCalc </B></I></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> </FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>A primeira versão da
+WikiCalc (Figura 19.1) tinha vários recursos que a diferenciava das
+outras planilhas naquele momento: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Texto simples, HTML e
+estilo wiki de marcação para dados de texto. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Textos com estilo
+wiki que incluem comandos para inserir links, imagens e valores a
+partir das referências de uma célula. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Células com fórmulas
+podem referenciar valores de outras páginas da WikiCalc hospedadas
+em outros sites. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Habilidade para criar
+um formato de saída que pode ser incorporado em outras páginas da
+web, tanto com dados estáticos e em tempo real. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Formatação de
+células com acesso a atributos de estilo e a classes do CSS.</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Registro de todas as
+operações de edição como histórico(? 1). </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Retenção similar a
+uma wiki de cada nova versão de uma página com capacidade de
+reversão.</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem] </FONT></FONT></FONT>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.1: A interface da WikiCalc 1.0</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem] </FONT></FONT></FONT>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.2: Componentes da WikiCalc</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem] </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.3: Fluxo da WikiCalc</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>A arquitetura interna
+da WikiCalc 1.0 (Figura 19.2) e o fluxo de informações (Figura
+19.3) foram deliberadamente simples, mas ainda assim poderoso. A
+habilidade de criar uma planilha principal(? 2) para várias
+planilhas menores provou ser particularmente útil. Por exemplo,
+imagine um cenário onde cada vendedor mantém seus números em uma
+página da planilha. Depois, cada gerente de vendas atualiza seus
+próprios números em uma planilha regional, e o vice-presidente de
+vendas, então atualiza os números regionais em uma planilha
+superior. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Cada vez que uma das
+planilhas individuais é atualizada, todas as planilhas acima podem
+refletir essa atualização. Se alguém quiser maiores detalhes, pode
+simplesmente clicar para visualizar a planilha responsável pela
+atualização. Essa capacidade de conexão de planilhas eliminou o
+esforço redundante e a propensão a erros ao se atualizar números
+em múltiplos lugares, e garantir que todas as visualizações da
+informação permaneçam recentes. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Para garantir que os
+novos cálculos estejam atualizados, a WikiCalc adotou o esquema de
+cliente-magro, mantendo todas as informações de estado no lado do
+servidor. Cada planilha é representada no navegador como um elemento
+<I>&lt;table&gt;</I>; editar uma célula irá enviar uma chamada
+<I>ajaxsetcell</I> para o servidor, então o servidor diz ao
+navegador quais células precisam ser atualizadas. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Não é novidade, este
+projeto depende de uma conexão rápida entre o navegador e o
+servidor. Quando a latência é alta, os usuários começarão a
+notar o aparecimento frequente de mensagens &quot;<I><SPAN STYLE="font-weight: normal">Loading</SPAN></I>
+...&quot;(? 3) entre a atualização de uma célula e a visualização
+de seus novos conteúdos, como mostra a Figura 19.4. Este é um
+problema especialmente para os usuários que editam fórmulas de
+maneira interativa ajustando a entrada de dados e que esperam ver os
+resultados em tempo real. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.4: Mensagem de “Loading”(? 2)</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Além disso, o elemento
+<I>&lt;table&gt;</I> tinha as mesmas dimensões que a planilha, uma
+grade de 100 × 100 criaria 10.000 <I>&lt;td&gt;</I> objetos DOM, o
+que tensiona os recursos da memória dos navegadores, limitando ainda
+mais o tamanho das páginas. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Devido a essas
+deficiências, enquanto a WikiCalc era útil como um servidor
+stand-alone rodando localmente, não era muito prática para
+incorporar um sistemas de gestão de conteúdo na web. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Em 2006, Dan Bricklin
+se uniu com a Socialtext para começar a desenvolver a SocialCalc,
+reescrevendo a WikiCalc em Javascript com base em uma parte do código
+Perl original. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Esta reescrita visava
+colaborações grandes e distribuídas, e procurava entregar uma
+aparência mais parecida com uma aplicação desktop. Outros
+objetivos do projeto incluíam: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Capacidade de lidar
+com centenas de milhares de células. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Tempo de resposta
+rápido para as operações de edição. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Histórico(? 1) do
+lado do cliente e opção de desfazer e refazer. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Melhor uso de
+Javascript e CSS para fornecer as funcionalidades de um layout
+completo. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* Suporte a diferentes
+navegadores, apesar do uso extensivo da resposta do Javascript. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Após três anos de
+desenvolvimento e de várias versões beta, a Socialtext liberou a
+SocialCalc 1.0 em 2009, com sucesso  ao alcançar as metas do
+projeto. Vamos agora dar uma olhada na arquitetura do sistema
+SocialCalc. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+1) <SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">audit
+trail como trilha de auditoria mesmo?</SPAN></SPAN></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+2) planilha mestra, planilha master, planilha principal </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?3
+) traduz “loading” como carregando? </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><I><B>19.2.
+SocialCalc </B></I></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.5: Interface da SocialCalc</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>A Figura 19.5 e a
+Figura 19.6 mostram a  interface da SocialCalc e suas classes,
+respectivamente. Comparada a WikiCalc, o papel do servidor foi
+bastante reduzido. Sua única responsabilidade é responder ao GETdo
+HTTP servindo as planilhas, todas serializadas no formato em que
+foram salvas. Uma vez que o navegador recebe os dados, todos os
+cálculos, controle de alterações e interação com o usuário,
+agora são implementados em Javascript. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.6: Diagrama de Classes da SocialCalc</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Os componentes
+Javascript foram desenvolvidos com uma camada  <I>MVC(Model / View /
+Controller)</I>, com cada classe concentrada em um único aspecto: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* <I>Sheet </I>é o
+modelo de dados, representando uma estrutura da memória de uma
+planilha. Ela contém um dicionário de coordenadas para os objetos
+célula, cada coordenada representando uma única célula. As células
+vazias não precisam de entradas e, portanto, não consomem memória
+alguma. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* <I>Cell</I>
+representa o conteúdo de uma célula e formato. Algumas propriedades
+comuns são apresentados na Tabela 19.1. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>*<I> RenderContext</I>
+implementa a vizualização, é o responsável por processar uma
+folha de uma planilha em objetos do DOM. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* <I>TableControl </I>é
+o controlador principal, aceita as ações do mouse e do teclado.
+Como ele recebe a rolagem e o redimensionamento, ele atualiza seu
+objeto <I><SPAN STYLE="font-weight: normal">RenderContext </SPAN></I>associado.
+Como ele recebe atualizações que afetam o conteúdo da folha, ele
+programa novos comandos para a fila de comandos da folha.</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* <I>SpreadSheetControl
+</I>é o nível superior da interface do usuário com barras de
+ferramentas, barras de status, caixas de diálogo e selecionador de
+cores. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* <I>SpreadSheetViewer
+</I>é uma interface alternativa de alto nível que fornece uma
+exibição interativa de somente leitura. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Tabela
+19.1: Conteúdos e Formatos da Célula</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Nós adotamos um
+sistema de mínimos objetos baseados em classe(? 1), com composição
+simples ou delegação, e não fazendo uso de herança ou protótipos
+de objeto. Todos os símbolos são colocados sob a convenção
+<I>SocialCalc .*</I> para evitar conflitos de nomes. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Cada atualização na
+folha(? 2) passa pelo método <I>ScheduleSheetCommands</I>, que tem
+uma cadeia de comandos que representa a edição. (Alguns comandos
+mais comuns são mostrados na Tabela 19.2.) O pedido de incorporação
+na SocialCalc pode definir comandos extras por conta própria,
+acrescentando o retorno de chamadas ao objeto
+<I>SocialCalc.SheetCommandInfo.CmdExtensionCallbacks</I>, e usa o
+comando <I>startcmdextension </I>invocá-los. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Tabela
+19.2: Comandos da SocialCalc</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+1) a minimal class-based object system </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+2) traduz como folha ou planilha? ou folha da planilha? </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.3.
+Command Run-loop </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Para melhorar a
+velocidade de resposta, a SocialCalc realiza todas os re-cálculos e
+as atualizações do DOM em background(? 1), entao o usuário pode
+continuar fazendo mudanças de várias células, enquanto o mecanismo
+alcança as mudanças no início da fila de comando. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.7: Command Run-loop SocialCalc</FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Quando um comando é
+executado, o objeto <I>TableEditor</I> se define como ocupado; então
+os comandos subseqüentes são colocados na fila <I><SPAN STYLE="font-weight: normal">deferredCommands</SPAN></I>,
+garantindo uma ordem seqüencial de execução. Como o diagrama de
+ciclo de eventos na Figura 19.7 mostra, o objeto <I>Sheet</I>
+continua enviando chamadas ao <I>StatusCallback </I>para notificar o
+usuário do estado atual da execução do comando, através de cada
+um dos quatro passos: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* <I>ExecuteCommand</I>:
+Envia <I>cmdstart </I>quando inicia, e <I>cmdend </I>quando o comando
+termina a execução. Se o comando altera o valor de uma célula
+indiretamente, entra o passo <I>Recalc</I>. Caso contrário, se o
+comando mudou a aparência de uma ou mais células na tela, entra a
+etapa <I>Render</I>. Se nenhuma das situações acima se aplica (por
+exemplo com o comando <I>copy</I>), passa para o passo
+<I>PositionCalculations</I>. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* <I>Recalc </I>(se
+necessário): Envia <I>calcstart</I> quando inicia, <I>calcorder</I>
+a cada 100ms ao verificar a cadeia de dependência de células,
+<I>calccheckdone </I>quando termina a verificação, e <I>calcfinished
+</I>quando todas as células afetadas receberam seus valores
+re-calculados. Este passo é sempre seguido pelo <I>Render</I>. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* <I>Render </I>(se
+necessário): Envia <I>schedrender </I>quando inicia, e <I>renderdone
+</I>quando o elemento <I>&lt;table&gt; </I>é atualizado com as
+células formatadas. Este passo é sempre seguido por
+<I>PositionCalculations</I>. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* <I>PositionCalculations</I>:
+Envia <I>schedposcalc </I>quando inicia, e <I>doneposcalc </I>depois
+de atualizar as barras de rolagem, o cursor da célula editável
+atual, e outros componentes visuais do <I>TableEditor</I>. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Todos os comandos são
+salvos como eles são executados, então naturalmente obtemos um
+log(? 2) de todas as operações. O método <I>Sheet.CreateAuditString
+</I>proporciona uma série de novas linhas delimitadas como trilha,
+com cada comando em uma única linha. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>O <I>ExecuteSheetCommand
+</I>também cria um comando de desfazer para cada comando que ele
+executa. Por exemplo, se a célula A1 contém &quot;Foo&quot; e que o
+usuário executa '<I>set A1 text Bar</I>', em seguida, um comando de
+desfazer <I>set A1 texto Foo </I>é empurrado para a pilha de
+desfazer. Se o usuário clicar em Desfazer, então o comando de
+desfazer é executado para restaurar a A1 ao seu valor original. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+1) melhor background ou = segundo plano, de fundo... </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>(?
+2) log, historico...</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.4.
+Table Editor </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Agora vamos olhar para
+a camada do <I>TableEditor</I>. Ele calcula as coordenadas do
+<I>RenderContext </I>na tela, e gerencia as barras de rolagem
+horizontais e verticais percorrendo através de duas instâncias de
+<I>TableControl</I>. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.8: Instância TableControl gerencia das Barras de Rolagem</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>A camada de
+visualização, manipulada pela classe <I>RenderContext</I>, também
+difere da concepção da WikiCalc. Em vez de mapear cada célula de
+um elemento <I>&lt;td&gt;</I>, agora simplesmente criamos um elemento
+<I>&lt;table&gt;</I> de tamanho fixo que se encaixa na área visível
+do navegador, e pré-preenchê-lo com elementos <I>&lt;td&gt;</I>. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>A medida que o usuário
+rola a planilha por meio de nossas barras de rolagem customizadas, o
+<I>innerHTML</I> dos elementos <I>&lt;td&gt;</I> pré-estabelecidos é
+atualizado dinamicamente. Isto significa que não precisamos criar ou
+destruir qualquer elemento <I>&lt;tr&gt;</I> ou <I>&lt;td&gt;</I> na
+maioria dos casos, o que acelera muito o tempo de resposta. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Já que o <I>RenderContext
+</I>só renderiza a região visível, o tamanho do objeto <I>Sheet
+</I>pode ser arbitrariamente grande, sem afetar seu desempenho. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>O <I>TableEditor </I>também
+contém um objeto <I>CellHandles</I>, que implementa o preencher e o
+mover dos menus anexados ao canto inferior direito da atual célula
+editável, conhecido como o <I>eCell</I>, mostrado na Figura 19.9. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.9: Célula editável atual, conhecida como a ECell</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> </FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>A caixa de entrada é
+gerida por duas classes: <I>InputBox </I>e <I>InputEcho</I>. A
+primeira controla a linha de edição acima da grade, enquanto o
+segundo mostra uma camada de pré-visualização do que o usuário
+digitou, sobrepondo o conteúdo da <I>eCell</I> (Figura 19.10). </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.10: A caixa de entrada é controlada por duas Classes</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Normalmente, o
+mecanismo da SocialCalc só precisa se comunicar com o servidor
+quando se abre uma planilha para editar, e quando a salva no
+servidor. Para este efeito, o método <I>Sheet.ParseSheetSave </I>analisa
+uma seqüência no formato em que será salvo em um objeto <I>Sheet</I>,
+e o método <I>Sheet.CreateSheetSave </I>serializa o objeto de volta
+para esse formato. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>As fórmulas podem
+fazer referência aos valores a partir de qualquer planilha remota
+com uma URL. O comando <I>recalc </I>busca as planilhas referenciadas
+externamente, as analisa novamente com o <I>Sheet.ParseSheetSave</I>,
+e as armazena em um cache para que o usuário possa se referir a
+outras células na mesma planilha remota sem voltar a buscar o seu
+conteúdo. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.5.
+Save Format </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>O formato de gravação
+é o padrão </FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><I><SPAN STYLE="font-weight: normal">MIME
+</SPAN></I></FONT></FONT></FONT><CODE><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><I><SPAN STYLE="font-weight: normal">multipart/mixed</SPAN></I></FONT></FONT></FONT></CODE><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>,
+composto de quatro textos; </FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><I>charset
+= UTF-8</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>,
+cada parte do texto contendo uma nova linha delimitada com campos de
+dados delimitadores. As peças são: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* A parte <I>meta</I>
+lista os tipos de outras partes. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* A parte s<I>heet</I>
+lista cada formado e conteúdo das células, a largura de cada coluna
+(se não for o padrão), formato da folha padrão, seguida por uma
+lista de tipos de letra, cores e bordas usadas na folha. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* A parte opcional <I>edit</I>
+salva o estado do <I>TableEditor</I>, incluindo a última posição
+da <I>eCell</I>, bem como os tamanhos dos painéis fixos de linha /
+coluna. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>* A parte opcional
+<I>audit</I> contém o histórico de comandos executados na sessão
+de edição anterior. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Por exemplo, a Figura
+19.11 mostra uma planilha com três células, com 1874 na A1, como a
+<I>eCell</I>, a fórmula 2^2*43 em A2, e a fórmula SUM(Foo) em A3
+apresentado em negrito, referindo-se ao intervalo com nome Foo mais
+A1:A2. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.11: Uma planilha com três células</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>O formato de salvar
+serializado da planilha é parecido com este: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[código]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Este formato foi
+projetado para ser legível, bem como ser relativamente fácil de
+gerar programaticamente. Isso torna possível para o plugin Drupal
+Sheetnode usar o PHP para converter entre este formato e outros
+formatos populares de planilha, como o Excel (<I>. xls</I>) e
+OpenDocument (<I>. ods</I>). </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Agora que temos uma boa
+idéia sobre como as peças se encaixam na SocialCalc, vejamos dois
+exemplos do mundo real de utilização da SocialCalc. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.6.
+Rich-text Editing </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>No primeiro exemplo,
+vamos reforçar as células de texto da SocialCalc com marcação de
+wiki para mostrar a renderização rich-text no editor de tabela
+(Figura 19.12). </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.12: Representação Rich Text na Edição de Tabela</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Nós adicionamos esta
+funcionalidade para a SocialCalc bem após a sua versão 1.0, para
+atender ao pedido popular de inserir imagens, links e marcações de
+texto usando uma sintaxe unificada. Desde de que a Socialtext já tem
+uma plataforma wiki de código-fonte aberto, era natural de
+re-utilizar a sintaxe para SocialCalc também. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Para implementar isso,
+precisamos de um processador personalizado para o <I>textvalueformat
+</I>do texto, e alterar a formatação padrão das células de texto
+para utilizá-lo. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>O que <I>textvalueformat</I>,
+você pergunta? Leia mais. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.6.1.
+Types and Formats </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Na SocialCalc, cada
+célula tem um <I>datatype </I>e um <I>valuetype</I>. As células com
+<I>datatype</I> de texto ou números correspondentes ao texto ou
+números no <I>valuetype</I>, e a fórmula com <I>datatype = &quot;f&quot;
+</I>nas células podem gerar um valor numérico ou de texto. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Lembre-se que na etapa
+de redenrização, o objeto <I>Sheet</I> gera o HTML a partir de cada
+uma de suas células. Faz através do controle de <I>valuetype</I> de
+cada célula: Se ele começa com t, o atributo da célula
+<I>textvalueformat</I> determina como a geração é feita. Se ele
+começa com n, então o atributo <I>nontextvalueformat </I>é usado. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>No entanto, se o
+<I>textvalueformat </I>da célula ou atributo <I>nontextvalueformat
+</I>não é definido explicitamente, então um formato padrão é
+procurado a partir do seu <I>valuetype</I>, como mostrado na Figura
+19.13. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.13: <I>Valuetypes</I></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>O suporte para o
+formato wiki de valor texto é codificado em
+<I>SocialCalc.format_text_for_display</I>: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[codigo]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Em vez de alinhar de
+wiki para HTML em expansão no <I>format_text_for_display</I>,
+definimos um novo estilo no <I>SocialCalc.Callbacks</I>. Este é o
+estilo recomendado da SocialCalc, o que melhora a modularidade,
+tornando possível a ligação de diferentes formas de expansão
+wiki-texto, bem como manter a compatibilidade com outras ligações
+que querem esse recurso. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.6.2.
+Rendering Wikitext </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Agora, vamos fazer uso
+da Wikiwyg[1], uma biblioteca Javascript que oferece conversões
+entre wikitexto e HTML. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Nós definimos a função
+<I>expand_wiki </I>tomando o texto da célula, executando-o através
+da análise do Wikiwyg Wikitexto e seu emissor HTML: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[código]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>A etapa final envolve o
+agendamento da planilha no comando <I>defaulttextvalueformat </I>logo
+após a planilha inicializar: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[código]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Tomados em conjunto, o
+passo <I>Render</I> agora trabalha como mostrado na Figura 19.14. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.14: Passo Render</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Isso é tudo! A
+SocialCalc aprimorada, agora oferece suporte a um conjunto rico de
+sintaxe de marcação: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[código]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Tente inserir <I>*bold*
+_itálic_ 'monospace' </I>na A1, e você verá ser processado como
+rich-text (Figura 19.15). </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.15: Exemplo Wikywyg</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.7.
+Real-time Collaboration </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>No exemplo a seguir
+vamos explorar o multi-usuário, a edição em tempo real em uma
+planilha compartilhada. Isto pode parecer complicado à primeira
+vista, mas graças ao design modular da SocialCalc tudo o que é
+necessário é que cada usuário esteja on-line para transmitir seus
+comandos aos outros participantes. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Para distinguir entre
+os comandos emitidos localmente e comandos remotos, nós adicionamos
+o parâmetro <I>isRemote </I>para o método <I>ScheduleSheetCommands</I>:
+</FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[código]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Agora tudo o que
+precisamos fazer é definir uma função de retorno adequada para
+<I>SocialCalc.Callbacks.broadcast</I>. Uma vez definida, os mesmos
+comandos que serão executados em todos os usuários conectados à
+mesma planilha. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Quando este recurso foi
+implementado pela primeira vez para o OLPC (One Laptop Per Child[2])
+por SEETA's Sugar Labs[3] em 2009, a função de transmissão foi
+construída com chamadas XPCOM em D-Bus/Telepathy, o transporte
+padrão para redes OLPC / Sugar (ver Figura 19.16). </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.16: Implementação OLPC </FONT></FONT></FONT>
+</P>
+<P CLASS="western" ALIGN=CENTER><BR><BR>
+</P>
+<P LANG="pt-PT" CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0cm"><A NAME="result_box"></A>
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Isso
+funcionou razoavelmente bem, permitindo ocorrências na mesma rede
+Sugar para colaborar em uma planilha SocialCalc comum.No entanto, é
+específica para a plataforma do navegador Mozilla/XPCOM, bem como
+para a plataforma de mensagens D-Bus/Telepathy.</FONT></FONT></FONT></P>
+<DIV ID="gt-res-tools" DIR="LTR">
+	<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+	<BR>
+	</P>
+</DIV>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><BR></FONT></FONT></FONT><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.7.1.
+Cross-browser Transport </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Para funcionar em
+vários navegadores e sistemas operacionais, nós usamos o framework
+<I>Web::Hippie[4]</I>, uma abstração de alto nível,
+JSON-over-WebSocket com  convenientes ligações jQuery, com MXHR
+(Multipart XML HTTP Request[5]) como mecanismo de transporte de
+emergência no caso do WebSocket não estar disponível. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Para o navegador com o
+Adobe Flash plugin instalado, mas sem o apoio do WebSocket nativo,
+usamos a emulação do projeto de Flash <I>web_socket.js[</I>6] para
+WebSocket, que muitas vezes é mais rápido e mais confiável do que
+o MXHR. O fluxo de operação é mostrado na Figura 19.17. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.17: Fluxo de Navegadores</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>O lado do cliente da
+função <I>SocialCalc.Callbacks.broadcast </I>é definido como: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[código]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Apesar de funcionar
+muito bem, há ainda duas questões pendentes a resolver. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.7.2.
+Conflict Resolution </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>A primeira é uma
+corrida de condição, na ordem dos comandos executados: Se os
+usuários A e B simultâneamente realizarem uma operação que afete
+as mesmas células, então, recebem e executam comandos emitidos a
+partir de outro usuário, eles vão acabar em estados, diferentes,
+como mostrado na Figura 19.18. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.18: Conflito da Corrda de Condição</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Nós resolvmos isso com
+os mecanismos nativos da SocialCalc: desfazer e refazer, como
+mostrado na Figura 19.19. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.19: Solução do Conflito</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>O processo usado para
+resolver o conflito é o seguinte. Quando um cliente transmite um
+comando, ele adiciona o comando para uma fila de pendência. Quando
+um cliente recebe um comando, ele verifica o comando remoto contra a
+fila de pendência. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Se a fila de pendência
+está vazia, então o comando é simplesmente executado como uma ação
+remota. Se o comando removido corresponde a um comando na fila de
+pendência, o comando local é removido da fila. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Caso contrário, o
+cliente verifica se existem comandos na fila que conflitam com o
+comando recebido. Se existe algum comando conflitante, o cliente
+primeiro desfaz esses comandos e os marca para refazer depois. Depois
+de desfazer os comandos conflitantes (se houver), o comando remoto é
+executado como de costume. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Quando um comando
+marcado para ser refeito é recebido no servidor, o cliente irá
+executá-lo novamente, e em seguida, removê-lo da fila. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.7.3.
+Remote Cursors </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Mesmo com as condições
+de conflitos resolvidas, ainda possível acidentalmente substituir
+uma célula que do outro usuário está editando. Uma simples
+melhoria para que cada cliente possa transmitir a posição do cursor
+para outros usuários, para que todos possam ver quais células estão
+sendo trabalhadas. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Para implementar esta
+idéia, podemos adicionar outro manipulador de transmissão para o
+<I>MoveECellCallback</I>: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[código]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Para assinalar o foco
+da célula em planilhas, é comum o uso de bordas coloridas. No
+entanto, uma célula pode já definir sua própria borda, e desde que
+borda é mono-colorida, ela só pode representar um cursor na mesma
+célula. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Assim, em navegadores
+com suporte a CSS3, usamos a propriedade <I>shadow-box </I>para
+representar múltiplos cursores na mesma célula:</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[código]
+</FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>A Figura 19.20 mostra
+como a tela ficaria com quatro pessoas editando na mesma planilha. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>[imagem]</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Figura
+19.20: Quatro usuários editando uma planilha</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.8.
+Lessons Learned </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Nós entregamos a
+SocialCalc 1.0 em 19 de outubro de 2009, o 30 º aniversário do
+lançamento inicial da VisiCalc. A experiência de colaborar com meus
+colegas na Socialtext sob a orientação de Dan Bricklin foi muito
+valiosa para mim, e eu gostaria de compartilhar algumas lições que
+aprendi durante esse tempo. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.8.1.
+Chief Designer with a Clear Vision </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Em [Bro10], Fred Brooks
+argumenta que quando se constrói de sistemas complexos, a conversa é
+muito mais direta, se nos concentrarmos em um conceito de design
+coerente, ao invés de representações derivadas. Segundo Brooks, a
+formulação de tal conceito de design coerente é melhor ter em
+mente uma única pessoa: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Já que integridade
+conceitual é o atributo mais importante de um grande projeto, e
+desde que provém de uma ou algumas mentes trabalhando unidas, o
+gerente sábio corajosamente confia cada tarefa de design para um
+talentoso designer chefe. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>No caso da SocialCalc,
+ter Ruggles Tracy como nosso designer chefe de experiências de
+usuabilidade era a chave para o projeto a convergir para uma visão
+compartilhada. Desde que o mecanismo subjacente da SocialCalc era tão
+maleável, a tentação de criar essa fuincionalidade foi muito real.
+A capacidade de Tracy de se comunicar usando esboços do projeto
+realmente nos ajudou a apresentar as funcionalidades de uma forma
+intuitiva aos usuários. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> </FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.8.2.
+Wikis for Project Continuity </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Antes de entrar para o
+projeto SocialCalc, já havia mais de cerca de dois anos de projeto e
+desenvolvimento em curso, mas eu era capaz de acompanhar e começar a
+contribuir em menos de uma semana, simplesmente devido ao fato de que
+tudo está na wiki. Das notas mais antigas de design para os mais
+atualizados dados de matriz de suporte do navegador, todo o processo
+foi registrado nas páginas de wiki e em planilhas da SocialCalc. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Lendo através do
+espaço de trabalho do projeto me trouxe rapidamente para a mesma
+página de outros, sem o habitual 'mãos-dadas' normalmente associada
+a orientar um novo membro da equipe. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Isso não seria
+possível nos projetos tradicionais de código aberto, onde a maioria
+conversa acontece em IRC e listas de discussão e a wiki (se houver)
+só é utilizada para a documentação e links para recursos de
+desenvolvimento. Para um iniciante, é muito mais difícil
+reconstruir o contexto a partir de logs não estruturados do IRC e
+arquivos de e-mail. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.8.3.
+Embrace Time Zone Differences </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>David Heinemeier
+Hansson, criador do Ruby on Rails, uma vez comentou sobre os
+benefícios de equipes distribuídas quando ele se juntou a
+37signals. &quot;As sete zonas de tempo entre Copenhague e Chicago,
+na verdade significa que nós temos feito muito com poucas
+interrupções.&quot; Com nove fusos horários entre Taipé e Palo
+Alto, era verdade para nós durante o desenvolvimento SocialCalc
+também. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Muitas vezes
+completamos um ciclo de Design-Desenvolvimento-QA dentro de um dia de
+24 horas, com cada aspecto tendo o dia de uma pessoa trabalhando 8
+horas por dia no seu local. Este estilo de colaboração assíncrona
+nos obrigou a produzir artefatos auto-descritivos (desenho, esboço
+de código e testes), que por sua vez, melhorou muito a nossa
+confiança um no outro. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.8.4.
+Optimize for Fun </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Em minha palestra de
+2006 para a conferência CONISLI [Tan06], eu resumi minha experiência
+à frente de uma equipe distribuída implementando a linguagem Perl 6
+com algumas observações. Entre elas, sempre tem um roteiro, Perdão&gt;
+Permissão, remover bloqueios, buscar idéias, não de consenso, e as
+idéias de rascunho com código são particularmente relevantes para
+as pequenas equipes distribuídas. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Ao desenvolver a
+SocialCalc, tomamos um grande cuidado na distribuição do
+conhecimento entre os membros da equipe com a posse de código de
+forma colaborativa, de modo que ninguém iria se tornar um ponto
+crítico. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Além disso,
+preventivamente resolvemos disputas pelo fato de alternativas na
+codificação para explorar o espaço de design, e não tínhamos
+medo de substituir protótipos totalmente trabalhados quando chegava
+um design melhor. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Estes traços culturais
+nos ajudou a promover um senso de antecipação e camaradagem, apesar
+da ausência da interação face-a-face, manteve a política em
+mínima, e fez trabalhar na SocialCalc muito divertido. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.8.5.
+Drive Development with Story Tests </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Antes de ingressar na
+Socialtext, eu defendia a abordagem de &quot;intercalar testes com a
+especificação&quot;, como pode ser visto na especificação do Perl
+6[7], onde anotamos a especificação da linguagem com a suíte de
+teste oficial. No entanto, foi Ken Pier e Matt Heusser, a equipe de
+QA para SocialCalc, quem realmente abriu meus olhos para ver como
+isto pode ser levado para o próximo nível, trazendo os testes para
+o lugar de especificação executável. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>No capítulo 16 de
+[GR09], Matt explicou o nosso processo story-test driven development
+da seguinte forma: </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>A unidade básica de
+trabalho é uma &quot;história&quot;, que é um documento de
+requisitos extremamente leve. A história contém uma breve descrição
+de uma funcionalidade, juntamente com exemplos do que precisa
+acontecer para considerar a história completa; nós chamamos esses
+exemplos &quot;testes de aceitação&quot; e descrevemos em Inglês. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Durante o corte inicial
+da história, o proprietário do produto faz a primeira tentativa de
+criar testes de aceitação, que são aumentados por desenvolvedores
+e testadores, antes que qualquer desenvolvedor escreva uma linha de
+código. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Estes testes história
+são depois traduzidas em wikitests, uma linguagem de especificação
+baseada em tabela inspirado no FIT Ward Cunningham framework[8], que
+impulsiona frameworks de testes automatizados, como o <I>Test:: WWW:
+Mechanize</I>[9] e <I>Test:: WWW: Selenium</I>[10]. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>É difícil exagerar o
+benefício de ter testes como uma linguagem comum para expressar e
+validar os requisitos. Ele foi fundamental na redução da
+incompreensão, e tem praticamente eliminada regressões de nossos
+lançamentos mensais. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>19.8.6.
+Open Source With CPAL </B></FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Por último mas não
+menos importante, o modelo de código aberto que escolhemos para
+SocialCalc deixa uma lição interessante por si só. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"> 
+  <FONT FACE="arial, sans-serif"><FONT SIZE=3>Socialtext criou a
+Common Public Attribution License[11] para SocialCalc. Baseado no
+Mozilla Public License, a CPAL é projetado para permitir que o autor
+original possa requirir a atribuição a ser exibida na interface do
+software do usuário, e tem uma cláusula de utilização da rede,
+que desencadeia disposições <I>share-alike</I>, quando o trabalho
+derivado é hospedado por um serviço mais da rede.</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Após
+a sua aprovação por Open Source Initiative[12] e Free Software
+Foundation[13], vimos locais proeminentes, tais como Facebook[14] e
+Reddit[15] optando por liberar o código fonte de sua plataforma sob
+a CPAL, o que é muito encorajador. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Porque
+CPAL é uma licença &quot;<I>weak copyleft</I>&quot;, os
+desenvolvedores podem combinar livremente com qualquer software livre
+ou proprietário, e só precisa liberar modificações para a própria
+SocialCalc. Isso permitiu várias comunidades a adotar a SocialCalc e
+a tornou mais impressionante. </FONT></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Há
+muitas possibilidades interessantes com esta idéia de planilha
+<I>open-source</I>, e se você puder encontrar uma maneira de
+incorporar a SocialCalc em seu projeto favorito, nós definitivamente
+gostaríamos de ouvir sobre isso.</FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT FACE="arial, sans-serif"><FONT SIZE=3><B>Notas
+de Rodapé</B></FONT></FONT></P>
+<OL>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-1"></A>
+	<FONT FACE="arial, sans-serif"><FONT SIZE=3>https://github.com/audreyt/wikiwyg-js</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-2"></A>
+	<FONT FACE="arial, sans-serif"><FONT SIZE=3>http://one.laptop.org/</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-3"></A>
+	<FONT FACE="arial, sans-serif"><FONT SIZE=3>http://seeta.in/wiki/index.php?title=Collaboration_in_SocialCalc</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-4"></A>
+	<FONT FACE="arial, sans-serif"><FONT SIZE=3>http://search.cpan.org/dist/Web-Hippie/</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-5"></A>
+	<FONT FACE="arial, sans-serif"><FONT SIZE=3>http://about.digg.com/blog/duistream-and-mxhr</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-6"></A>
+	<FONT FACE="arial, sans-serif"><FONT SIZE=3>https://github.com/gimite/web-socket-js</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-7"></A>
+	<FONT FACE="arial, sans-serif"><FONT SIZE=3>http://perlcabal.org/syn/S02.html</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-8"></A>
+	<FONT FACE="arial, sans-serif"><FONT SIZE=3>http://fit.c2.com/</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-9"></A>
+	<FONT FACE="arial, sans-serif"><FONT SIZE=3>http://search.cpan.org/dist/Test-WWW-Mechanize/</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-10"></A>
+	 <FONT FACE="arial, sans-serif"><FONT SIZE=3>http://search.cpan.org/dist/Test-WWW-Selenium/</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-11"></A>
+	 <FONT FACE="arial, sans-serif"><FONT SIZE=3>https://www.socialtext.net/open/?cpal</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-12"></A>
+	 <FONT FACE="arial, sans-serif"><FONT SIZE=3>http://opensource.org/</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-13"></A>
+	 <FONT FACE="arial, sans-serif"><FONT SIZE=3>http://www.fsf.org</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-14"></A>
+	 <FONT FACE="arial, sans-serif"><FONT SIZE=3>https://github.com/facebook/platform</FONT></FONT></P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><A NAME="footnote-15"></A>
+	 <FONT FACE="arial, sans-serif"><FONT SIZE=3>https://github.com/reddit/reddit</FONT></FONT></P>
+</OL>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+</BODY>
+</HTML>
