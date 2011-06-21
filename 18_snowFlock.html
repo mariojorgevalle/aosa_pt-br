@@ -7,28 +7,26 @@
 	<META NAME="AUTHOR" CONTENT="Mario Amaral">
 	<META NAME="CREATED" CONTENT="20110531;21293400">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
-	<META NAME="CHANGED" CONTENT="20110621;1015700">
+	<META NAME="CHANGED" CONTENT="20110621;19542800">
+	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<STYLE TYPE="text/css">
 	<!--
 		@page { margin: 2cm }
 		P { margin-bottom: 0.21cm }
-		P.western { so-language: pt-BR }
 		H2 { margin-bottom: 0.21cm }
-		H2.western { so-language: pt-BR }
 		H2.cjk { font-family: "WenQuanYi Micro Hei" }
 		H2.ctl { font-family: "Lohit Hindi" }
 		A:link { so-language: zxx }
 		CODE.cjk { font-family: "WenQuanYi Micro Hei", monospace }
-		A:visited { so-language: zxx }
 	-->
 	</STYLE>
 </HEAD>
 <BODY LANG="pt-BR" DIR="LTR">
-<P CLASS="western" ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=4><I>Capítulo
+<P ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=4><I>Capítulo
 18. SnowFlock</I></FONT></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY><BR><BR>
+<P ALIGN=JUSTIFY><BR><BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	A
+<P ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">A
 <SPAN STYLE="background: #ffffff">computação na nuvem (Cloud
 Computing)</SPAN> oferece uma plataforma atrativa de computação
 acessível. Ao invés de comprar e configurar um servidor físico,
@@ -44,13 +42,13 @@ Machine Monitor – VMM), que emula uma máquina física. Usuários
 estão seguramente isolados em suas respectivas MVs, e estão
 alegremente inconscientes que normalmente compartilham a máquina
 física (“host”) com muitos outros.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY><BR><BR>
+<P ALIGN=JUSTIFY><BR><BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">18.1.
+<P ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">18.1.
 <FONT SIZE=4><I>Introduzindo SnowFlock</I></FONT></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY><BR><BR>
+<P ALIGN=JUSTIFY><BR><BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	A
+<P ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">A
 computação na nuvem é uma <SPAN STYLE="background: #ffff00">benção</SPAN><SPAN STYLE="background: #ffffff">
 para as organizações agéis. Com servidores físicos, usuários são
 obrigados a esperar impacientemente enquanto outros (lentamente)
@@ -59,15 +57,15 @@ servidor, instalar e configurar o Sistema Operacional (SO) e todos os
 aplicativos. Em vez de esperar semanas pelos outros para a entrega, o
 usuário da nuvem mantem o controle do processo e pode criar um novo
 servidor autônomo em minutos.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	Infelizmente,
-poucos servidores de computação na nuvem são autônomos <SPAN STYLE="background: #ffff00">(</SPAN><SPAN STYLE="background: #ffff00">few
+<P ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Infelizmente,
+poucos servidores de computação na nuvem são autônomos <SPAN STYLE="background: #ffff00">(few
 cloud servers stand alone)</SPAN>. Guiados pela instanciação rápida
 e pelo modelo <I>pay-per-use</I>, servidores da nuvem são
 normalmente membros de um grupo variável de servidores configurados
 de forma semelhante a execução de tarefas dinâmicas e escaláveis
 relacionadas à computação paralela, <SPAN STYLE="background: #ffff00">mineração
-de dados - </SPAN><I><SPAN STYLE="background: #ffff00">data mining</SPAN></I><I>
-</I>– ou servidores de páginas da web. Por <SPAN STYLE="background: #ff0000">'bootar'</SPAN>
+de dados - </SPAN><I><SPAN STYLE="background: #ffff00">data mining</SPAN></I>
+– ou servidores de páginas da web. Por <SPAN STYLE="background: #ff0000">'bootar'</SPAN>
 repetidamente novas instâncias da mesma template estática,
 servidores da nuvem comerciais deixam de cumprir a promessa de
 computação sob demanda verdadeira (<SPAN STYLE="background: #ffff00">commercial
@@ -75,7 +73,7 @@ clouds fail to fully deliver on the promise of true on-demand
 computation)</SPAN>. Após instanciar o servidor, o usuário da nuvem
 deve continuar gerenciando os membros do <I>cluster</I> e intermediar
 a adição de novos servidores.</FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	SnowFlock
+<P ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">SnowFlock
 aborda estas questões com a clonagem de MVs, nossa proposta de
 chamada a API da nuvem (<SPAN STYLE="background: #ffff00">our
 proposed cloud API call</SPAN>). Do mesmo jeito que o código do
@@ -85,7 +83,7 @@ nuvem através de uma interface similar. Com a clonagem de MVs
 SnowFlock, a alocação de recursos, o gerenciamento de cluster e a
 lógica da aplicação pode ser interligados de modo programável e
 tratados como uma única operação lógica.</FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	A
+<P ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">A
 MV chamada clone instancia múltiplos servidores na nuvem que são
 cópias idênticas a MV original até o ponto da clonagem.
 Logicamente, os clones herdam todos os estados de seus pais,
@@ -95,7 +93,7 @@ efetivamente ingressam em um <I>cluster</I> dinamicamente escalável.
 Novos recursos computacionais, encapsulados como MV idênticas, podem
 ser criados <I>on-the-fly</I> e podem ser dinamicamente <SPAN STYLE="background: #ffff00">alavancados</SPAN>
 quando necessário.</FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	Para
+<P ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Para
 ser de uso prático, a clonagem de MV deve ser aplicável, eficiente
 e rápida. Neste capítulo nós vamos descrever como a implementação
 de SnowFlock na clonagem de MV pode ser efetivamente interligada em
@@ -103,7 +101,7 @@ diversos modelos de programas e <I>frameworks</I>, como isto pode ser
 implementado para manter o tempo de execução de aplicativos e
 prover sobrecarga mínima, e como isto pode ser usado para criar
 dezenas de novas MV em cinco segundos ou menos.</FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	Com
+<P ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Com
 uma API para o controle programável da clonagem de MV com
 vinculações em C, C++, Python e Java, SnowFlock é extremamente
 flexível e versátil. Nós temos utilizado o SnowFlock com sucesso
@@ -115,7 +113,7 @@ físicos. Para aplicativos paralelos que utilizam a interface de
 troca de mensagem (Message Passing Interface – MPI, padrão para
 comunicação de dados em computação paralela) e tipicamente
 executam um <I>cluster</I> de servidores dedicados, nós modificamos
-o gerenciamento de inicialização   da MPI para fornecer aplicativos
+o gerenciamento de inicialização da MPI para fornecer aplicativos
 inalterados com bom desempenho e muito menos sobrecarga por fornecer
 um <I>cluster</I> novo de clones sob a demanda para cada execução.
 Finalmente, em um caso de uso bem diferente, utilizamos o SnowFlock
@@ -125,27 +123,28 @@ inicialização, <SPAN STYLE="background: #ffff00">trabalhadores
 frios</SPAN> como necessários para picos de demanda <SPAN STYLE="background: #ffff00">(Today's
 cloud-based elastic servers boot new, cold workers as needed to
 service spikes in demand.)</SPAN>. Em vez de clonar uma MV em
-execução, SnowFlock traz novos  <SPAN STYLE="background: #ffff00">trabalhadores</SPAN>
+execução, SnowFlock traz novos <SPAN STYLE="background: #ffff00">trabalhadores</SPAN>
 online 20 vezes mais rápido, e por herdarem o <SPAN STYLE="background: #ffff00">warm
 buffer</SPAN><SPAN STYLE="background: #ffffff"> de seu pai, elas
 atingem seu desempenho máximo mais rápido.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY><BR><BR>
+<P ALIGN=JUSTIFY><BR><BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=4><I><SPAN STYLE="background: #ffffff">18.2
+<P ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=4><I><SPAN STYLE="background: #ffffff">18.2
 A clonagem de MV</SPAN></I></FONT></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY><BR><BR>
+<P ALIGN=JUSTIFY><BR><BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	Como
+<P ALIGN=JUSTIFY><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">Como
 o nome sugere, os clones das MVs são (quase) idênticas a sua MV
 pai. Existem na verdade algumas pequenas mas necessárias diferenças
 para evitar questões tal como conflitos de endereço de MAC, mas nós
 vamos voltar a isso depois. Para criar um clone, todo o disco local e
 o estado da memória devem ser disponibilizados, o que nos traz para
-o primeiro maior </SPAN><I><SPAN STYLE="background: #ffffff">design</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="background: #ffffff">
-</SPAN></SPAN><I><SPAN STYLE="background: #ffffff">tradeoff</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="background: #ffffff">
-(expressão que define uma situação em que há conflito de
-escolha): nós devemos copiar o estado na frente ou sob demanda?</SPAN></SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	A
+o primeiro maior </SPAN><I><SPAN STYLE="background: #ffffff">design</SPAN></I><SPAN STYLE="background: #ffffff">
+</SPAN><I><SPAN STYLE="background: #ffffff">tradeoff</SPAN></I><SPAN STYLE="background: #ffffff">
+</SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="background: #ffffff">(expressão
+que define uma situação em que há conflito de escolha): nós
+devemos copiar o estado na frente ou sob demanda?</SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">A
 maneira mais simples de realizar a clonagem de MV é adaptar o padrão
 MV de capacidade de migração<SPAN STYLE="background: #ffff00">(</SPAN><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">to
 adapt the standard VM &quot;migration&quot; capability)</SPAN></SPAN>.
@@ -165,21 +164,21 @@ produzir um clone deixando a original em execução. Neste processo
 a melhor performance inicial, porque todo o estado da MV esta em
 vigor quando a execução começa. A desvantagem da replicação
 “impaciente” é que o penoso processo de copiar a MV inteira deve
-acontecer antes da execução poder  começar, o que deixa
+acontecer antes da execução poder começar, o que deixa
 significantemente mais lenta a instanciação.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	O
+<P ALIGN=JUSTIFY STYLE="font-style: normal"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">O
 outro extremo, adotado pelo SnowFlock, é a replicação de estado
 “preguiçosa”. Em vez de copiar tudo o que a MV pode precisar,
 SnowFlock transfere somente as partes essenciais para iniciar a
 execução, e transfere o estado depois, somente quando o clone
 precisar. Isto possui duas vantagens. Primeiro, ele minimiza a
-latência de instanciação  fazendo o menor trabalho possível.
+latência de instanciação fazendo o menor trabalho possível.
 Segundo, ele aumenta a eficiência, copiando somente o estado que é
 realmente utilizado pelo clone. O rendimento deste benefício, é
 claro, depende do comportamento do clone, mas poucos aplicativos
 acessam todas as páginas da memória e todos os arquivos no sistema
 local de arquivos.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	No
+<P ALIGN=JUSTIFY STYLE="font-style: normal"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">No
 entanto, os benefícios da replicação “preguiçosa” não são
 livres. Como a transferência de estado é adiada até o último
 momento, o clone deve aguardar pelo envio do estado antes de
@@ -198,7 +197,7 @@ dados clonado pode funcionar mal a princípio. Deve-se notar que este
 é um efeito transitório: em poucos minutos, a maior parte do estado
 necessário foi transferido e o desempenho do clone corresponde ao do
 pai.</SPAN></SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff"><SPAN STYLE="font-weight: normal">	</SPAN><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ff00ff">Como
+<P ALIGN=JUSTIFY STYLE="font-style: normal"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ff00ff">Como
 um aparte(As an aside)</SPAN></SPAN><SPAN STYLE="font-weight: normal">,
 se você esta acostumado (well versed in VMs) com MVs, é provável
 que esteja perguntado se as otimizações utilizadas pela migração
@@ -212,18 +211,15 @@ Esta técnica não afeta o intervalo entre a requisição de migração
 e o tempo em que a cópia começa a ser executada, e assim não deve
 reduzir a latência de instanciação da clonagem “impaciente” de
 MV.</SPAN></SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal">
-<BR><BR>
+<P ALIGN=JUSTIFY><BR><BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=4><I><SPAN STYLE="background: #ffffff">18.3
+<P ALIGN=JUSTIFY STYLE="font-weight: normal; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=4><I><SPAN STYLE="background: #ffffff">18.3
 A abordagem do SnowFlock (<SPAN STYLE="background: #94006b">SnowFlock's
 Approach</SPAN>)</SPAN></I></FONT></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR><BR>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><BR><BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	O
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">O
 SnowFlock implementa a clonagem de MV com um primitivo chamado “<I>VM
 Fork</I>”, que é como um “<I>Unix fork</I>” padrão, mas com
 algumas diferenças importantes. Primeiramente, em vez de duplicar um
@@ -235,42 +231,41 @@ Fork</I> pode simultaneamente gerar muitas cópias em paralelo.
 Finalmente, as MVs podem ser divididas em servidores físicos
 distintos, permitindo-lhe aumentar rapidamente sua capacidade de
 nuvem conforme necessário.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	Os
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">Os
 seguintes conceitos são fundamentais para o SnowFlock:</SPAN></FONT></FONT></P>
 <UL>
-	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+	<LI><P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 	<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">Virtualização:
 	a MV encapsula o ambiente de computação, tornando “nuvens” e a
 	clonagem de máquinas possível;</SPAN></FONT></FONT></P>
-	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+	<LI><P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 	<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">Propagação
 	“preguiçosa”: o estado da MV não é copiado até ser
 	necessário, então os clones “ganham vida” em poucos segundos;</SPAN></FONT></FONT></P>
-	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="font-weight: normal; widows: 2; orphans: 2">
+	<LI><P ALIGN=JUSTIFY STYLE="font-weight: normal; widows: 2; orphans: 2">
 	<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="background: #ffffff">Multicast</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="background: #ffffff">:
 	clones irmãos possuem necessidades similares em termos de estado de
-	MV. Com o </SPAN></SPAN><SPAN STYLE="background: #ffffff"><I>multicast</I><SPAN STYLE="font-style: normal">,
+	MV. Com o </SPAN></SPAN><I><SPAN STYLE="background: #ffffff">multicast</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="background: #ffffff">,
 	dezenas de clones começam a executar tão rápido quanto apenas um;</SPAN></SPAN></FONT></FONT></P>
-	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+	<LI><P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 	<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">Falhas
 	de página: quando um clone tenta utilizar uma memória inexistente,
 	isto falha e dispara uma requisição para o pai. A execução do
 	clone é bloqueada até a página necessária chegar;</SPAN></FONT></FONT></P>
-	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT FACE="arial, sans-serif"><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Cópia
+	<LI><P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT FACE="arial, sans-serif"><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Cópia
 	na escrita (</SPAN></SPAN></SPAN></FONT><FONT COLOR="#000000"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Copy
-	on Write</SPAN></SPAN></I></FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
-	– </SPAN></SPAN></SPAN></FONT><FONT COLOR="#000000"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">CoW</SPAN></SPAN></I></FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">):
+	on Write</SPAN></SPAN></I></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">
+	– </SPAN></FONT><FONT COLOR="#000000"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">CoW</SPAN></SPAN></I></FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">):
 	tomando uma cópia de sua memória e páginas de disco antes de
 	sobrescrevê-las, a MV pai pode continuar executando enquanto
 	preserva uma cópia “congelada” deste estado para ser usado
 	pelos clones.</SPAN></SPAN></SPAN></FONT></FONT></P>
 </UL>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR><BR>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><BR><BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	Nós
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">Nós
 implementamos o SnowFlock utilizando o sistema de virtualização
 Xen, então é útil introduzirmos alguns termos específicos do Xen
 para que fiquem claros. Em um ambiente Xen, o VMM é chamado de
@@ -280,8 +275,8 @@ chamado “domínio 0” (dom0), que tem acesso total ao <I>host</I>
 e a seus dispositivos físicos, e pode ser utilizado para controlar
 um convidado adicional, ou “usuário”, MVs que são chamadas
 “domínio U” (domU).</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	De
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">De
 modo geral, SnowFlock consiste de um conjunto de modificações no
 <I>hypervisor</I> do Xen que o permitem recuperar sem problemas
 quando os recursos em falta são acessados, e um conjunto de
@@ -289,7 +284,7 @@ processos de suporte e sistemas que são executados no dom0 e
 cooperativamente transferem o estado da MV que falta, e algumas
 modificações opcionais para o SO executar dentro de MVs clonadas.
 Há 6 componentes principais.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">	-
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">-
 Descritor de MV </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">(VM
 Descriptor)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">:
 Este pequeno objeto é usado para semear o clone, e mantém o
@@ -298,54 +293,48 @@ bare-bones (<A HREF="http://en.wikipedia.org/wiki/Barebone_computer">http://en.w
 – colocar?) da MV como necessário para começar a execução.
 Falta-lhe a coragem e o músculo necessário para realizar qualquer
 trabalho útil;</FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	-
-Sistema de Distribuição Multicast (<CODE CLASS="western"><FONT FACE="arial, sans-serif">mcdist):
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">-
+Sistema de Distribuição Multicast (</SPAN></SPAN></SPAN></FONT></FONT><CODE CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">mcdist):
 Este sistema do lado do pai distribui eficientemente as informações
-de estado da MV simultaneamente para todos os clones;</FONT></CODE></SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	-
+de estado da MV simultaneamente para todos os clones;</SPAN></SPAN></SPAN></FONT></FONT></CODE></P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">-
 Processo de Servidor de Memória <SPAN STYLE="background: #ffff00">(Memory
 Server Process)</SPAN>: Este processo do lado do pai mantém uma
 cópia congelada do estado do pai, e torna disponível para todos os
 clones sob demanda através do mcdist;</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	-
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">-
 Processo <I>Memtap</I>: Este processo do lado do clone atua a favor
 do clone, e se comunica com a o servidor de memória para solicitar
 páginas que são necessárias mas estão faltando;</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	-
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">-
 Iluminação do clone (<SPAN STYLE="background: #ffff00">Clone
 Enlightenment</SPAN>): O <I>kernel</I> convidado em execução dentro
 dos clones pode aliviar a transferência sob demanda de estado da MV,
 fornecendo dicas para o VMM. Isto é opcional, mas altamente
 desejável para eficiência;</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	-
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">-
 Pilha de controle: <I>Daemons</I> são executados em cada <I>host</I>
 físico para orquestrar os outros componentes e gerenciar o pai
 SnowFlock e as MVs clonadas.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR><BR>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><BR><BR>
 </P>
-<P CLASS="western" ALIGN=CENTER STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR><BR>
+<P ALIGN=CENTER STYLE="widows: 2; orphans: 2"><BR><BR>
 </P>
 <UL>
-	<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+	<P ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 	<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #23ff23">FIGURA!</SPAN></FONT></FONT></P>
-	<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">
-	</P>
 </UL>
-<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 <FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">Figura
 18.1: Arquitetura de replicação de MV SnowFlock.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	Pictoricamente
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">Pictoricamente
 falando, a Figura 18.1 descreve o processo de clonagem de uma MV,
 mostrando as 4 etapas principais: (1) interromper a MV pai para
 produzir um descritor da arquitetura; (2) distribuir este descritor
@@ -356,76 +345,107 @@ estado sob demanda. A figura também mostra o uso de distribuição
 <I>multicast</I> com mcdist, e busca evitar a iluminação através
 de convidado(<SPAN STYLE="background: #ffff00">and fetch avoidance
 via guest enlightenment</SPAN>).</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif"><SPAN STYLE="background: #ffffff"><FONT FACE="arial, sans-serif">	Se
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Se
 você esta interessado em experimentar o SnowFlock, ele esta
-disponível de duas maneiras (</FONT><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #00ffff">it's
-available in two flavors</SPAN></FONT><FONT FACE="arial, sans-serif">).
+disponível de duas maneiras (</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #00ffff">it's
+available in two flavors</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">).
 A documentação e o código-fonte aberto para a pesquisa original do
 SnowFlock da Universadade de Toronto estão disponíveis [1]. Se você
 preferir obter a versão industrial para teste, uma licença livre e
-não-comercial esta disponível no GridCentric Inc [2]. </FONT><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffff00">(The
+não-comercial esta disponível no GridCentric Inc [2]. </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">(The
 documentation and open source code for the original University of
 Toronto SnowFlock research project are available<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-1">1</A>&nbsp;If
 you'd prefer to take the industrial-strength version for a spin, a
-free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></FONT><FONT FACE="arial, sans-serif">
-Devido ao SnowFlock incluir alterações ao </FONT><FONT FACE="arial, sans-serif"><I>hypervisor</I></FONT><FONT FACE="arial, sans-serif">
+free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
+Devido ao SnowFlock incluir alterações ao </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hypervisor</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
 e requerer acesso ao dom0, instala-lo requer acesso privilegiado nas
-máquinas de </FONT><FONT FACE="arial, sans-serif"><I>host</I></FONT><FONT FACE="arial, sans-serif">.
-Por esta razão, você precisará usar seu próprio </FONT><FONT FACE="arial, sans-serif"><I>hardware</I></FONT><FONT FACE="arial, sans-serif">,
+máquinas de </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">host</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">.
+Por esta razão, você precisará usar seu próprio </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hardware</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">,
 e não estará apto a experimentá-lo fora como um usuário num
-ambiente comercial de nuvem tal como o EC2 da Amazon.</FONT></SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">	Ao
+ambiente comercial de nuvem tal como o EC2 da Amazon.</SPAN></SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">Ao
 longo das próximas seções nós descreveremos as diferentes partes
 que cooperam para atingir clonagens instantâneas e eficientes. Todos
 os pedaços que se encaixam nós descreveremos, como mostrado na
 Figura 18.2.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
-<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 <FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #23ff23">FIGURA!</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
-<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
-<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 <FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">Figura
 18.2: Componentes de Software do SnowFlock.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
 <H2 CLASS="western" ALIGN=JUSTIFY STYLE="margin-top: 0cm; margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 <FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=4><SPAN STYLE="background: #ffffff">18.4
 Descritor Arquitetural da MV (Architectural VM Descriptor)</SPAN></FONT></FONT></FONT></H2>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT FACE="arial, sans-serif">	O<FONT COLOR="#000000"> decisão-chave
+de design para o SnowFlock é adiar a replicação de estado da MV
+para uma operação de tempo de execução “preguiçosa”. Em
+outras palavras, copiar a memória de uma MV é uma operação de
+ligação tardia, permitindo muitas oportunidades de otimização.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	O primeiro
+passo para realizar esta decisão de design é a geração de um
+descritor de arquitetura do estado da MV. Esta é a semente que será
+usada para criar as MVs clonadas. Ela contém o mínimo necessário
+para criar uma MV e torná-la escalonável (<FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">schedulable</SPAN></SPAN></SPAN></FONT><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">).
+Como o nome indica, este mínimo é composto por estruturas de dados
+necessários para </SPAN></SPAN></FONT><FONT FACE="sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">a
+especificação básica de arquitetura. No caso do SnowFlock, a
+arquitetura é uma combinação de requisitos do processador Intel
+x86 e os requisitos do Xen. O descritor de arquitetura, portanto,
+contém estruturas de dados tal como tabelas de páginas, registros
+virtuais, dispositivos de metadados, </SPAN></SPAN></FONT></FONT><FONT FACE="sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">wallclock
+timestamps</SPAN></SPAN></SPAN></FONT></FONT><FONT FACE="sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">,
+etc. Nós encaminhamos o leitor interessado para [</SPAN></SPAN></SPAN></FONT></FONT><A HREF="http://www.aosabook.org/en/bibliography.html#bib:snowflock:tocs"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">LCWB+11</SPAN></SPAN></SPAN></FONT></A><FONT FACE="sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">],
+para uma descrição detalhada dos conteúdos do descritor de
+arquitetura.</SPAN></SPAN></SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	Um descritor de
+arquitetura possui três propriedades importantes: Primeiro, ele pode
+ser criado em pouco tempo; 200 milissegundo não é incomum. Segundo,
+ele é pequeno, tipicamente três ordens de magnitude menores que a
+alocação de memória da MV de origem (1 MB para 1 GB de MV). E
+terceiro, uma MV clone pode ser criada a partir de um descritor em
+menos de um segundo (normalmente 800 milissegundos).</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	O problema, com
+certeza, é que as MVs clonadas perdem a maior parte de seu estado de
+memória no momento em que são criadas a partir do descritor. A
+seções seguintes explicam como nós resolvemos este problema – e
+como aproveitamos as oportunidades de otimização apresentadas.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">The
-key design decision for SnowFlock is to postpone the replication of
-VM state to a lazy runtime operation. In other words, copying the
-memory of a VM is a late binding operation, allowing for many
-opportunities for optimization.</SPAN></FONT></FONT></P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
-<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 <BR>
 </P>
 </BODY>
