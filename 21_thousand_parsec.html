@@ -1,0 +1,446 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice 3.3  (Unix)">
+	<META NAME="AUTHOR" CONTENT="Grevi ">
+	<META NAME="CREATED" CONTENT="20110602;17154200">
+	<META NAME="CHANGEDBY" CONTENT="Grevi ">
+	<META NAME="CHANGED" CONTENT="20110622;9342000">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		P.western { so-language: pt-BR }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" DIR="LTR">
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=5>CAPITULO
+21. Thousand Parsec</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=5>Alan
+Laudicina e Aaron Mavrinac</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>Um império
+estelar vasto é formado por vários planetas, esticando-se por mil
+parsecs pelo espaço. Diferente de outras áreas da galáxia, poucos
+guerreiros vivem lá; Estes são intelectuais, com rica cultura e
+tradição acadêmica. Seus planetas magníficos, construídos
+ponta-a-ponta em volta de grandes universidades de ciência e
+tecnologia, são um farol de luz para todos nessa era de paz e
+prosperidade. Naves espaciais chegam dos vastos limites do quadrante
+e além, trazendo consigo os melhores cientistas de muito longe. Eles
+vieram para contribuir com suas habilidades para o projeto mais
+ambicioso já tentado por seres conscientes: O desenvolvimento de uma
+rede de computadores descentralizada para conectar a galáxia
+inteira, com suas várias linguagens, culturas e sistemas jurídicos.</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>Thousand
+Parsec é mais do que um video-game: É um framework, com um toolkit
+completo para construção de jogos de estratégia de impérios
+espaciais multiplayer, baseado em turnos. Seu protocolo genérico de
+game permite diversas implementações de cliente, server, software
+de inteligência artificial, assim como uma grande variedade de jogos
+possíveis. Embora seu tamanho tenha tornado o planejamento e
+execução um tanto quanto desafiadores, forçando seus
+contribuidores a andar em uma linha tênue entre desenvolvimento
+excessivamente vertical e desenvolvimento excessivamente horizontal,
+ele também torna-se um espécime até interessante quando discute-se
+a arquitetura de aplicativos “open-source”.</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>O rótulo
+dos jornalistas para o genêro que abrange os jogos de Thousand
+Parsec é “4X” - abreviatura para “explore, expand, exploit,
+exterminate,” o modus operandi de um jogador controlando um
+império. No gênero 4X de games, geralmente os jogadores irão
+patrulhar o mapa para poder revelá-lo(explore), criar novas bases ou
+estender sua influência para as já existentes(expand), reunir e
+usar recursos nas áreas que controla (exploit), e atacar e eliminar
+jogadores rivais (exterminate). A ênfase no desenvolvimento
+econômico e tecnológico, <SPAN STYLE="background: #ffff00">micromanagement</SPAN>
+e uma variedade de rotas para a supremacia geram uma profundidade e
+complexidade de gameplay sem paralelos dentro do grande gênero de
+estratégia.</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>Da
+perspectiva de um jogador, três principais componentes estão
+envolvidos em um game de Thousand Parsec. Primeiro, há o cliente:
+esta é a aplicação na qual o jogador interage com o universo. Esta
+conecta-se com um server na rede – comunicando-se usando o mais
+importante protocolo – para o qual outros clientes de jogadores
+(ou, em alguns casos, inteligência artificial) também se conectam.
+O server guarda o estado inteiro do jogo, atualizando clientes ao
+começo de cada turno. Jogadores então podem fazer várias ações e
+comunicá-las de volta ao servidor, que computa o estado resultante
+para o próximo turno. A natureza das ações que um jogador pode
+fazer é ditada por rulesets já definidas: Isto, essencialmente,
+define o jogo que está sendo jogado, implementado e reforçado no
+lado do servidor, e atualizado para o jogador por qualquer cliente
+ajudante</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>Por causa
+da diversidade dos possíveis jogos, e a complexidade da arquitetura
+necessária para dar suporte a essa diversidade, Thousand Parsec é
+um projeto animador tanto para gamers quanto para desenvolvedores.
+Esperamos que até o mais sério programador com pouco interesse na
+anatomia do framework do jogo possa achar algo de valor nas mecânicas
+base de comunicação cliente-servidor, configuração dinâmica,
+manejamento de metadados e implementação com camadas, todas tendo
+crescidas de maneira um tanto quanto orgânica em direção ao bom
+design durante os anos, com o estilo de open source mais complexo.</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>Em seu
+núcleo, Thousand Parsec é essencialmente um set de especificações
+padrões para protocolos de jogos e outras funcionalidades
+relacionadas. Este capítulo discute o framework em sua maior parte
+do ponto de vista abstrato, mas em muitos casos é mais esclarecedor
+referir-se a implementações reais. Para este fim, os autores
+escolheram as implementações principais de cada maior componente
+para discussão concreta.</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>O modelo
+de caso de cliente é <FONT SIZE=2>tpclient-pywx</FONT>, um cliente
+baseado em wxPython relativamente maduro, que atualmente suporta
+vários <SPAN STYLE="background: #ffff00">features</SPAN> e as mais
+novas versões de protocolos de games. Este tem suporte da
+<FONT SIZE=2>libtpclient-py</FONT>, uma biblioteca de ajuda a cliente
+Python que implementa as mais novas atualizações de protocolo
+Thousand Parsec. Para o servidor, <FONT SIZE=2>tpserver-cpp</FONT>, a
+implementação madura de C++ com suporte para as mais novas
+características e versões de protocolos é o necessário. Este
+servidor ostenta vários <SPAN STYLE="background: #ffff00">rulesets,</SPAN>
+dentre os quais se destaca o de Missile and Torpedo Wars que utiliza
+de modo mais completo as característcas e por ser um jogo espacial
+4X “tradicional”.</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<OL START=21>
+	<OL>
+		<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=5 STYLE="font-size: 20pt">Anatomia
+		de um Império Estelar</FONT></P>
+	</OL>
+</OL>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>Para
+podermos introduzir apropriadamente os elementos que fazem parte do
+universo Thousand Parsec, faz sentido apresentarmos rapidamente um
+pouco de um jogo. Para isto, iremos examinar o </FONT><FONT SIZE=3><SPAN STYLE="background: #ffff00">ruleset</SPAN></FONT>
+de <I>Missile and Torpedo Wars</I><SPAN STYLE="font-style: normal">,
+o segundo ruleset mais bem-sucedido do projeto, que utiliza grande
+parte das características do protocolo principal atual de Thousand
+Parsec. Alguns termos que serão utilizados aqui podem não ser
+familiares ainda; O resto deste capítulo irá elucidar esses termos,
+para que todas as peças se encaixem.</SPAN></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><I>Missile and Torpedo
+Wars</I><SPAN STYLE="font-style: normal"> é um </SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="background: #ffff00">ruleset</SPAN></SPAN>
+avançado já que implementa todos os métodos disponíveis no
+framework de Thousand Parsec. Enquanto o livro é escrito, é o único
+ruleset que faz isso, e está sendo rapidamente expandido para se
+tornar um jogo mais completo e divertido.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Ao tentar estabelecer
+uma conexão com o servidor de Thousand Parsec, o cliente sonda o
+servidor para uma lista de jogos existentes e procede para fazer o
+download do catálogo inteiro. Este catálogo incluid todos os
+objetos, <SPAN STYLE="background: #ffff00">os cenários</SPAN>,
+mensagens, categorias, designs, componentes, propriedades, jogadores
+e recursos que fazem parte de um jogo. Todos estes serão abordados
+em detalhe neste capítulo. Isto pode parecer muito para o cliente
+absorver ao começar o jogo – e também ao final de cada turno –
+estas informações são absolutamente vitais para o jogo. Assim que
+estas informações são baixadas, o que leva em torno de alguns
+segundos, os clientes tem tudo o que é necessário para colocar
+estas informações em suas representações do universo do jogo.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Quando conectado pelo
+primeira vez ao servidor, um planeta qualquer é gerado e designado
+como o novo “planeta natal” do jogador, e duas frotas são
+automaticamente criadas. Cada frota consiste de dois modelos padrões
+de exploradres(scouts), que consistem de <SPAN STYLE="background: #ffff00">uma
+nave exploradora com um Tubo de Mísseis Alpha</SPAN>. Já que não
+há componentes explosivos adicionados, esta frota padrão ainda não
+é capaz de combate com outras frotas ou planetas. É, na verdade, um
+alvo fácil.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">A essa altura, é
+importante para o jogador começar a a equipar suas frotas com armas.
+Isto pode ser alcançado ao criar um desenho de arma usando a ordem
+“Construir arma”(Build Weapon), e assim equipar a frota com a
+ordem “Equipar armamento”(Load Armament). A ordem de construir
+arma converte os recursos do planeta – os quais cada planeta tem
+quantidades e proporcões geradas por sorteio – em um produto
+final: Uma ogiva explosiva que é colocada na superfície do planeta
+criador. A ordem de carregar o armamento transfere a arma completa
+para uma frota em espera.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Assim que os recursos
+facilmente acessados da superfície de um planeta são todos usados,
+é importante obter mais através da mineração. Recursos podem vir
+em dois estados: minerável e inacessível. Usar a ordem
+“Minere”(Mine) no planeta, recursos mineráveis podem ser
+convertidos ao longo do tempo em recursos de superfície, que aí
+podem ser utilizados para construção e criação.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<OL START=21>
+	<OL>
+		<OL>
+			<LI><P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=5>Objetos</FONT></P>
+		</OL>
+	</OL>
+</OL>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>Em um
+universo Thousand Parsec, todas as coisas físicas são um objeto. Na
+verdade, o universo também é um objeto. Este design permite para
+uma quantidade de elementos virtualmente inacabável no jogo,
+enquanto permanece simples nas rulesets, precisando apenas de alguns
+tipos de objetos. Além da da adição de novos tipos de objetos,
+cada objeto pode guardar algumas informações específicas sobre
+ele, que pode ser enviada e usada através do protocolo de Thousand
+Parsec. Cinco tipos básicos de objetos pré-definidos são
+fornecidos automaticamente: Universo, Galáxia, Sistema Estelar,
+Planeta e Frota.</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>O universo
+é o maior objeto em um jogo de Thousand Parsec, e sempre está
+acessível aos jogadores. Enquanto o objeto Universo não exerce
+muito controle sobre o jogo, ele guarda um pedaço de informação
+muito importante: O número do turno atual. Também conhecido como
+“ano” no contexto de Thousand Parsec, o número do turno,
+naturalmente, aumenta a cada turno completo. É guardado em um
+inteiro de 32 bits não-assinado, permitindo que jogos continuem até
+o ano de 4,294,967,295. Enquanto não é impossível em teoria, os
+autores não viram, até agora, um jogo ir até lá.</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>Uma
+galáxia é um container para um número de objetos próximos –
+Sistemas estelares, Planetas e frotas – E não fornece nenhuma
+informação adicional. Um grande número de galáxias pode existir
+em um jogo, cada uma hospedando uma seção menor do Universo.</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3>Assim como
+os dois últimos objetos, um Sistema Estelar é antes de tudo um
+container para objetos de menor nível. Entretanto, </FONT><FONT SIZE=3><SPAN STYLE="background: #ffff00">o
+objeto Sistema Estelar é o primeiro objeto que é representado
+graficamente para o cliente.</SPAN></FONT> Estes objetos podem conter
+Planetas e Frotas (ao menos temporariamente).</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Um Planeta é um grande
+corpo celeste que pode ser habitado e fornece recursos de minas,
+indústrias de produção, armamento terrestre e muito mais. O
+Planeta é o primeiro objeto que pode ser posse de um jogador; ter a
+posse de um Planeta é uma conquista que deve ser levada a sério, e
+não ter posse de planetas é uma condição comum para as rulesets
+declararem um jogador como derrotado. O objeto Planeta possui uma
+quantidade relativamente grande de dados, incluindos os descritos a
+seguir:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<OL>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm">A ID do jogador
+	que tem posse do Planeta</P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0cm">  Uma lista com os
+	recursos do planeta, contendo a ID do recurso (tipo de recurso), e a
+	quantidade de tipos de recursos de superfície, mineráveis e
+	inacessíveis nesse Planeta.</P>
+</OL>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Os objetos padrões
+descritos acima fornecem uma boa base para muitas rulesets que seguem
+a tradicional fórmula dos jogos espaciais 4X. Obviamente, seguindo
+bons princípios de engenharia de softwares, classes de objetos podem
+ser extendidas pelas rulesets. Um designer de rulesets então possui
+a habilidade de criar novos tipos de objetos ou armazenar informações
+adicionais nos objetos já existentes se for preciso para as
+rulesets, permitindo uma extensão virtualmente inlimitada em termos
+de objetos fisicamente acessíveis no jogo.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=5 STYLE="font-size: 20pt">21.1.2
+Ordens</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Definidas por cada
+conjunto de rulesets, ordens podem ser atribuídas a objetos Frota ou
+Planeta. Enquanto o servidor principal não possui nenhum tipo de
+ordem padrão, estas são uma parte essencial do mais básico jogo.
+Dependendo da natureza das rulesets, ordens podem ser usadas para
+cumprir quase todas as tarefas. No contexto do gênero 4X, há
+algumas ordens padrões que são implementadas na maioria das
+rulesets. São as ordens Move (Mexa-se), Intercept (Intercepte),
+Build (Construa), Colonize (Colonize), Mine (Minere), e Attack
+(Ataque)</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Para poder cumprir o
+primeiro objetivo de 4X (explorar), é preciso pode ser mover pelo
+mapa do universo. Isto geralmente pode ser feito através da ordem
+Move, atribuída ao objeto Frota. No contexto flexível e extenso do
+framework Thousand Parsec, ordens Move podem ser implementadas de
+modo diferente, dependendo da natureza das rulesets. Em <I>Minisec </I><SPAN STYLE="font-style: normal">e
+</SPAN><I>Missile and Torpedo Wars, </I><SPAN STYLE="font-style: normal">uma
+ordem Move geralmente recebe um ponto em espaço 3D como parâmetro.
+No servidor, o tempo estimado de chegada é calculado e o número
+necessário de turnos é devolvido ao cliente. A ordem Move também
+serve como uma pseudo ordem de Attack, em alguns conjuntos de
+rulesets onde o trabalho em equipe não é implementado. Por exemplo,
+mover-se para um ponto ocupado por uma frota inimiga em ambos </SPAN><I>Minisec
+</I><SPAN STYLE="font-style: normal">e </SPAN><I>Missile and Torpedo
+Wars </I><SPAN STYLE="font-style: normal">é quase certo de ter como
+consequência um período de combate intenso. Algumas rulesets que
+tem a ordem Move usam parâmetros diferentes (não usando pontos 3D
+por exemplo). As rulesets </SPAN><I>Risk </I><SPAN STYLE="font-style: normal">permitem
+apenas movimentos em um turno para planetas que estejam diretamente
+conectados por um “wormhole”, por exemplo.</SPAN></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal">Geralmente
+atribuídas a objetos Frota, a ordem Intercept permite que um objeto
+encontre com outro (uma frota inimiga, na maioria das vezes) em um
+espaço. Esta ordem é parecida com Move, mas já que dois objetos
+podem estar se movendo em direções diferentes durante a execução
+deste turno, é impossível aterrisar diretamente em uma outra frota
+usando apenas coordenadas espaciais, então uma ordem de tipo
+diferente é necessária. A ordem Intercept resolve o problema, e
+pode ser usada para destruir uma frota inimiga no espaço ou segurar
+um ataque próximo em um momento de crise.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal">A
+ordem Build ajuda a cumprir dois objetivos do 4X – expandir e
+explorar. O meio óbvio de expansão através do universo é
+construir muitas frotas de naves e espalhá-las. A ordem Build é
+geralmente atribuída a objetos Planeta e está ligada à quantidade
+de recursos que o planeta possui – e como são explorados. Se um
+jogador é sortudo o suficiente para ter um planeta natal rico em
+recursos, este jogador pode ganhar uma vantagem logo no começo do
+jogo ao construir.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal">Assim
+como a ordem Build, a ordem Colonize ajuda a cumprir objetivoss de
+expansão e exploração. Quase sempre atribuídos a objetos Frota, a
+ordem Colonize permite que o jogador tome posse de um planeta não
+habitado. Isto ajuda a expandir o controle sobre planetas no
+universo.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal">A
+ordem Mine personifica o objetivo de explorar. Esta ordem,
+tipicamente atribuída a objetos Planeta e outros corpos celetes
+permite que o jogador minere por recursos não utilizados e não
+imediatamente acessíveis pela superfície. Fazer isso traz estes
+recursos para a superfície, permitindo que sejam usados para
+construir e consequentemente expandir o poder do jogador pelo
+universo.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><SPAN STYLE="font-style: normal">Implementado
+em algumas rulesets, a ordem Attack permite que o jogador inicie
+combate </SPAN><SPAN STYLE="font-style: normal">explicitamente com
+uma Frota inimiga ou Planeta, cumprindo o último objetivo de 4x
+(exterminate). Em rulesets com cooperatividade, a inclusão de uma
+ordem de Attack exclusiva (oposto de simplesmente usar Move e
+Intercept para atacar alvos implicitamente) é importante para evitar
+fogo-amigo e coordenar ataques.</SPAN></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal">Já
+que o framework Thousand Parsec necessita de desenvolvedores de
+rulesets para definir seus próprios tipos de ordem, é possível –
+até mesmo encorajado – que eles pensem “por fora da caixa” e
+criem suas próprias ordens, não encontradas em outros lugares. A
+habilidade de incluir dados extras em qualquer objeto permite que os
+desenvolvedores façam coisas bem interessantes em suas próprias
+ordens.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><FONT SIZE=5 STYLE="font-size: 20pt">21.1.3.
+Recursos</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><FONT SIZE=3>Recursos
+são pedaços extras de dados que são incluídos em Objetos do jogo.
+Bastante usados – particularmente em objetos Planeta – recursos
+permitem fácil extensão das rulesets. Assim como as várias
+decisões de design em Thousand Parsec, extensibilidade foi o fator
+que movimentou a inclusão de recursos.</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><FONT SIZE=3>Enquanto
+recursos são geralmente implementados pelo designer das rulesets, há
+um recurso que é sempre usado pelo framework: O recurso Planeta
+Natal, que é utilizado para identificar o planeta natal do jogador.</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3><SPAN STYLE="font-style: normal">De
+acordo com as boas práticas de Thousand Parsec, recursos são
+tipicamente utilizado para representar algo que pode ser convertido
+em algum tipo de objeto. Por exemplo, </SPAN><I>Minisec </I><SPAN STYLE="font-style: normal">implementa
+um recurso de Partes de Naves, que é atribuído a quantidades
+sortidas para cada objeto planeta no universo. Quando um desses
+planetas é colonizado, você pode converter o recurso Partes de
+Naves em Frotas, utilizando a ordem Build.</SPAN></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><FONT SIZE=3><I>Missile
+and Torpedo Wars </I><SPAN STYLE="font-style: normal">faz, talvez, o
+uso mais extenso de recursos dentre todos os tipos de ruleset até
+agora. São as primeiras rulesets onde armas são de natureza
+dinâmica, o que significa que podem ser adicionadas de um planeta
+para uma nave e vice-versa. Para fazer isso, o jogo cria um tipo de
+recurso para cada arma que é criada no jogo. Isto permite que as
+naves identifiquem um tipo de arma como um recurso e mova-a
+livremente pelo universo. </SPAN><I>Missile and Torpedo Wars </I><SPAN STYLE="font-style: normal">também
+gerencia as fábricas (a capacidade produtiva de um planeta) usando o
+recurso Factories, atribuído a cada planeta.</SPAN></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><FONT SIZE=5 STYLE="font-size: 20pt">21.1.4
+Design</FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm; font-style: normal"><BR>
+</P>
+</BODY>
+</HTML>
