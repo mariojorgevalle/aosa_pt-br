@@ -7,7 +7,8 @@
 	<META NAME="AUTHOR" CONTENT="Mario Amaral">
 	<META NAME="CREATED" CONTENT="20110531;21293400">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
-	<META NAME="CHANGED" CONTENT="20110621;19542800">
+	<META NAME="CHANGED" CONTENT="20110705;42200">
+	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<STYLE TYPE="text/css">
 	<!--
@@ -16,6 +17,8 @@
 		H2 { margin-bottom: 0.21cm }
 		H2.cjk { font-family: "WenQuanYi Micro Hei" }
 		H2.ctl { font-family: "Lohit Hindi" }
+		H3.cjk { font-family: "WenQuanYi Micro Hei" }
+		H3.ctl { font-family: "Lohit Hindi" }
 		A:link { so-language: zxx }
 		CODE.cjk { font-family: "WenQuanYi Micro Hei", monospace }
 	-->
@@ -253,10 +256,10 @@ seguintes conceitos são fundamentais para o SnowFlock:</SPAN></FONT></FONT></P>
 	de página: quando um clone tenta utilizar uma memória inexistente,
 	isto falha e dispara uma requisição para o pai. A execução do
 	clone é bloqueada até a página necessária chegar;</SPAN></FONT></FONT></P>
-	<LI><P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT FACE="arial, sans-serif"><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Cópia
-	na escrita (</SPAN></SPAN></SPAN></FONT><FONT COLOR="#000000"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Copy
-	on Write</SPAN></SPAN></I></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">
-	– </SPAN></FONT><FONT COLOR="#000000"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">CoW</SPAN></SPAN></I></FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">):
+	<LI><P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Cópia
+	na escrita (</SPAN></SPAN></SPAN><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Copy
+	on Write</SPAN></SPAN></I><SPAN STYLE="background: #ffffff"> –
+	</SPAN><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">CoW</SPAN></SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">):
 	tomando uma cópia de sua memória e páginas de disco antes de
 	sobrescrevê-las, a MV pai pode continuar executando enquanto
 	preserva uma cópia “congelada” deste estado para ser usado
@@ -357,9 +360,11 @@ não-comercial esta disponível no GridCentric Inc [2]. </SPAN></SPAN></SPAN></F
 documentation and open source code for the original University of
 Toronto SnowFlock research project are available<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-1">1</A>&nbsp;If
 you'd prefer to take the industrial-strength version for a spin, a
-free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
-Devido ao SnowFlock incluir alterações ao </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hypervisor</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
-e requerer acesso ao dom0, instala-lo requer acesso privilegiado nas
+free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">
+</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Devido
+ao SnowFlock incluir alterações ao </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hypervisor</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">
+</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">e
+requerer acesso ao dom0, instala-lo requer acesso privilegiado nas
 máquinas de </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">host</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">.
 Por esta razão, você precisará usar seu próprio </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hardware</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">,
 e não estará apto a experimentá-lo fora como um usuário num
@@ -397,30 +402,30 @@ Descritor Arquitetural da MV (Architectural VM Descriptor)</SPAN></FONT></FONT><
 <BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
-<FONT FACE="arial, sans-serif">	O<FONT COLOR="#000000"> decisão-chave
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">O decisão-chave
 de design para o SnowFlock é adiar a replicação de estado da MV
 para uma operação de tempo de execução “preguiçosa”. Em
 outras palavras, copiar a memória de uma MV é uma operação de
 ligação tardia, permitindo muitas oportunidades de otimização.</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	O primeiro
-passo para realizar esta decisão de design é a geração de um
-descritor de arquitetura do estado da MV. Esta é a semente que será
-usada para criar as MVs clonadas. Ela contém o mínimo necessário
-para criar uma MV e torná-la escalonável (<FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">schedulable</SPAN></SPAN></SPAN></FONT><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">).
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">O primeiro passo
+para realizar esta decisão de design é a geração de um descritor
+de arquitetura do estado da MV. Esta é a semente que será usada
+para criar as MVs clonadas. Ela contém o mínimo necessário para
+criar uma MV e torná-la escalonável (</FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">schedulable</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">).
 Como o nome indica, este mínimo é composto por estruturas de dados
-necessários para </SPAN></SPAN></FONT><FONT FACE="sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">a
+necessários para </SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">a
 especificação básica de arquitetura. No caso do SnowFlock, a
 arquitetura é uma combinação de requisitos do processador Intel
 x86 e os requisitos do Xen. O descritor de arquitetura, portanto,
 contém estruturas de dados tal como tabelas de páginas, registros
-virtuais, dispositivos de metadados, </SPAN></SPAN></FONT></FONT><FONT FACE="sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">wallclock
-timestamps</SPAN></SPAN></SPAN></FONT></FONT><FONT FACE="sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">,
-etc. Nós encaminhamos o leitor interessado para [</SPAN></SPAN></SPAN></FONT></FONT><A HREF="http://www.aosabook.org/en/bibliography.html#bib:snowflock:tocs"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">LCWB+11</SPAN></SPAN></SPAN></FONT></A><FONT FACE="sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">],
+virtuais, dispositivos de metadados, </SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">wallclock
+timestamps</SPAN></SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">,
+etc. Nós encaminhamos o leitor interessado para [<A HREF="http://www.aosabook.org/en/bibliography.html#bib:snowflock:tocs">LCWB+11</A>],
 para uma descrição detalhada dos conteúdos do descritor de
-arquitetura.</SPAN></SPAN></SPAN></FONT></FONT></FONT></FONT></P>
+arquitetura.</SPAN></SPAN></SPAN></FONT></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	Um descritor de
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Um descritor de
 arquitetura possui três propriedades importantes: Primeiro, ele pode
 ser criado em pouco tempo; 200 milissegundo não é incomum. Segundo,
 ele é pequeno, tipicamente três ordens de magnitude menores que a
@@ -428,7 +433,7 @@ alocação de memória da MV de origem (1 MB para 1 GB de MV). E
 terceiro, uma MV clone pode ser criada a partir de um descritor em
 menos de um segundo (normalmente 800 milissegundos).</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	O problema, com
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">O problema, com
 certeza, é que as MVs clonadas perdem a maior parte de seu estado de
 memória no momento em que são criadas a partir do descritor. A
 seções seguintes explicam como nós resolvemos este problema – e
@@ -439,14 +444,41 @@ como aproveitamos as oportunidades de otimização apresentadas.</FONT></FONT></
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
+<H2 CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=4><SPAN STYLE="font-weight: normal">18.5
+Componentes do lado-pai </SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">(</SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">18.5.
+Parent-Side Components)</SPAN></SPAN></FONT></FONT></FONT></H2>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	Uma vez que a
+MV é clonada ela se torna um pai para seus filhos ou clones. Como
+todos os pais responsáveis, ela precisa vigiar pelo bem-estar de
+seus descendentes. Isso se dá pela criação de um conjunto de
+serviços que fornecem memória e estado de disco para a MVs clonadas
+sob demanda.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">18.5.1 Processo
+<I>Memsever</I> (<SPAN STYLE="background: #ffff00">servir memória</SPAN>)</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR>
+<FONT COLOR="#000000"><FONT FACE="sans-serif">	Quando o descritor de
+arquitetura é criado, a MV é interrompida em suas faixas ao longo
+do processo. Assim o estado da memória da MV é resolvido; antes de
+realmente pausar uma MV e desindexar da execução, </FONT></FONT>
 </P>
+<H3 CLASS="western" STYLE="font-weight: normal; widows: 2; orphans: 2">
+<BR><BR>
+</H3>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif">internal OS drivers
+quiesce into a state from which clones can reconnect to the external
+world in their new enclosing VMs. We take advantage of this quiescent
+state to create a &quot;memory server&quot;, or&nbsp;<CODE CLASS="western"><FONT FACE="sans-serif">memserver</FONT></CODE>.</FONT></FONT></P>
 </BODY>
 </HTML>
