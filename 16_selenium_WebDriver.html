@@ -6,7 +6,10 @@
 	<META NAME="GENERATOR" CONTENT="BrOffice 3.3  (Unix)">
 	<META NAME="CREATED" CONTENT="0;0">
 	<META NAME="CHANGEDBY" CONTENT="weslleymberg ">
-	<META NAME="CHANGED" CONTENT="20110621;17264200">
+	<META NAME="CHANGED" CONTENT="20110706;18534800">
+	<META NAME="CHANGEDBY" CONTENT="weslleymberg ">
+	<META NAME="CHANGEDBY" CONTENT="weslleymberg ">
+	<META NAME="CHANGEDBY" CONTENT="weslleymberg ">
 	<META NAME="SDFOOTNOTE" CONTENT=";;;;P">
 	<STYLE TYPE="text/css">
 	<!--
@@ -17,100 +20,85 @@
 </HEAD>
 <BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
 <P ALIGN=LEFT STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; line-height: 100%; widows: 2; orphans: 2; text-decoration: none; page-break-before: auto; page-break-after: auto">
-<FONT FACE="Times New Roman"><FONT SIZE=3><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none"><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Tradução
-CAP 16 </FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Capítulo
-16 - Selenium WebDriver </FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Simon
-Stewart </FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Selenium
-é uma ferramenta para automação de navegadores, comumente usada
-para escrever testes de aplicações web de ponta-a-ponta. Uma
-ferramenta de automação de navegadores faz o exatamente o que você
-esperaria: automatiza o controle de um navegador, sendo assim,
-tarefas repetitivas podem ser automatizadas. Isto parece um simples
-problema a ser resolvido, mas como veremos, muitas coisas têm que
-acontecer debaixo dos panos para que tudo funcione. </FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Antes
-de descrever a arquitetura do Selenium é necessário entender como
-as várias partes do projeto se encaixam. </FONT></SPAN><FONT SIZE=3><U>Por
-cima</U></FONT><SPAN STYLE="text-decoration: none"><FONT SIZE=3>,
-Selenium é uma coleção de três ferramentas. A primeira destas,
-Selenium IDE, é uma extensão para Firefox que permite aos usuários
-gravar e refazer testes. O paradigma gravar/refazer pode ser limitado
-e não adaptável para muitos usuários, então a segunda ferramenta
-da coleção, Selenium WebDriver, provê APIs em várias linguagens
-para permitir um maior controle e aplicação de praticas de
-desenvolvimento de software padrão. A última ferramenta, Selenium
-Grid, torna possível o uso das APIs do Selenium para controlar
-instâncias de navegadores distribuídas sobre um rede de máquinas,
-permitindo executar mais testes paralelamente. No interior do
-projeto, eles são referenciados como &quot;IDE&quot;, &quot;WebDriver&quot;
-e &quot;Grid&quot;. Este capítulo explora a arquitetura do Selenium
-WebDriver. </FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Este
+<SPAN STYLE="background: transparent"><FONT FACE="Times New Roman"><FONT SIZE=3>Tradução
+CAP 16 <BR><BR>Capítulo 16 - Selenium WebDriver <BR><BR>Simon
+Stewart <BR><BR>Selenium é uma ferramenta para automação de
+navegadores, comumente usada para escrever testes de aplicações web
+de ponta-a-ponta. Uma ferramenta de automação de navegadores faz o
+exatamente o que você esperaria: automatiza o controle de um
+navegador, sendo assim, tarefas repetitivas podem ser automatizadas.
+Isto parece um simples problema a ser resolvido, mas como veremos,
+muitas coisas têm que acontecer debaixo dos panos para que tudo
+funcione. <BR><BR>Antes de descrever a arquitetura do Selenium é
+necessário entender como as várias partes do projeto se encaixam.
+<U>Por cima</U>, Selenium é uma coleção de três ferramentas. A
+primeira destas, Selenium IDE, é uma extensão para Firefox que
+permite aos usuários gravar e refazer testes. O paradigma
+gravar/refazer pode ser limitado e não adaptável para muitos
+usuários, então a segunda ferramenta da coleção, Selenium
+WebDriver, provê APIs em várias linguagens para permitir um maior
+controle e aplicação de praticas de desenvolvimento de software
+padrão. A última ferramenta, Selenium Grid, torna possível o uso
+das APIs do Selenium para controlar instâncias de navegadores
+distribuídas sobre um rede de máquinas, permitindo executar mais
+testes paralelamente. No interior do projeto, eles são referenciados
+como &quot;IDE&quot;, &quot;WebDriver&quot; e &quot;Grid&quot;. Este
+capítulo explora a arquitetura do Selenium WebDriver. <BR><BR>Este
 capítulo foi escrito durante os betas do Selenium 2.0 no final de
 2010. Se você está lendo o livro após o fim de 2010, então as
 coisas já terão avançado, e você será capaz de ver como as
 escolhas arquiteturais descritas aqui se desdobraram. Se você está
 lendo antes do fim de 2010: Parabéns! Você tem uma máquina do
-tempo. Pode me dar os números vencedores da loteria? </FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>16.1.
-História </FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Jason
-Huggins começou o projeto Selenium em 2004 enquanto trabalhava no
-ThoughtWorks do sistema feito por eles, Time and Expenses (T&amp;E),
-que fez amplo uso de Javascript. Embora o Internet Explorer fosse o
-navegador dominante na época, ThoughtWorks usou vários navegadores
-alternativos (em particular, as variações do Mozzila) e enviava um
-relatório de erro quando o aplicativo T&amp;E não funcionava no
-navegador escolhido. Ferramentas de testes naquela época, ou eram
-focadas em um único navegador (normalmente IE) ou eram simulações
-de um navegador (como HttpUnit). O custo de uma licença para uma
-ferramenta comercial teria esgotado o orçamento limitado de um
-pequeno projeto interno, então eles nem mesmo consideraram como uma
-alternativa viável. </FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Onde
-a automação de testes se torna difícil, é comum recorrer à
-testes manuais. Está abordagem não funciona quando a equipe é
-muito pequena ou quando a liberação de novas versões é
-extremamente frequente. É também uma falta de humanidade, pedir a
-uma pessoa que revise um </FONT></SPAN><FONT SIZE=3><U>código</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>que poderia
-ser automatizado. Comumente, pessoas são mais lentas e mais
-susceptíveis à erros em tarefas repetitivas do que máquinas. Teste
-manual não era um opção.</FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Felizmente,
-todos os navegadores que foram testados </FONT></SPAN><FONT SIZE=3><U>suportavam</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Javascript.
+tempo. Pode me dar os números vencedores da loteria? <BR><BR>16.1.
+História <BR><BR>Jason Huggins começou o projeto Selenium em 2004
+enquanto trabalhava no ThoughtWorks do sistema feito por eles, Time
+and Expenses (T&amp;E), que fez amplo uso de Javascript. Embora o
+Internet Explorer fosse o navegador dominante na época, ThoughtWorks
+usou vários navegadores alternativos (em particular, as variações
+do Mozzila) e enviava um relatório de erro quando o aplicativo T&amp;E
+não funcionava no navegador escolhido. Ferramentas de testes naquela
+época, ou eram focadas em um único navegador (normalmente IE) ou
+eram simulações de um navegador (como HttpUnit). O custo de uma
+licença para uma ferramenta comercial teria esgotado o orçamento
+limitado de um pequeno projeto interno, então eles nem mesmo
+consideraram como uma alternativa viável. <BR><BR>Onde a automação
+de testes se torna difícil, é comum recorrer à testes manuais.
+Está abordagem não funciona quando a equipe é muito pequena ou
+quando a liberação de novas versões é extremamente frequente. É
+também uma falta de humanidade, pedir a uma pessoa que revise um
+<U>código</U> que poderia ser automatizado. Comumente, pessoas são
+mais lentas e mais susceptíveis à erros em tarefas repetitivas do
+que máquinas. Teste manual não era um opção.<BR><BR>Felizmente,
+todos os navegadores que foram testados <U>suportavam</U> Javascript.
 Escrever um ferramenta de teste nesta linguagem, fez sentido para
 Jason e a equipe com a qual ele trabalhava, pois esta poderia ser
 usada para verificar o comportamento da aplicação. Inspirado pelo
-trabalho feito no </FONT></SPAN><FONT SIZE=3><U>FIT¹</U></FONT><SPAN STYLE="text-decoration: none"><FONT SIZE=3>,
-uma sintaxe baseada em tabelas (</FONT></SPAN><FONT SIZE=3><U>table-based</U></FONT><SPAN STYLE="text-decoration: none"><FONT SIZE=3>)</FONT></SPAN><FONT COLOR="#0000ff"><SPAN STYLE="text-decoration: none">
-</SPAN></FONT><SPAN STYLE="text-decoration: none"><FONT SIZE=3>foi
-colocada sobre o Javascript puro e isso permitiu que os testes fossem
-escritos por pessoas com experiência limitada em programação
-usando uma abordagem baseada em palavras chave (</FONT></SPAN><FONT SIZE=3><U>keyword-based</U></FONT><SPAN STYLE="text-decoration: none"><FONT SIZE=3>)
-em arquivos HTML. Esta ferramenta, originalmente chamada de
-“Selenium” mas depois referenciada como “Selenium Core”, foi
-liberada em 2004 sob a licença Apache 2.</FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>A
-formatação em tabelas do Selenium é estruturada similarmente ao
-</FONT></SPAN><FONT SIZE=3><U>ActionFixture presente</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>no FIT. Cada
-linha da tabela é dividida em três colunas. A primeira coluna
-contém o nome do comando a ser executado, a segunda coluna
+trabalho feito no <U>FIT¹</U>, uma sintaxe baseada em tabelas
+(<U>table-based</U>)<FONT COLOR="#0000ff"> </FONT>foi colocada sobre
+o Javascript puro e isso permitiu que os testes fossem escritos por
+pessoas com experiência limitada em programação usando uma
+abordagem baseada em palavras chave (<U>keyword-based</U>) em
+arquivos HTML. Esta ferramenta, originalmente chamada de “Selenium”
+mas depois referenciada como “Selenium Core”, foi liberada em
+2004 sob a licença Apache 2.<BR><BR>A formatação em tabelas do
+Selenium é estruturada similarmente ao <U>ActionFixture presente</U>
+no FIT. Cada linha da tabela é dividida em três colunas. A primeira
+coluna contém o nome do comando a ser executado, a segunda coluna
 tipicamente contém um elemento identificador e a terceira coluna
 contém um valor opcional. Por exemplo, isto é como definir a string
 “Selenium WebDriver” dentro de um elemento identificado pelo nome
-“q”:</FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>type
-&nbsp;&nbsp;&nbsp;&nbsp;name=q &nbsp;&nbsp;&nbsp;Selenium
-WebDriver</FONT></SPAN><BR><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Pelo
-fato do Selenium ter sido escrito em Javascript </FONT></SPAN><FONT SIZE=3><U>puro</U></FONT><SPAN STYLE="text-decoration: none"><FONT SIZE=3>,
-seu design inicial requeria que os desenvolvedores hospedassem o </FONT></SPAN><FONT SIZE=3><U>Core</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>e seus testes
-no mesmo servidor em que estava a aplicação a ser testada (AUT)
-para evitar falhas grosseiras das politicas de segurança do
-navegador e do Javascript </FONT></SPAN><FONT SIZE=3><U>sandbox</U></FONT><SPAN STYLE="text-decoration: none"><FONT SIZE=3>.
-Isso nem sempre era prático ou possível. E pior, ainda que a IDE
-dos desenvolvedores lhes desse habilidade para rapidamente manipular
-o código e navegar pela extensa coleção de códigos-fonte
-(codebade), não existe tal ferramenta para HTML. Rapidamente se
-tornou claro que manter uma coleção de testes pela metade era um
-</FONT></SPAN><FONT SIZE=3><U>propósito</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>incômodo e
-doloroso.</FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Para
+“q”:<BR><BR>type &nbsp;&nbsp;&nbsp;&nbsp;name=q &nbsp;&nbsp;&nbsp;Selenium
+WebDriver<BR><BR><BR>Pelo fato do Selenium ter sido escrito em
+Javascript <U>puro</U>, seu design inicial requeria que os
+desenvolvedores hospedassem o <U>Core</U> e seus testes no mesmo
+servidor em que estava a aplicação a ser testada (AUT) para evitar
+falhas grosseiras das politicas de segurança do navegador e do
+Javascript <U>sandbox</U>. Isso nem sempre era prático ou possível.
+E pior, ainda que a IDE dos desenvolvedores lhes desse habilidade
+para rapidamente manipular o código e navegar pela extensa coleção
+de códigos-fonte (codebade), não existe tal ferramenta para HTML.
+Rapidamente se tornou claro que manter uma coleção de testes pela
+metade era um <U>propósito</U> incômodo e doloroso.<BR><BR>Para
 resolver este e outros problemas, um proxy HTTP foi escrito para que
 toda solicitação HTTP pudesse ser interceptada pelo Selenium.
 Usando este proxy, tornou-se possível desviar de muitas das
@@ -121,74 +109,54 @@ atual foi servida, permitindo que a primeira fraqueza fosse
 suavizada. O design abriu a possibilidade de escrever a ligação
 protocolo/adaptador de rede do Selenium em várias outras linguagens:
 eles só precisavam ser capazes de enviar uma requisição HTML para
-uma URL particular. &nbsp;O </FONT></SPAN><FONT SIZE=3><U>wire format</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>foi
-</FONT></SPAN><FONT SIZE=3><U>intimamente</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>modelado de
-acordo com a sintaxe baseada em tabela do Selenium Core e isto,
-juntamente com a sintaxe baseada em tabelas, tornou-se conhecida como
-“Selenese”. Porque os </FONT></SPAN><FONT SIZE=3><U>vínculos da
-linguagem</U></FONT><SPAN STYLE="text-decoration: none"> </SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>estavam
-controlando o navegador à distância, a ferramenta foi chamada de
-“Selenium Remote Control”, ou “Selenium RC”.</FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Enquanto
-o Selenium estava sendo desenvolvido, outro framework de automação
-de navegadores estava sendo preparado no ThoughtWorks: WebDriver. O
-código inicial </FONT></SPAN><FONT SIZE=3><U>deste</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>foi liberado
-</FONT></SPAN><FONT SIZE=3><U>precocemente</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>em 2007.
-WebDriver </FONT></SPAN><FONT SIZE=3><U>derivou-se</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>do trabalho
-em projetos que queriam </FONT></SPAN><FONT SIZE=3><U>isolar a</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><FONT SIZE=3><U>cobertura de testes da base da ferramenta de
-testes</U></FONT><SPAN STYLE="text-decoration: none"><FONT SIZE=3>.
-Tipicamente, o caminho pelo qual este isolamento é feito, é através
-do padrão </FONT></SPAN><FONT SIZE=3><U>Adapter.</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>WebDriver
-&nbsp;cresceu a partir do conhecimento desenvolvido pela aplicação
-desta abordagem coerente ao longo de inúmeros projetos, e
-inicialmente era uma capa em torno do HtmlUnit. O suporte do Internet
-Explorer e do Firefox sucedeu-se rapidamente após o
-lançamento.</FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Quando
-o WebDriver foi liberado, existiam diferenças significantes entre
-este e o Selenium RC, apesar disto, eles se mantiveram no mesmo nicho
-de software de uma API para automação de navegadores. A diferença
-mais obvia para um usuário, era que o Selenium RC tinha uma API
-baseada em dicionário, com todos os métodos expostos em uma única
-classe, equanro o WebDriver tinha uma API mais orientada a objetos.
-Além disso, WebDriver apenas suportava Java, enquanto o Selenium RC
-oferecia suporte para uma vasta quantidade de linguagens. Existiam
-também, fortes diferenças técnicas: Selenium Core (no qual o RC
-foi baseado) era essencialmente uma aplicação Javascript, rodando
-dentro do </FONT></SPAN><FONT SIZE=3><U>sandbox</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>de segurança
-do navegador. WebDriver tentou se vincular nativamente ao navegador,
-contornando o modelo de segurança do navegador as custas do
-significante aumento do esforço no desenvolvimento do framework em
-si.</FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Em
-agosto de 2009, foi anunciado que os dois projetos poderiam se
-fundir, e o Selenium WebDriver é o resultado destes dois projetos
-unidos. Enquanto escrevo, o suporte de linguagens do WebDriver foi
-aprimorado para Java, C#, Python e Ruby. Isso oferesse suporte para
-Chrome, Firefox, Internet Explorer, Opera e para os navegadores do
-Iphone e do Android. </FONT></SPAN><FONT SIZE=3><U>Existem projetos
-irmãos</U></FONT><SPAN STYLE="text-decoration: none"><FONT SIZE=3>,
-não mantidos no mesmo repositório de códigos-fonte, mas
-trabalhando intimamente com o projeto principal, que fornecem as
+uma URL particular. &nbsp;O <U>wire format</U> foi <U>intimamente</U>
+modelado de acordo com a sintaxe baseada em tabela do Selenium Core e
+isto, juntamente com a sintaxe baseada em tabelas, tornou-se
+conhecida como “Selenese”. Porque os <U>vínculos da linguagem</U>
+estavam controlando o navegador à distância, a ferramenta foi
+chamada de “Selenium Remote Control”, ou “Selenium
+RC”.<BR><BR>Enquanto o Selenium estava sendo desenvolvido, outro
+framework de automação de navegadores estava sendo preparado no
+ThoughtWorks: WebDriver. O código inicial <U>deste</U> foi liberado
+<U>precocemente</U> em 2007. WebDriver <U>derivou-se</U> do trabalho
+em projetos que queriam <U>isolar a</U> <U>cobertura de testes da
+base da ferramenta de testes</U>. Tipicamente, o caminho pelo qual
+este isolamento é feito, é através do padrão <U>Adapter.</U>
+WebDriver &nbsp;cresceu a partir do conhecimento desenvolvido pela
+aplicação desta abordagem coerente ao longo de inúmeros projetos,
+e inicialmente era uma capa em torno do HtmlUnit. O suporte do
+Internet Explorer e do Firefox sucedeu-se rapidamente após o
+lançamento.<BR><BR>Quando o WebDriver foi liberado, existiam
+diferenças significantes entre este e o Selenium RC, apesar disto,
+eles se mantiveram no mesmo nicho de software de uma API para
+automação de navegadores. A diferença mais obvia para um usuário,
+era que o Selenium RC tinha uma API baseada em dicionário, com todos
+os métodos expostos em uma única classe, equanro o WebDriver tinha
+uma API mais orientada a objetos. Além disso, WebDriver apenas
+suportava Java, enquanto o Selenium RC oferecia suporte para uma
+vasta quantidade de linguagens. Existiam também, fortes diferenças
+técnicas: Selenium Core (no qual o RC foi baseado) era
+essencialmente uma aplicação Javascript, rodando dentro do <U>sandbox</U>
+de segurança do navegador. WebDriver tentou se vincular nativamente
+ao navegador, contornando o modelo de segurança do navegador as
+custas do significante aumento do esforço no desenvolvimento do
+framework em si.<BR><BR>Em agosto de 2009, foi anunciado que os dois
+projetos poderiam se fundir, e o Selenium WebDriver é o resultado
+destes dois projetos unidos. Enquanto escrevo, o suporte de
+linguagens do WebDriver foi aprimorado para Java, C#, Python e Ruby.
+Isso oferesse suporte para Chrome, Firefox, Internet Explorer, Opera
+e para os navegadores do Iphone e do Android. <U>Existem projetos
+irmãos</U>, não mantidos no mesmo repositório de códigos-fonte,
+mas trabalhando intimamente com o projeto principal, que fornecem as
 ligações do Perl, umas implementações para o navegador do
-BlackBerry, e para </FONT></SPAN><FONT SIZE=3><U>WebKits</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><U>“</U><FONT SIZE=3><U>sem cabeça”</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>- </FONT></SPAN><FONT SIZE=3><U>útil
+BlackBerry, e para <U>WebKits</U> <U>“sem cabeça”</U> - <U>útil
 para as horas em que os testes precisam ser rodados em um servidor de
-integração continua sem uma exibição adequada</U></FONT><SPAN STYLE="text-decoration: none"><FONT SIZE=3>.
-O mecanismo original do Selenium RC ainda é mantido e permite que o
-WebDriver forneça suporte para os navegadores que seriam
-incompatíveis. </FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>16.2.
-Uma </FONT></SPAN><FONT SIZE=3><U>Digresion</U></FONT><SPAN STYLE="text-decoration: none">
-</SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3>sobre
-Jargon</FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Infelizmente,
-o projeto Selenium utiliza muitos </FONT></SPAN><FONT SIZE=3><U>jargões</U></FONT><SPAN STYLE="text-decoration: none"><FONT SIZE=3>.
-Recapitulando o que nós já vimos:</FONT></SPAN></SPAN></SPAN></FONT></FONT></P>
+integração continua sem uma exibição adequada</U>. O mecanismo
+original do Selenium RC ainda é mantido e permite que o WebDriver
+forneça suporte para os navegadores que seriam incompatíveis.
+<BR><BR>16.2. Uma <U>Digresion</U> sobre Jargon<BR><BR>Infelizmente,
+o projeto Selenium utiliza muitos <U>jargões</U>. Recapitulando o
+que nós já vimos:</SPAN></FONT></FONT></P>
 <UL>
 	<LI><P STYLE="margin-bottom: 0cm; background: transparent; font-style: normal; font-weight: normal; widows: 2; orphans: 2; text-decoration: none">
 	<FONT FACE="Times New Roman"><FONT SIZE=3><SPAN STYLE="background: transparent">Selenium
@@ -488,8 +456,7 @@ esperado, neste caso um </FONT></SPAN><U>“</U><FONT SIZE=3><U>By”</U></FONT>
 &nbsp;Há uma série de métodos pré-configurados para objetos do
 tipo “By”, declarados como métodos estáticos em “By”. Noss
 usuário rapidamente terminará com uma linha de código parecida com
-esta:</FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3><I>driver.findElement(By.id(&quot;some_id&quot;));</I></FONT></SPAN><BR><BR></SPAN></FONT><BR>
-</P>
+esta:</FONT></SPAN><BR><BR><SPAN STYLE="text-decoration: none"><FONT SIZE=3><I>driver.findElement(By.id(&quot;some_id&quot;));</I></FONT></SPAN></SPAN></FONT></P>
 <P STYLE="margin-left: 1.24cm; margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2; text-decoration: none">
 <FONT FACE="Times New Roman"><FONT SIZE=3><SPAN STYLE="background: transparent">INTERFACES
 BASEADAS EM FUNÇÕES</SPAN></FONT></FONT></P>
@@ -594,8 +561,29 @@ tomar um caminho crescente. Com X navegadores e Y linguagens, seria
 fácil cair na armadilha de manter XxY implementações.<BR><BR>Reduzir
 o número de linguagens suportadas pelo WebDriver seria uma maneira
 de reduzir seus custos, mas não queremos pegar este caminho por dois
-motivos.</FONT></SPAN></SPAN></FONT></P>
-<P ALIGN=LEFT STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; line-height: 100%; widows: 0; orphans: 0; text-decoration: none; page-break-before: auto; page-break-after: auto">
+motivos. Primeiramente, existe uma carga cognitiva a ser paga quando
+se muda de uma linguagem para outra, por isso é vantajoso para os
+usuários do framework poderem escrever seus testes na mesma
+linguagem em que utilizam na maior parte do projeto no qual
+trabalham. Em segundo lugar, misturar muitas linguagens em um simples
+projeto é algo que não vai deixar a equipe confortável, e padrões
+ de codificação corporativa e requerimentos frequentemente parecem
+demandar um tecnologia monocultura (embora, agradável, ei penso que
+esta segunda opção está se tornando menos verdadeira ao longo do
+tempo), contudo reduzir o número de linguagens suportadas não é
+uma opção disponível.</FONT></SPAN></SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT FACE="Times New Roman"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Reduzir
+o numero de navegadores suportados também não é uma opção
+disponível – haviam fortes argumentos quando eliminamos o suporte
+ao Firefox 2 no WebDriver, apesar do fato de que quando fizemos essa
+escolha, representava menos de 1% do mercado de navegadores.:</FONT></SPAN></SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
 <BR>
 </P>
 </BODY>
