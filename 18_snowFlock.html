@@ -7,7 +7,8 @@
 	<META NAME="AUTHOR" CONTENT="Mario Amaral">
 	<META NAME="CREATED" CONTENT="20110531;21293400">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
-	<META NAME="CHANGED" CONTENT="20110705;42200">
+	<META NAME="CHANGED" CONTENT="20110712;22565900">
+	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<STYLE TYPE="text/css">
@@ -17,8 +18,6 @@
 		H2 { margin-bottom: 0.21cm }
 		H2.cjk { font-family: "WenQuanYi Micro Hei" }
 		H2.ctl { font-family: "Lohit Hindi" }
-		H3.cjk { font-family: "WenQuanYi Micro Hei" }
-		H3.ctl { font-family: "Lohit Hindi" }
 		A:link { so-language: zxx }
 		CODE.cjk { font-family: "WenQuanYi Micro Hei", monospace }
 	-->
@@ -360,10 +359,10 @@ não-comercial esta disponível no GridCentric Inc [2]. </SPAN></SPAN></SPAN></F
 documentation and open source code for the original University of
 Toronto SnowFlock research project are available<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-1">1</A>&nbsp;If
 you'd prefer to take the industrial-strength version for a spin, a
-free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">
-</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Devido
-ao SnowFlock incluir alterações ao </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hypervisor</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">
-</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">e
+free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">
+</SPAN></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Devido
+ao SnowFlock incluir alterações ao </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hypervisor</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">
+</SPAN></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">e
 requerer acesso ao dom0, instala-lo requer acesso privilegiado nas
 máquinas de </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">host</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">.
 Por esta razão, você precisará usar seu próprio </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hardware</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">,
@@ -445,18 +444,18 @@ como aproveitamos as oportunidades de otimização apresentadas.</FONT></FONT></
 <BR>
 </P>
 <H2 CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=4><SPAN STYLE="font-weight: normal">18.5
-Componentes do lado-pai </SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">(</SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">18.5.
+Componentes do lado-pai </SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">(18.5.
 Parent-Side Components)</SPAN></SPAN></FONT></FONT></FONT></H2>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	Uma vez que a
-MV é clonada ela se torna um pai para seus filhos ou clones. Como
-todos os pais responsáveis, ela precisa vigiar pelo bem-estar de
-seus descendentes. Isso se dá pela criação de um conjunto de
-serviços que fornecem memória e estado de disco para a MVs clonadas
-sob demanda.</FONT></FONT></P>
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Uma vez que a MV
+é clonada ela se torna um pai para seus filhos ou clones. Como todos
+os pais responsáveis, ela precisa vigiar pelo bem-estar de seus
+descendentes. Isso se dá pela criação de um conjunto de serviços
+que fornecem memória e estado de disco para a MVs clonadas sob
+demanda.</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
@@ -467,18 +466,42 @@ sob demanda.</FONT></FONT></P>
 <BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif">	Quando o descritor de
+<FONT COLOR="#000000"><FONT FACE="sans-serif">Quando o descritor de
 arquitetura é criado, a MV é interrompida em suas faixas ao longo
 do processo. Assim o estado da memória da MV é resolvido; antes de
-realmente pausar uma MV e desindexar da execução, </FONT></FONT>
-</P>
-<H3 CLASS="western" STYLE="font-weight: normal; widows: 2; orphans: 2">
-<BR><BR>
-</H3>
+realmente pausar uma MV e desindexar da execução, controladores
+internos quiesce – pausa ou alteração do estado de processos em
+execução no computador - do SO em um estado do qual  os clones
+podem reconectar para o mundo externo em suas novas MVs anexadas.
+Aproveitamos este estado quiesce para criar um “servidor de
+memória”, ou memserver.</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif">internal OS drivers
-quiesce into a state from which clones can reconnect to the external
-world in their new enclosing VMs. We take advantage of this quiescent
-state to create a &quot;memory server&quot;, or&nbsp;<CODE CLASS="western"><FONT FACE="sans-serif">memserver</FONT></CODE>.</FONT></FONT></P>
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><SPAN STYLE="background: #ff0000">(When
+the architectural descriptor is created, the VM is stopped in its
+tracks throughout the process. This is so the VM memory state
+settles; before actually pausing a VM and descheduling from
+execution, internal OS drivers quiesce into a state from which clones
+can reconnect to the external world in their new enclosing VMs. We
+take advantage of this quiescent state to create a &quot;memory
+server&quot;, or&nbsp;</SPAN><CODE CLASS="western"><FONT FACE="sans-serif"><SPAN STYLE="background: #ff0000">memserver</SPAN></FONT></CODE><SPAN STYLE="background: #ff0000">.)</SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">O
+servidor de memória irá fornecer todos os clones com os bits de
+memória que eles precisem dos pais. A memória é propagada para
+granularidade de uma página de memória x86 (4kbytes). Nestas formas
+mais simples, o servidor de memória</SPAN></SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2"><A NAME="__DdeLink__669_960242901"></A>
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><SPAN STYLE="background: #ffffff">In
+its simplest form, the memory server sits waiting for page requests
+from clones, and serves one page at a time, one clone at a time.</SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<BR>
+</P>
 </BODY>
 </HTML>
