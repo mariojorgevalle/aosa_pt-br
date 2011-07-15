@@ -3,10 +3,11 @@
 <HEAD>
 	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
 	<TITLE></TITLE>
-	<META NAME="GENERATOR" CONTENT="BrOffice 3.3  (Unix)">
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Unix)">
 	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
+	<META NAME="CHANGED" CONTENT="20110715;17032000">
 	<META NAME="CHANGEDBY" CONTENT="weslleymberg ">
-	<META NAME="CHANGED" CONTENT="20110706;18534800">
 	<META NAME="CHANGEDBY" CONTENT="weslleymberg ">
 	<META NAME="CHANGEDBY" CONTENT="weslleymberg ">
 	<META NAME="CHANGEDBY" CONTENT="weslleymberg ">
@@ -567,24 +568,46 @@ usuários do framework poderem escrever seus testes na mesma
 linguagem em que utilizam na maior parte do projeto no qual
 trabalham. Em segundo lugar, misturar muitas linguagens em um simples
 projeto é algo que não vai deixar a equipe confortável, e padrões
- de codificação corporativa e requerimentos frequentemente parecem
+de codificação corporativa e requerimentos frequentemente parecem
 demandar um tecnologia monocultura (embora, agradável, ei penso que
 esta segunda opção está se tornando menos verdadeira ao longo do
 tempo), contudo reduzir o número de linguagens suportadas não é
 uma opção disponível.</FONT></SPAN></SPAN></FONT></P>
-<P STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
 </P>
-<P STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT FACE="Times New Roman"><SPAN STYLE="background: transparent"><SPAN STYLE="text-decoration: none"><FONT SIZE=3>Reduzir
+<P STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2; text-decoration: none">
+<FONT FACE="Times New Roman"><FONT SIZE=3><SPAN STYLE="background: transparent">Reduzir
 o numero de navegadores suportados também não é uma opção
 disponível – haviam fortes argumentos quando eliminamos o suporte
 ao Firefox 2 no WebDriver, apesar do fato de que quando fizemos essa
-escolha, representava menos de 1% do mercado de navegadores.:</FONT></SPAN></SPAN></FONT></P>
+escolha, representava menos de 1% do mercado de navegadores.</SPAN></FONT></FONT></P>
 <P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
 </P>
-<P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%; widows: 0; orphans: 0; page-break-before: auto; page-break-after: auto">
-<BR>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">A única escolha
+que nos resta é tentar e fazer todos os navegadores parecerem
+idênticos para as ligações da linguagem: eles devem oferecer um
+interface uniforme que pode ser facilmente tratada em uma ampla
+variedade de linguagens. Além do mais, queremos as ligações das
+linguagens em si sejam tão fáceis de escrever quanto possível. Nós
+empurramos, tanta lógica quanto pudemos, para o drive subjacente, a
+fim de apoiar esta: cada pedaço de funcionalidade que nós falhamos
+em colocar dentro do driver é algo que precisa ser implementado em
+todas as linguagens que damos suporte, e isso pode representar uma
+quantidade significativa de trabalho.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
 </P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Como um exemplo,
+o driver do IE foi, com sucesso, alocado à responsabilidade de
+localizar e iniciar o IE, dentro do driver lógico principal. Contudo
+isso resultou em um surpreendente numero de linhas de código no
+driver, as ligações da linguagem para criar uma nova instância
+resume-se em uma simples chamada de método dentro do driver. Para
+comparação, o driver do Firefox não conseguiu fazer esta
+alteração. No mundo Java por si só, isso significa que nós temos
+três classes principais que tratam de configurar e iniciar o
+Firefox, pesando em torno de 1300 linhas de código. Estas classes
+são duplicadas em toda as linguagens que querem suportar o driver do
+Firefox sem precisar levantar um servidor Java. Isso é bastante
+código adicional para manter.</P>
 </BODY>
 </HTML>
