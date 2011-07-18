@@ -7,7 +7,8 @@
 	<META NAME="AUTHOR" CONTENT="Mario Amaral">
 	<META NAME="CREATED" CONTENT="20110531;21293400">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
-	<META NAME="CHANGED" CONTENT="20110712;22565900">
+	<META NAME="CHANGED" CONTENT="20110718;13513200">
+	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
@@ -359,10 +360,10 @@ não-comercial esta disponível no GridCentric Inc [2]. </SPAN></SPAN></SPAN></F
 documentation and open source code for the original University of
 Toronto SnowFlock research project are available<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-1">1</A>&nbsp;If
 you'd prefer to take the industrial-strength version for a spin, a
-free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">
-</SPAN></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Devido
-ao SnowFlock incluir alterações ao </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hypervisor</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">
-</SPAN></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">e
+free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">
+</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Devido
+ao SnowFlock incluir alterações ao </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hypervisor</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">
+</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">e
 requerer acesso ao dom0, instala-lo requer acesso privilegiado nas
 máquinas de </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">host</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">.
 Por esta razão, você precisará usar seu próprio </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hardware</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">,
@@ -466,42 +467,58 @@ demanda.</FONT></FONT></P>
 <BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif">Quando o descritor de
-arquitetura é criado, a MV é interrompida em suas faixas ao longo
-do processo. Assim o estado da memória da MV é resolvido; antes de
-realmente pausar uma MV e desindexar da execução, controladores
-internos quiesce – pausa ou alteração do estado de processos em
-execução no computador - do SO em um estado do qual  os clones
-podem reconectar para o mundo externo em suas novas MVs anexadas.
-Aproveitamos este estado quiesce para criar um “servidor de
-memória”, ou memserver.</FONT></FONT></P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif"><SPAN STYLE="background: #ff0000">(When
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Quando o
+descritor de arquitetura é criado, a MV é interrompida em suas
+faixas ao longo do processo. Assim o estado da memória da MV é
+resolvido; antes de realmente pausar uma MV e desindexar da execução,
+controladores internos quiesce – pausa ou alteração do estado de
+processos em execução no computador - do SO em um estado do qual os
+clones podem reconectar para o mundo externo em suas novas MVs
+anexadas. Aproveitamos este estado quiesce para criar um “servidor
+de memória”, ou memserver.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ff0000">(When
 the architectural descriptor is created, the VM is stopped in its
 tracks throughout the process. This is so the VM memory state
 settles; before actually pausing a VM and descheduling from
 execution, internal OS drivers quiesce into a state from which clones
 can reconnect to the external world in their new enclosing VMs. We
 take advantage of this quiescent state to create a &quot;memory
-server&quot;, or&nbsp;</SPAN><CODE CLASS="western"><FONT FACE="sans-serif"><SPAN STYLE="background: #ff0000">memserver</SPAN></FONT></CODE><SPAN STYLE="background: #ff0000">.)</SPAN></FONT></FONT></P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">O
+server&quot;, or&nbsp;</SPAN></SPAN></SPAN></FONT></FONT><CODE CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ff0000">memserver</SPAN></SPAN></SPAN></FONT></FONT></CODE><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ff0000">.)</SPAN></SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">O
 servidor de memória irá fornecer todos os clones com os bits de
 memória que eles precisem dos pais. A memória é propagada para
-granularidade de uma página de memória x86 (4kbytes). Nestas formas
-mais simples, o servidor de memória</SPAN></SPAN></SPAN></FONT></FONT></P>
+granularidade de uma página de memória x86 (4kbytes). Em sua forma
+mais simples, o servidor de memória fica à espera de pedidos de
+página a partir dos clones, e serve uma página por vez, um clone
+por vez.</SPAN></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
-<BR>
-</P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2"><A NAME="__DdeLink__669_960242901"></A>
-<FONT COLOR="#000000"><FONT FACE="sans-serif"><SPAN STYLE="background: #ffffff">In
-its simplest form, the memory server sits waiting for page requests
-from clones, and serves one page at a time, one clone at a time.</SPAN></FONT></FONT></P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR>
-</P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR>
-</P>
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Todavia, esta é
+a mesma memória que a MV pai necessita usar para se manter em
+execução. Se permitíssemos o pai ir em frente e modificar esta
+memória, nós serviríamos conteúdo de memória corrompido para
+clonar as MVs: a memória servida seria diferente da que no momento
+da clonagem, e os clones seriam confundidos <SPAN STYLE="background: #ff0000">(</SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ff0000">would
+be mightily confused</SPAN></SPAN></SPAN><SPAN STYLE="background: #ff0000">)</SPAN>.
+Em termos de kernel hacking, esta é uma receita certa para
+rastreamentos de pilha.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Para contornar
+este problema, uma noção clássica de SO veio para a salvação:
+<I>Copy-on-Write</I><SPAN STYLE="font-style: normal"> (</SPAN>cópia
+na escrita), ou memória <I>CoW</I><SPAN STYLE="font-style: normal">.
+Ao buscar ajuda do </SPAN><I>Xen hypervisor</I><SPAN STYLE="font-style: normal">,
+nós podemos remover privilégios de escrita de todas as páginas de
+memória na MV pai. Quando o pai realmente tenta modificar uma
+página, uma falha de página de hardware é acionado. O Xen sabe por
+que isto aconteceu, e faz uma cópia da página. A MV pai é
+permitido escrever na página original e continuar em execução,
+enquanto o servidor de memória é avisado para usar a cópia, que é
+mantida em somente leitura. Desta maneira, o estado de memória no
+ponto de clonagem permanece congelado para que o clone não seja
+confundido, enquanto o pai é habilitado para prosseguir com a
+execução. A sobrecarga de CoW é mínima: mecanismos similares são
+usados pelo Linux, por exemplo, quando novos processos são criados.</SPAN></FONT></FONT></P>
 </BODY>
 </HTML>
