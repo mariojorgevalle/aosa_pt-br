@@ -7,7 +7,8 @@
 	<META NAME="AUTHOR" CONTENT="Mario Amaral">
 	<META NAME="CREATED" CONTENT="20110531;21293400">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
-	<META NAME="CHANGED" CONTENT="20110721;13594400">
+	<META NAME="CHANGED" CONTENT="20110725;13402400">
+	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
@@ -361,10 +362,10 @@ não-comercial esta disponível no GridCentric Inc [2]. </SPAN></SPAN></SPAN></F
 documentation and open source code for the original University of
 Toronto SnowFlock research project are available<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-1">1</A>&nbsp;If
 you'd prefer to take the industrial-strength version for a spin, a
-free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">
-</SPAN></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Devido
-ao SnowFlock incluir alterações ao </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hypervisor</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">
-</SPAN></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">e
+free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">
+</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Devido
+ao SnowFlock incluir alterações ao </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hypervisor</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">
+</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">e
 requerer acesso ao dom0, instala-lo requer acesso privilegiado nas
 máquinas de </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">host</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">.
 Por esta razão, você precisará usar seu próprio </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hardware</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">,
@@ -526,40 +527,56 @@ usados pelo Linux, por exemplo, quando novos processos são criados.</SPAN></FON
 </P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal">18.5.2
-</SPAN><FONT FACE="sans-serif"><I><SPAN STYLE="font-weight: normal">Multicasting</SPAN></I></FONT><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
-com</SPAN></SPAN></FONT><FONT FACE="sans-serif"><I><SPAN STYLE="font-weight: normal">
-Mcdist</SPAN></I></FONT></FONT></FONT></P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; widows: 2; orphans: 2">
+</SPAN><I><SPAN STYLE="font-weight: normal">Multicasting</SPAN></I>
+<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">com</SPAN></SPAN>
+<I><SPAN STYLE="font-weight: normal">Mcdist</SPAN></I></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT FACE="sans-serif"><SPAN STYLE="font-weight: normal">	Os
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-weight: normal">Os
 clones são tipicamente aflitos com uma síndrome existencial
-conhecida como “destino determinista”(</SPAN></FONT><FONT FACE="sans-serif"><I><SPAN STYLE="font-weight: normal">fate
-determinism</SPAN></I></FONT><FONT FACE="sans-serif"><SPAN STYLE="font-weight: normal">).
-Esperamos os clones a serem criados para uma única finalidade: por
-exemplo, para alinhar cadeias X de DNA com um segmento Y de um banco
-de dados. Além disso, nós esperamos um conjunto de clones a serem
-criados para que todos os irmãos façam o mesmo, talvez alinhem as
-mesmas cadeias X com diferentes segmentos do banco de dados, ou
-alinhem diferentes cadeias com o mesmo seguimento Y. Os clones,
-assim, claramente exibem uma grande quantidade de localidade temporal
-em seus acessos de memória: eles usarão o mesmo código e grandes
-porções de dados comuns.</SPAN></FONT></FONT></FONT></P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif"><I>	</I></FONT></FONT></P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR>
-</P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif">We exploit the
-opportunities for temporal locality through&nbsp;<CODE CLASS="western"><FONT FACE="sans-serif">mcdist</FONT></CODE>,
-our own multicast distribution system tailored to SnowFlock. Mcdist
-uses IP multicast to simultaneously distribute the same packet to a
-set of receivers. It takes advantage of network hardware parallelism
-to decrease the load on the memory server. By sending a reply to all
-clones on the first request for a page, each clone's requests act as
-a prefetch for its siblings, because of their similar memory access
-patterns.</FONT></FONT></P>
+conhecida como “destino determinista”(</SPAN><I><SPAN STYLE="font-weight: normal">fate
+determinism</SPAN></I><SPAN STYLE="font-weight: normal">). Esperamos
+os clones a serem criados para uma única finalidade: por exemplo,
+para alinhar cadeias X de DNA com um segmento Y de um banco de dados.
+Além disso, nós esperamos um conjunto de clones a serem criados
+para que todos os irmãos façam o mesmo, talvez alinhem as mesmas
+cadeias X com diferentes segmentos do banco de dados, ou alinhem
+diferentes cadeias com o mesmo seguimento Y. Os clones, assim,
+claramente exibem uma grande quantidade de localidade temporal em
+seus acessos de memória: eles usarão o mesmo código e grandes
+porções de dados comuns.</SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	Nós exploramos
+as oportunidades para a localização temporal (<I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">temporal
+locality</SPAN></SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">)
+através do msdist, nosso próprio sistema de distribuição
+</SPAN></SPAN><I><SPAN STYLE="font-weight: normal">multicast</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+adaptado para o SnowFlock. Mcdist utiliza </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">multicast</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+de IP para simultaneamente distribuir o mesmo pacote para um conjunto
+de receptores. Ele tira proveito do paralelismo de </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">hardware</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+de rede para diminuir a carga sobre o servidor de memória. Enviando
+uma resposta para todos os clones na primeira requisição para um
+página, os pedidos de cada clone atuam como uma pré-busca para seus
+irmãos, por causa de seus padrões de acesso semelhantes de memória.</SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">	Diferente de
+outros sistemas de </FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I>multicast</I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">,
+o msdist não tem de ser confiável, não precisa entregar pacotes de
+forma ordenada e não necessita entregar atomicamente uma resposta
+para todos os receptores pretendidos. O </FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I>multicast</I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">
+é estritamente uma otimização e a entrega só precisa ser
+assegurada para o clone que explicitamente solicita uma página. O
+</FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I>design
+</I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal">é</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I>,</I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">
+desta forma, elegantemente simples: o servidor simplesmente </FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffff00">envia
+respostas de forma </SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="background: #ffff00">multicast</SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffff00">(</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">multicasts
+responses</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffff00">)</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">,
+enquanto os clientes recebem um </FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="background: #ffffff">time-out</SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">
+se eles não receberem uma resposta para uma solicitação e reenviam
+a requisição. </FONT></FONT><FONT COLOR="#000000"><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">the
+server simply multicasts responses, while clients time-out if they
+have not received a reply for a request, and retry the request.</SPAN></SPAN></SPAN></FONT></FONT></P>
 </BODY>
 </HTML>
