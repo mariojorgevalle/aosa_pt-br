@@ -1,0 +1,856 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.1  (Linux)">
+	<META NAME="AUTHOR" CONTENT="Rebeca ">
+	<META NAME="CREATED" CONTENT="20110725;11595900">
+	<META NAME="CHANGEDBY" CONTENT="Rebeca ">
+	<META NAME="CHANGED" CONTENT="20110725;12050100">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		P.western { so-language: pt-BR }
+		A:link { so-language: zxx }
+		A:visited { so-language: zxx }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" DIR="LTR">
+<P CLASS="western" STYLE="margin-bottom: 0cm">Capítulo 24. VTK</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"><A HREF="http://www.aosabook.org/en/intro.html#geveci-berk">Berk
+Geveci</A> e <A HREF="http://www.aosabook.org/en/intro.html#schroeder-will">Will
+Schroeder</A></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">O Visualization Toolkit
+(VTK) é um sistema de processamento e visualização de dados
+amplamente utilizado. Ele é usado em computação científica,
+análise de imagens médicas, geometria computacional, renderização,
+processamento de imagens e informática. Nesse capítulo nós
+provemos uma breve visão do VTK, incluindo alguns dos padrões
+básicos do projeto que o tornaram um sistema bem sucedido.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Para realmente entender
+um sistema de software é essencial entender não só o problema que
+ele resolve, mas também a cultura particular da qual ele emergiu. No
+caso do VTK, o software foi intensivamente desenvolvido como um
+sistema de visualização 3D para dados científicos. Mas o contexto
+cultural em que ele surgiu adiciona uma história significativa por
+trás do esforço, e ajuda a explicar por que o software foi
+projetado e implantado como foi.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Naquele momento o VTK
+foi concebido e escrito, e os seus autores iniciais (Will Schroeder,
+Ken Martin, Bill Lorensen) eram pesquisadores da GE Corporate R&amp;D.
+Estávamos investindo fortemente em um sistema precursor conhecido
+como LYMB, que era um ambiente tipo Smalltalk e implementado na
+linguagem de programação C. Apesar de ter sido um grande sistema
+para a sua época, como pesquisadores estávamos frustrados por duas
+grandes barreiras ao tentar promover o nosso trabalho: 1) questões
+de IP e 2) software proprietário fora dos padrões. Questões de IP
+foram um problema, porque tentando distribuir o software fora da GE
+era quase impossível uma vez que os advogados da empresa se
+envolveram. Segundo, mesmo se estivéssemos implantando o software
+dentro da GE, muitos de nossos clientes se recusaram a aprender um
+sistema proprietário fora dos padrões, pois o esforço para
+dominá-lo não ficava na organização uma vez que o funcionário
+deixava a empresa, e não teve o amplo suporte no kit de ferramentas
+padrão. Assim, no final, a principal motivação para VTK foi
+desenvolver um padrão aberto, ou uma plataforma de colaboração
+através da qual poderíamos facilmente transferir tecnologia para
+nossos clientes. Assim, a escolha de uma licença de código aberto
+para o VTK foi provavelmente a decisão mais importante que fizemos.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">A escolha final de uma
+licença não-recíproca, permissiva, (ou seja, a BSD não é GPL),
+em retrospectiva, foi uma decisão exemplar dos autores, porque em
+última análise, permitiu o serviço e consultoria com base em
+negócios que se tornou Kitware. No momento em que tomamos a decisão
+estávamos mais interessados ​​em reduzir as barreiras ao
+colaborar com os acadêmicos, laboratórios de pesquisa e entidades
+comerciais. Desde então, descobrimos que as licenças recíprocas
+são evitadas por muitas organizações por causa da potencial
+destruição que pode causar. Na verdade poderíamos argumentar que
+as licenças recíprocas fazem muito para diminuir a aceitação do
+software de código fonte aberto, mas isso é um argumento para outra
+hora. O ponto aqui é: uma das principais decisões de um projeto
+para fazer em relação a qualquer sistema de software é a escolha
+de licença de direitos autorais. É importante rever as metas do
+projeto e, em seguida, abordar questões IP de forma adequada.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.1. O que é VTK?</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">VTK foi inicialmente
+criado para ser um sistema de visualização de dados científicos.
+Muitas pessoas fora do campo ingenuamente consideram a visualização
+um tipo particular de renderização geométrica: examinar objetos
+virtuais e interagir com eles. Enquanto isto é de fato parte da
+visualização, em geral a visualização de dados inclui todo o
+processo de transformar dados em informações sensoriais,
+normalmente imagens, mas também inclui formas auditivas, táteis,
+entre outras. Os dados de formulários não consistem apenas em
+construções geométricas e topológicas, incluindo as captações,
+como malhas ou decomposições espaciais complexas, mas atribui à
+estrutura do núcleo, como escalas (eg, temperatura ou pressão),
+vetores (por exemplo, a velocidade), tensores (por exemplo, estresse
+e tensão), além de renderizar atributos como normais de superfície
+e coordenadas de textura.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Note que os dados que
+representam a informação espacial-temporal é geralmente
+considerado parte da visualização científica. No entanto, existem
+formas mais abstratas de dados tais como dados demográficos de
+marketing, páginas web, documentos e outras informações que só
+podem ser representadas através do abstrato (ou seja, não sendo
+espacial-temporal) relações, tais como documentos não
+estruturados, tabelas, gráficos e árvores. Estes dados abstratos
+são normalmente dirigidos por métodos de visualização da
+informação. Com a ajuda da comunidade, VTK é agora capaz de ter a
+visualização científica e a de informação.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Como um sistema de
+visualização, o papel do VTK é levar dados nesse formato e,
+finalmente, transformá-los em formas compreensíveis pelo aparelho
+sensorial humano. Assim, um dos requisitos essenciais do VTK é sua
+capacidade de criar fluxos de dados que são capazes de ingerir,
+processar, representar e, finalmente, renderizar os dados. Daí o kit
+de ferramentas é, necessariamente, arquitetado como um sistema
+flexível e seu projeto reflete isso em muitos níveis. Por exemplo,
+nós propositadamente designamos o VTK como um kit de ferramentas com
+muitos componentes compartilháveis ​​que podem ser combinados
+para processar uma grande variedade de dados.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.2. Características
+Arquitetônicas</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Antes de ir muito longe
+nas características específicas de arquitetura do VTK, existem
+conceitos de alto nível que têm impacto significativo no
+desenvolvimento e utilização do sistema. Uma delas é o wrapper
+híbrido do VTK. Esta funcionalidade gera automaticamente ligações
+de linguagem para Python, Java e Tcl a partir da implementação em
+C++ do VTK (idiomas adicionais podem ser e foram adicionados). Os
+desenvolvedores mais potentes irão trabalhar em C + +.
+Desenvolvedores de usabilidade e aplicação podem usar C + +, mas
+muitas vezes as linguagens interpretadas mencionadas acima são
+preferidas. Este ambiente híbrido compilado / interpretado combina o
+melhor dos dois mundos: alta performance de algoritmos de computação
+intensiva e flexibilidade quando desenvolvendo protótipos ou
+aplicações. Na verdade, esta abordagem multi-linguagem de
+computação tem encontrado graça diante de muitos na comunidade de
+computação científica e eles frequentemente usam VTK como um
+modelo para o desenvolvimento de seu próprio software.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Em termos de processo
+de software, VTK adotou o CMake para controlar o build; CDash / CTest
+para testes, e CPack para implantação de plataforma cruzada. Na
+verdade VTK pode ser compilado em praticamente qualquer computador,
+incluindo os supercomputadores que muitas vezes são ambientes de
+desenvolvimento notoriamente primitivos. Além disso, páginas web,
+wiki, listas de discussão (usuário e desenvolvedor), geração de
+documentação (por exemplo, Doxygen) e um bug tracker (Mantis)
+completam as ferramentas de desenvolvimento.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.2.1. Core Features</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Como VTK é um sistema
+orientado a objetos, o acesso a classe e aos dados da instância são
+cuidadosamente controlado no VTK. Em geral, todos os dados ou são
+protegidos ou privados. O acesso a eles é através dos métodos set
+e get, com variações especiais para dados Booleanos, modal data,
+strings e vetores. Muitos destes métodos são realmente criados
+através da inserção de macros nos cabeçalho da classe. Assim, por
+exemplo:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[codigo]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Se torna:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[codigo]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Há muitas razões para
+usar esses macros além de simplesmente a clareza do código. No VTK
+existem dados importantes controlando a depuração, atualizando o
+tempo modificado do objeto (mtime), e gerenciando corretamente a
+contagem de referência. Estas macros manipulam corretamente esses
+dados e seu uso é altamente recomendado. Por exemplo, um bug
+particularmente pernicioso no VTK ocorre quando o mtime do objeto não
+é gerido de forma adequada. Neste caso o código pode não executar
+quando deve, ou pode executar com muita freqüência.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Um dos pontos fortes do
+VTK é o seu meio relativamente simplista de representar e gerenciar
+dados. Normalmente vários arrays de dados de tipos específicos (por
+exemplo, vtkFloatArray) são usados ​​para representar peças
+contíguas de informação. Por exemplo, uma lista de três pontos
+XYZ seria representada com um vtkFloatArray em nove entradas (x, y,
+z, x, y, z, etc). Existe a noção de uma tupla nessas matrizes, por
+isso um ponto 3D em uma 3-tupla, enquanto um tensor simétrico de uma
+matriz 3 × 3 é representado por uma 6-tupla (onde a economia do
+espaço simétrico é possível). Este modelo foi adotado
+propositalmente porque na computação científica é comum a
+interação com sistemas de manipulação de arrays (por exemplo,
+Fortran) e é muito mais eficiente para alocar e desalocar memória
+em grandes blocos contíguos. Além disso, a comunicação,
+serialização e realizar o IO é geralmente muito mais eficiente com
+dados contíguos. Estes arrays de dados centrais (de vários tipos)
+representam grande parte dos dados no VTK e têm uma variedade de
+métodos de conveniência para inserir e acessar a informação,
+incluindo métodos para acesso rápido, e os métodos que
+automaticamente alocam memória conforme necessário, quando é
+adicionado mais dados. Arrays de dados são subclasses da classe
+abstrata vtkDataArray que mostram que métodos virtuais genéricos
+podem ser usados para simplificar a codificação. No entanto, para
+maior desempenho estático, funções &quot;templated&quot; são
+usadas para ​trocar base com tipo, com acesso posterior direto para
+os arrays de dados contíguos.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Em geral, modelos C++
+não são visíveis na classe pública, embora os modelos são
+amplamente utilizados por razões de performace. Isso vale para STL
+também: nós tipicamente empregamos o padrão de design PIMPL[1]
+para esconder as complexidades de uma implementação do modelo do
+usuário ou do desenvolvedor do aplicativo. Isso tem nos servido
+muito bem quando se trata de envolver o código em código
+interpretado como descrito anteriormente. Evitando a complexidade dos
+modelos na API pública significa que a implementação do VTK, do
+ponto de vista do desenvolvedor do aplicativo, é em grande parte
+livre das complexidades de seleção de tipos de dados. É claro que
+por baixo dos panos a execução do código é impulsionada pelo tipo
+de dados que normalmente é determinada em tempo de execução quando
+os dados são acessados. </P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Alguns usuários se
+perguntam por que o VTK utiliza contagem de referências para
+gerenciamento de memória em vez de uma abordagem mais amigável,
+como garbage collection. A resposta básica é que o VTK precisa de
+controle total quando os dados são apagados, porque o tamanho dos
+dados pode ser enorme. Por exemplo, um volume de dados de 1000 ×
+1000 × 1000 bytes em tamanho é um gigabyte de tamanho. Não é uma
+boa idéia deixar esses dados em pairando no sistema enquanto o
+garbage collection decide se é ou não é hora de liberá-lo. A
+maioria das classes do VTK (subclasses de vtkObject) têm a
+capacidade nativa de contagem de referência. Cada objeto contém uma
+contagem de referência que inicializada para quando o objeto é
+instanciado. Cada vez que o objeto é utilizado é feito um registro,
+e a contagem de referência é aumentada em um. Da mesma forma,
+quando o uso do objeto não é registrado (ou equivalentemente o
+objeto é excluído) a contagem de referência é reduzida por um.
+Eventualmente a contagem de referência do objeto é reduzida a zero,
+e neste ponto o objeto se destrói. Um exemplo típico é semelhante
+ao seguinte:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[codigo]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Há uma outra razão
+importante pela qual a contagem de referência é importante para o
+VTK - proporciona a capacidade de copiar os dados de forma eficiente.
+Por exemplo, imagine o objeto D1 que consiste em um número de
+matrizes de dados: pontos, polígonos, cores, escalares e coordenadas
+de textura. Agora imagine o processamento de dados para gerar um novo
+objeto D2 que é o mesmo que o primeiro além da adição de dados
+vetoriais (localizado nos pontos). Uma abordagem de  desperdício é
+copiar completamente D1 para criar D2, e depois adicionar o novo
+vetor de array para D2. Alternativamente, podemos criar um D2 vazio e
+​​depois passar as matrizes de D1 para D2 (cópias rasas), usando
+contagem de referência para acompanhar a posse de dados, e
+finalmente, adicionar o array novo em D2. A última abordagem evita a
+cópia de dados que, como dissemos anteriormente, é essencial para
+um sistema de boa visualização. Como veremos mais adiante neste
+capítulo, o processamento de dados executa esse tipo de operação
+rotineiramente, ou seja, copiar dados a partir da entrada de um
+algoritmo para a saída, por isso a contagem de referência é
+essencial para o VTK.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Claro que existem
+alguns problemas notórios com contagem de referência.
+Ocasionalmente, podem existir ciclos de referência, com objetos no
+ciclo referindo-se uns aos outros em uma configuração de apoio
+mútuo. Neste caso, a intervenção inteligente é necessária, ou no
+caso do VTK, a unidade especial implementada em vtkGarbageCollector é
+usada para gerenciar objetos que estão envolvidos nos ciclos. Quando
+uma dessas classes é identificada (isto é esperado durante o
+desenvolvimento), a classe se registra no garbage collection e
+sobrecarrega seus próprios métodos Register e UnRegister. Em
+seguida, uma exclusão de objetos subseqüentes (ou UnRegister)
+realiza uma análise topológica na rede local do contador
+referência, em busca destaques para objetos mutuamente
+referenciados. Estes são, então, excluídos pelo coletor de lixo.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">A maioria das
+instâncias no VTK é realizada através de uma fábrica de objetos
+implementada como um membro da classe estática. A sintaxe típica
+aparece como a seguir:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[codigo]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">O que é importante
+reconhecer aqui é o que é realmente instanciado pode não ser uma
+vtkLight, poderia ser uma subclasse de vtkLight (por exemplo,
+vtkOpenGLLight). Há uma variedade de motivações para a fábrica de
+objeto, a portabilidade de aplicações mais importantes e a
+independência do dispositivo. Por exemplo, no código acima estamos
+criando uma luz em uma cena renderizada. Em uma aplicação
+particular em uma plataforma particular vtkLight::New pode resultar
+em uma luz OpenGL, porém em diferentes plataformas, há o potencial
+para as bibliotecas de renderização ou outros métodos para criar
+uma luz no sistema gráfico. Exatamente o que deriva a classe para
+instanciar é uma função do tempo de execução informações do
+sistema. No início do VTK havia uma infinidade de opções,
+incluindo gl, PHIGS, Starbase, XGL e OpenGL. Enquanto a maioria delas
+já desapareceu, novas abordagens têm surgido incluindo DirectX e
+abordagens baseadas em GPU. Com o tempo, uma aplicação escrita com
+VTK não teve que mudar, já que os desenvolvedores têm criado novas
+subclasses com dispositivos específicos para o vtkLight e outras
+classes de renderização com suporte à tecnologia em evolução.
+Outro uso importante da fábrica objetivo é permitir a substituição
+em tempo de execução de performance avançada  de variações. Por
+exemplo, um vtkImageFFT poderá ser substituído por uma classe que
+acessa o hardware ou uma biblioteca numéricos.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.2.2. Dados
+representativos</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Um dos pontos fortes do
+VTK é a sua capacidade para representar formas complexas de dados.
+Estes dados variam de formas como tabelas simples para estruturas
+complexas, tais como malhas de elementos finitos. Todas essas formas
+de dados são subclasses de vtkDataObject como mostrado na Figura
+24.1 (note que este é um diagrama de herança parcial de muitas
+classes de dados de objetos).</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[imagem]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Uma das características
+mais importantes do vtkDataObject é que ele pode ser processado em
+um pipeline de visualização (próxima subseção). Das muitas
+classes mostradas, são apenas algumas que são normalmente
+utilizadas na maioria das aplicações do mundo real. As classes
+vtkDataSet e derivadas são usadas ​​para visualização
+científica (Figura 24.2). Por exemplo, vtkPolyData é usado para
+representar malhas poligonais; vtkUnstructuredGrid para representar
+malhas e vtkImageData representa pixel 2D e 3D e dados voxel.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[imagem]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.2.3. Arquitetura
+pipeline</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">O VTK consiste em
+vários subsistemas principais. Provavelmente, o subsistema mais
+associado com pacotes de visualização é a arquitetura de dados de
+fluxo / pipeline. No conceito, a arquitetura pipeline consiste em
+três classes básicas de objetos: objetos para representar os dados
+(o vtkDataObjects discutido acima), objetos de processar,
+transformar, filtrar ou objetos de mapa de dados de uma forma para
+outra (vtkAlgorithm); e objetos para executar um pipeline
+(vtkExecutive) que controla um grafo de dados intercalados e objetos
+de processo (ou seja, o pipeline). Figura 24.3 mostra um pipeline
+típico.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[imagem]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Embora conceitualmente
+simples, na verdade a implementação da arquitetura pipeline é um
+desafio. Uma razão é que a representação de dados pode ser
+complexa. Por exemplo, alguns conjuntos de dados consistem em
+hierarquias ou agrupamento de dados, de modo que a execução entre
+os dados requer iteração não-trivial ou recursão. Para piorar, o
+processamento paralelo (quer usando memória compartilhada ou
+escalável, ou abordagens distribuídas) requerem particionamento de
+dados, onde as peças podem ser obrigadas a se sobreporem de forma
+consistente para calcular informações de limite, como as
+derivadas.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Os objetos de
+algoritmos também possuem sua própria complexidade especial. Alguns
+algoritmos podem tomar várias entradas e / ou produzir múltiplas
+saídas de diferentes tipos. Algumas podem operar localmente em dados
+(por exemplo, calcular o centro de uma célula), enquanto outros
+requerem informações globais, por exemplo, para calcular um
+histograma. Em todos os casos, os algoritmos tratam seus dados de
+entrada como imutáveis, algoritmos apenas leêm a entrada, a fim de
+produzir a saída. Isso porque os dados podem estar disponíveis como
+entrada para vários algoritmos, e não é uma boa idéia para um
+algoritmo atrapalhar os dados de entrada entrada de outro.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Finalmente, o executor
+pode ser complicado, dependendo dos elementos da estratégia de
+execução. Em alguns casos podemos querer guardar em cache os
+resultados intermediários entre os filtros. Isso minimiza a
+quantidade de re-cálculo que devem ser executados se houver mudanças
+no pipeline. Por outro lado, o conjuntos de dados de visualização
+pode ser enorme, e nesse caso nós podemos desejar liberar os dados
+quando não são mais necessário para o cálculo. Finalmente,
+existem estratégias de execução complexas, tais como
+multi-resolução de processamento de dados, que exigem que o
+pipeline opere de modo iterativo.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Para demonstrar alguns
+desses conceitos e posteriormente explicar melhor a arquitetura
+pipeline, considere o seguinte exemplo C + +:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[codigo]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Neste exemplo, um
+objeto leitor lê uma grande rede não-estruturados (ou malha) de
+dados em um arquivo. O próximo filtro gera uma isosuperfície da
+malha. O filtro vtkQuadricDecimation reduz o tamanho da
+isosuperfície, que é um conjunto de dados poligonais, dizimando os
+polígonos (ou seja, reduzindo o número de triângulos que
+representam os volumes). Finalmente, depois da dizimação o novo
+arquivo de dados reduzido é gravado no disco. A execução pipeline
+real ocorre quando o método Write é chamado pelo escritor (ou seja,
+sob demanda para os dados).</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Como este exemplo
+demonstra, o mecanismo de execução do pipeline do VTK é guiado
+pela demanda. Quando um escritor ou um mapper (um objeto
+processamento de dados) necessita de dados, ele pede sua entrada. Se
+o filtro de entrada já tem os dados apropriados, ele simplesmente
+devolve o controle de execução para o escritor ou mapper. No
+entanto, se a entrada não tem os dados apropriados, é preciso
+calculá-los. Consequentemente, deve primeiro pedir sua entrada de
+dados. Este processo continuará até que um filtro ou uma fonte
+tenha &quot;dados apropriados&quot; ou o início do pipeline seja
+atingido, nesse ponto os filtros serão executados na ordem correta e
+os dados fluem para o ponto no pipeline em que foram solicitados.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Aqui devemos expandir o
+significado de &quot;dados apropriados&quot;. Por padrão, depois que
+uma fonte VTK ou filtro é executado, sua saída é armazenada em
+cache pelo pipeline de forma a evitar as execuções desnecessárias
+no futuro. Isto é feito para minimizar computação e / ou I / O com
+o custo de memória, e é um comportamento configurável. O pipeline
+de cache, não só os objetos de dados, mas também os metadados
+sobre as condições em que esses objetos de dados foram gerados.
+Esses metadados incluem um timeStamp (ie, ComputeTime) que capta
+quando o objeto de dados foi calculado. Assim, no caso mais simples,
+o &quot;dado adequado&quot; é aquele que foi calculado depois que
+todos os objetos no pipeline foram modificados a partir dele. É mais
+fácil demonstrar este comportamento, considerando os exemplos a
+seguir. Vamos adicionar o seguinte ao final do programa VTK
+anterior:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[codigo]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Como explicado
+anteriormente, o primeiro escritor-&gt; Write call - faz com que o
+pipeline inteiro seja executado. Quando writer2-&gt; Write() é
+chamado, o pipeline vai perceber que a saída em cache do filtro dos
+dados que foram deletados está atualizado quando se compara o
+timeStamp do cache com o tempo de modificação do filtro dos dados
+que foram deletados, do filtro de contorno e do leitor. Portanto, a
+solicitação de dados não precisa propagar o writer2. Agora, vamos
+considerar a seguinte alteração.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[codigo]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Agora o executor do
+pipeline vai perceber que o filtro de contorno foi modificado após
+as saídas do contorno e a exclusão dos dados nos filtros que foram
+executada pela última vez. Assim, o cache para estes dois filtros
+são obsoletos e têm que ser re-executado. No entanto, uma vez que o
+leitor não foi modificado antes do filtro de contorno o seu cache é
+válido e, portanto, o leitor não tem que re-executar.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">O cenário aqui
+descrito é o exemplo mais simples de um pipeline dirigido por
+demanda. O pipeline do VTK é muito mais sofisticado. Quando um
+filtro requer dados, ele pode fornecer informações adicionais para
+o pedido de dados específico dos subconjuntos. Por exemplo, um
+filtro pode executar análise out-of-core por streaming de pedaços
+de dados. Vamos mudar o nosso exemplo anterior para demonstrar.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[codigo]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Aqui, o escritor pede
+ao pipeline para carregar e processar os dados em duas partes cada um
+dos quais são transmitidos de forma independente. Você deve ter
+notado que a lógica de execução simples descrita anteriormente não
+vai funcionar aqui. Por esta lógica quando a função Write é
+chamada pela segunda vez, o pipeline não deve re-executar, porque
+nada mudou. Assim, para resolver este caso mais complexo, os
+executores têm uma lógica adicional para processar pedidos como
+este. A execução do pipeline do VTK na verdade consiste de várias
+passos. O cálculo dos objetos de dados é realmente o último passo.
+O passo anterior, então, é umum pedido. Este é o lugar onde os
+filtros podem dizer o que querem dos próximos cálculos. No exemplo
+acima, o escritor vai comunicar a sua entrada que ele quer o pedaço
+0 de 2. Este pedido realmente se propaga por todo o caminho até o
+leitor. Quando o pipeline é executado, o leitor saberá que ele
+precisa ler um subconjunto dos dados. Além disso, informações
+sobre o pedaço dos dados em cache correspondente é armazenado nos
+metadados para o objeto. Da próxima vez que um filtro solicitar
+dados de sua entrada, este metadados serão comparados com a
+solicitação atual. Assim, neste exemplo, o pipeline irá
+re-executar, a fim de processar uma solicitação diferente.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Existem vários tipos
+de pedidos que um filtro pode fazer. Estes incluem pedidos para um
+determinado timeStamp, um ponto particular estruturado ou o número
+de camadas fantasma (ou seja, camadas limite para a informação
+bairro de computação). Além disso, durante os passos para fazer o
+pedido, cada filtro é permitido modificar solicitações de
+downstream. Por exemplo, um filtro que não é capaz de transmitir
+(por exemplo, o filtro de agilizar) pode ignorar o pedido de uma
+parte e pedir todos os dados.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.2.4. Subsistema de
+renderização</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">A primeira vista o VTK
+tem um modelo simples de renderização orientada a objeto com
+classes correspondentes aos componentes que compõem uma cena 3D. Por
+exemplo, vtkActors são objetos que são processados ​​por um
+vtkRenderer em conjunto com um vtkCamera, e possivelmente com
+múltiplos vtkRenderers existentes no avtkRenderWindow. A cena é
+iluminada por um ou mais vtkLights. A posição do eachvtkActor é
+controlada por um vtkTransform, e o aparecimento de um ator é
+especificado através avtkProperty. Finalmente, a representação
+geométrica de um ator é definida por um vtkMapper. Mappers
+desempenhaam um papel importante no VTK, pois servem para encerrar o
+pipeline de processamento de dados, bem como interface para o sistema
+de renderização. Considere este exemplo em que deçetam os dados e
+escrevem o resultado para um arquivo e, em seguida, visualizam e
+interagem com o resultado usando um mapper:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[código]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Aqui um ator único,
+renderizador e a janela de renderização são criados com a adição
+de um mapper que conecta o pipeline com o sistema de renderização.
+Observe também a adição do avtkRenderWindowInteractor, os casos
+que captam o mouse e o teclado e traduzem os movimentos em
+manipulações de câmera ou outras ações. Este processo de
+tradução é definido através avtkInteractorStyle (mais sobre isso
+adiante). Por padrão muitos casos e dados são definidos nos
+bastidores. Por exemplo, uma transformação de identidade é
+construída, assim como um único padrão de luz (cabeça) e da
+propriedade.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Com o tempo esse modelo
+se tornou mais sofisticado. Muito da complexidade veio do
+desenvolvimento de classes derivadas que se especializam em um
+aspecto do processo de renderização. O VtkActors são agora
+especializações do vtkProp (como um suporte), e há uma enorme
+quantidade desses suportes para renderização de gráficos 2D e
+sobreposição texto, especializados em objetos 3D, e até mesmo para
+apoiar técnicas de renderização avançadas, como renderização de
+volume ou implementações na GPU (ver Figura 24.4).</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Da mesma forma, como o
+modelo de dados suportados pelo VTK tem crescido, assim também
+vários mappers que fazem a interface de dados para o sistema de
+rendersização. Outra área de extensão significativa é a
+hierarquia de transformação. O que era originalmente um linear
+simples de matriz de transformação 4 × 4, tornou-se uma hierarquia
+poderosa que suporta transformações não-lineares incluindo a
+transformação spline. Por exemplo, o original vtkPolyDataMapper
+tinha subclasses específicas do dispositivo (por exemplo,
+vtkOpenGLPolyDataMapper). Nos últimos anos tem sido substituído por
+um pipeline de gráficos sofisticados referido como o &quot;pintor&quot;
+pipeline ilustrado na Figura 24.4.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[imagem]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">O pintor suporta uma
+variedade de técnicas para processamento de dados que podem ser
+combinados para fornecer efeitos especiais de renderização. Esta
+capacidade supera grandemente o simples vtkPolyDataMapperthat que foi
+implementado inicialmente em 1994.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Outro aspecto
+importante de um sistema de visualização é o subsistema de
+seleção. No VTK existe uma hierarquia de &quot;seletores&quot;,
+classificados em objetos que selecionam vtkProps baseado em métodos
+de hardware versus métodos de software (por exemplo, ray-casting),
+bem como objetos que proporcionam diferentes níveis de informação
+depois de operações de seleção. Por exemplo, alguns seletores
+fornecem apenas um local no espaço XYZ sem indicar quais vtkProp que
+selecionaram, outros oferecem não só o vtkProp selecionado, mas um
+determinado ponto ou célula que compõem a malha que define a
+geometria suporte.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.2.5. Eventos e
+interação</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Interagir com os dados
+é uma parte essencial da visualização. No VTK isso ocorre de
+diversas maneiras. Em seu nível mais simples, os usuários podem
+observar eventos e responder adequadamente através de comandos (o
+padrão comando / observador). Todas as subclasses do vtkObject
+mantém uma lista de observadores que registram-se com o objeto.
+Durante o registro, os observadores indicam o determinado evento(s)
+que estão interessados​​, com a adição de um comando associado
+que é chamado, se e quando ocorrer o evento. Para ver como isso
+funciona, considere o seguinte exemplo no qual um filtro (aqui uma
+filtro de eliminação de um polígono) tem um observador que observa
+para três eventos StartEvent, ProgressEvent e EndEvent. Esses
+eventos são chamados quando o filtro começa a executar,
+periodicamente, durante a execução, e depois no final da execução.
+Na classe thevtkCommand a seguir tem um método Execute que mostra as
+informações adequadas em relação ao tempo que é necessário para
+executar o algoritmo:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[codigo]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Embora esta seja uma
+forma primitiva de interação, é um elemento fundamental para
+muitas aplicações que usam VTK. Por exemplo, o simples código
+acima pode ser facilmente convertidos para mostrar e administrar uma
+barra de progresso GUI. Este subsistema Command / Observer também é
+central para os widgets 3D no VTK, que são objetos de interação
+sofisticados para consulta, manipulação e edição de dados e são
+descritos abaixo.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Referindo-se ao exemplo
+acima, é importante notar que os acontecimentos no VTK são
+pré-definidos, mas há uma outra opção para eventos definidos pelo
+usuário. A classe vtkCommand define o conjunto de eventos enumerados
+(por exemplo, vtkCommand:: ProgressEvent no exemplo acima), bem como
+um evento de usuário. TheUserEvent, que é simplesmente um valor
+integral, é normalmente usado como um valor inicial em um conjunto
+de eventos de aplicação definido pelo usuário. Assim, por exemplo
+vtkCommand:: UserEvent 100 pode se referir a um evento específico
+fora do conjunto de eventos definido no VTK.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Da perspectiva do
+usuário, um widget VTK aparece como um ator em uma cena, exceto que
+o usuário pode interagir com ele por  manipulação manual ou outras
+características geométricas (a manipulação manual e manipulação
+característica geométrica baseia-se na funcionalidade de escolha
+descrita anteriormente.) A interação com este widget é bastante
+intuitiva: o usuário pega a alça esférica e movimenta-as, ou pega
+a linha e mexe com ela. Nos bastidores, no entanto, os eventos são
+emitidos (por exemplo, InteractionEvent) e uma aplicação
+propriamente programada pode observar esses eventos, e depois tomar
+as medidas adequadas. Por exemplo, eles constantemente fazem ocmo a
+seguir:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[codigo]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Os widgets do VTK são
+realmente construídos utilizando dois objetos: uma subclasse de
+vtkInteractorObserver e uma subclasse de vtkProp. O
+vtkInteractorObserver simplesmente observa interação do usuário na
+janela de renderização (ou seja, movimentos do mouse e do teclado)
+e processa-los. As subclasses de vtkProp (por exemplo, os atores) são
+simplesmente manipulados pelo vtkInteractorObserver. Normalmente tal
+manipulação consiste em modificar a geometria do vtkProp, incluindo
+destaque, mudando a aparência do cursor, e / ou transformação de
+dados. É claro, as indicações dos widgets requer que as subclasses
+escritss para controlar as nuances de comportamento widget, e há
+mais de 50 widgets diferentes atualmente no sistema.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.2.6. Resumo das
+Bibliotecas</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">VTK é um kit de
+ferramentas de software de grande porte. Atualmente o sistema é
+composto de aproximadamente 1,5 milhões de linhas de código
+(incluindo comentários, mas não incluindo software wrapper gerado
+automaticamente), e cerca de 1000 classes em C++. Para gerenciar a
+complexidade do sistema e reduzir o tempo de construir e ligar o
+sistema foi dividido em dezenas de subpastas. Tabela 24.1 lista esses
+subdiretórios, com um breve resumo descrevendo o que a biblioteca
+faz.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">[tabela]</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.3. Olhando para tras
+/ Olhando para a frente</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">O VTK foi um sistema de
+enorme sucesso. Enquanto a primeira linha de código foi escrita em
+1993, no momento em que estamos escrevendo aqui o VTK ainda está
+crescendo forte e o ritmo de desenvolvimento também[2].  Nesta seção
+falamos sobre algumas lições aprendidas e desafios futuros.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.3.1. Crescimento
+gestão</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Um dos aspectos mais
+surpreendentes para a aventura no VTK foi a longevidade do projeto. O
+ritmo do desenvolvimento se deve a várias razões principais:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * Novos algoritmos
+e recursos continuam a serem adicionados. Por exemplo, o subsistema
+de informática (Titan, principalmente desenvolvido pela Sandia
+National Labs e Kitware) é uma recente adição significativa.
+Gráficos adicionais e classes de renderização também estão sendo
+adicionados, bem como recursos para novos tipos de conjunto de dados
+científicos. Outra adição importante foram os widgets de interação
+3D. Finalmente, a evolução em curso de renderização baseada em
+GPU e processamento de dados está impulsionando as novas capacidades
+do VTK.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * A crescente
+exposição e utilização do VTK é um processo que se
+auto-perpetua, que acrescenta ainda mais usuários e desenvolvedores
+para a comunidade. Por exemplo, ParaView é a aplicação mais
+popular de visualização científica construída sobre o VTK e é
+altamente respeitada na comunidade de computação de alta
+performance. 3D Slicer é uma das principais plataforma de computação
+biomédica que é em grande parte construída sobre o VTK e recebe
+milhões de dólares por ano em financiamento.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * O processo de
+desenvolvimento do VTK continua a evoluir. Nos últimos anos as
+ferramentas de processo de software CMake, CDash, CTest e CPack ter
+sido integradas no ambiente de compilação do VTK. Mais
+recentemente, o repositório de código do VTK mudou-se para Git e
+com um fluxo de trabalho mais sofisticado. Estas melhorias garantem
+que VTK permanece na vanguarda do desenvolvimento de software na
+comunidade de computação científica.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Enquanto o crescimento
+é emocionante, ele valida a criação do sistema de software, e é
+um bom guia para o futuro do VTK, mas ele pode ser extremamente
+difícil de ser bem gerenciado. Como resultado, o futuro a curto
+prazo do VTK se concentra mais na gestão do crescimento da
+comunidade, bem como do software. Várias medidas foram tomadas nesta
+direção.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Primeiro, estruturas de
+gestão formalizadas estão sendo criados. Um Conselho de Revisão
+Arquitetural foi criado para orientar o desenvolvimento da comunidade
+e da tecnologia, com foco em alto nível e questões estratégicas. A
+comunidade VTK também está estabelecendo a criação de uma equipe
+de Topic Leads para orientar o desenvolvimento técnico de
+subsistemas específicos do VTK.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Em seguida, há planos
+para modularizar ainda ainda a ferramenta, parcialmente, em resposta
+às capacidades do fluxo de trabalho introduzidas pelo git, mas
+também reconhecer que os usuários e desenvolvedores em geral,
+querem trabalhar com pequenos subsistemas da ferramenta, e não
+querem construir dentro da ferramenta inteira. Além disso, para
+apoiar a crescente comunidade, é importante que as contribuições
+de novas funcionalidades e dos subsistemas sejam suportados, mesmo
+que eles não sejam necessariamente parte do núcleo da ferramenta.
+Ao criar uma coleção, modularizada coleção de módulos é
+possível acomodar o grande número de contribuições por fora,
+mantendo a estabilidade do núcleo.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.3.2. Adições
+tecnológicas</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Além do processo de
+software, há muitas inovações tecnológicas no processo de
+desenvolvimento.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * Co-processamento
+é uma capacidade, onde o motor de visualização é integrado ao
+código de simulação, e gera periodicamente dados extraídos para
+visualização. Esta tecnologia reduz a necessidade de saída de
+grandes quantidades de dados.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * O pipeline de
+processamento de dados em VTK ainda é muito complexo. Métodos estão
+em andamento para simplificar e refatorar esse subsistema.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * A capacidade de
+interagir diretamente com os dados é cada vez mais popular entre os
+usuários. Enquanto o VTK tem um grande conjunto de widgets, muitas
+técnicas de interação estão surgindo, incluindo métodos
+touch-screen e 3D. A interação continuará o seu desenvolvimento em
+ritmo acelerado.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * Química
+computacional está crescendo para engenheiros e designers de
+materiais. A capacidade de visualizar e interagir com dados de
+química está sendo adicionada ao VTK.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * O sistema de
+renderização em VTK tem sido criticado por ser muito complexo, o
+que torna difícil para derivar novas classes ou suporte tecnológico
+de nova renderização. Além disso, o VTK não suporta diretamente a
+noção de um gráfico de cena, mais uma vez algo que muitos usuários
+têm solicitado.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * Finalmente novas
+formas de dados surgem constantemente. Por exemplo, no campo médico
+conjuntos de dados volumétricos de resolução diferentes (por
+exemplo, microscopia com ampliação local).</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.3.3. Open Science</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Finalmente, a Kitware e
+mais geralmente a comunidade VTK estão comprometidos com Open
+Science. Pragmaticamente esta é uma forma de dizer que vamos
+promover dados aberto, publicação aberta, e código aberto
+características necessárias para garantir que estamos criando
+sistemas científicos que podem ser reproduzidos. Enquanto o VTK tem
+sido distribuído como um código aberto e um sistema de dados
+aberto, o processo de documentação tem faltado. Embora existam
+livros decente [Kit10, SML06], houve uma variedade de maneiras ad hoc
+para coletar publicações técnicas, incluindo as contribuições de
+novo código fonte. Estamos melhorando a situação através do
+desenvolvimento de novos mecanismos de publicação como o Journal
+VTK[3] que permitem que artigos compostos de documentação,
+código-fonte, dados e imagens de testes válidos sejam vistos. O
+jornal também permite comentários automatizados do código (usando
+processos de testes de qualidade do software), bem como opiniões
+sobre o código submetido.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">24.3.4. Lições
+Aprendidas</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Enquanto VTK tem sido
+bem sucedido, há muitas coisas que não fizemos direito:</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * Modularidade
+Design: Nós fizemos um bom trabalho ao escolher a modularidade de
+nossas classes. Por exemplo, nós não fizemos algo tão bobo quanto
+a criação de um objeto por pixel, em vez de criarmos o
+vtkImageClass no nível mais alto que sob a capa trata os dados de
+matrizes de dados po pixel. No entanto, em alguns casos, fizemos
+nossas classes em alto nível e muito complexas, em muitos casos,
+tivemos de refatorá-las em pedaços menores, e continuamos com este
+processo. Um bom exemplo é o pipeline de processamento de dados.
+Inicialmente, o pipeline foi implementado implicitamente por meio da
+interação dos dados e objetos algorítmicos. Nós finalmente
+percebemos que tivemos que criar um objeto explícito no pipeline
+executivo para coordenar a interação entre dados e algoritmos, e
+implementar diferentes estratégias de processamento de dados.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * Perda de
+Conceitos-chave: Depois dos nossos maiores arrependimentos é não
+fazer uso generalizado de iteradores C++. Em muitos casos, a
+travessia de dados no VTK é semelhante à linguagem de programação
+científica Fortran. A flexibilidade adicional de iteradores teria
+sido um benefício significativo para o sistema. Por exemplo, é
+muito vantajoso para processar uma região local de dados, ou apenas
+os dados satisfazendo algum critério de iteração.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">    * Questões de
+projeto: Claro que há uma longa lista de decisões de design que não
+são ideais. Temos lutado com o pipeline de execução de dados,
+tendo passado por várias gerações cada vez fazendo o projeto
+melhor. O sistema de renderização também é complexo e difícil de
+derivar. Outro desafio, resultado desde a concepção inicial do VTK:
+o víamos como um sistema de visualização somente leitura para
+visualização de dados. No entanto, o clientes atuais muitas vezes
+querem que ele seja capaz de editar dados, o que requer estruturas de
+dados significativamente diferentes.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Uma das grandes coisas
+sobre um sistema de código aberto como o VTK é que muitos desses
+erros podem e serão corrigidos ao longo do tempo. Nós temos uma
+comunidade de desenvolvimento ativa e capaz, que está melhorando o
+sistema a cada dia e esperamos que isso continue no futuro
+previsível.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">Notas de Rodapé</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">1.http://en.wikipedia.org/wiki/Opaque_pointer.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">2.See the latest VTK
+code analysis at&nbsp;http://www.ohloh.net/p/vtk/analyses/latest.</P>
+<P CLASS="western" STYLE="margin-bottom: 0cm"></P>
+<P CLASS="western" STYLE="margin-bottom: 0cm">3.http://www.midasjournal.org/?journal=35</P>
+</BODY>
+</HTML>
