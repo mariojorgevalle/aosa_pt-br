@@ -6,7 +6,13 @@
 	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Unix)">
 	<META NAME="CREATED" CONTENT="0;0">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
-	<META NAME="CHANGED" CONTENT="20110715;17032000">
+	<META NAME="CHANGED" CONTENT="20110809;15282500">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="weslleymberg ">
 	<META NAME="CHANGEDBY" CONTENT="weslleymberg ">
 	<META NAME="CHANGEDBY" CONTENT="weslleymberg ">
@@ -609,5 +615,55 @@ Firefox, pesando em torno de 1300 linhas de código. Estas classes
 são duplicadas em toda as linguagens que querem suportar o driver do
 Firefox sem precisar levantar um servidor Java. Isso é bastante
 código adicional para manter.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">16.4.3. Falhas
+no design do WebDriver</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">O lado ruim da
+decisão de expor os recursos desta forma, é que até que alguém
+saiba que existe uma interface especifica, eles podem não perceber
+que o WebDriver suporta este tipo de funcionalidade; há uma perda de
+usabilidade na API. Certamente quando o WebDriver era novo, nós
+parecíamos perder muito tempo apenas dirigindo as pessoas para
+interfaces especificas. Nós pomos agora muuito mais esforço em
+nossa documentação e como a API se tornou mais usada se torna fácil
+de usar e fácil para os usuários encontrarem a informação que
+precisam. 
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Há um lugar
+onde eu penso que nossa API é particularmente pobre. Nós temos uma
+interface chamada <FONT FACE="Courier 10 Pitch"><FONT SIZE=2>RenderedWebElement</FONT></FONT>
+que tem uma estranha miscelânea de métodos para fazer a consulta do
+estado do elemento renderizado (<FONT FACE="Courier 10 Pitch">isDisplayed</FONT>,
+<FONT FACE="Courier 10 Pitch">getSize</FONT> and <FONT FACE="Courier 10 Pitch">getLocation</FONT>),
+realizando operações sobre ele ( <FONT FACE="Courier 10 Pitch">hover</FONT>
+e methodos para arrastar e soltar), e um método útil para obter o
+valor de uma propriedade CSS em particular. Ele foi criado porque o
+driver HtmlUnit não expunha as informações desejadas, mas os
+drivers do Firefox e do IE expuseram. Originalmente havia apenas o
+primeiro conjunto de metodos mas nós adicionamos os outros métodos
+antes de eu ter pensado muito sobre como eu queria que a API
+evoluísse. A interface é bem conhecida agora, e  a escolha mais
+difícil é se mantemos esta extremidade feia da API dado que esta é
+amplamente usada, ou se tentamos deletá-la. Minha preferencia é não
+deixar uma “janela quebrada” para trás, então é importante
+concertá-la antes de liberarmos o Selenium 2.0. Como um resultado,
+enquanto você lê este capitulo, RenderedWebElement pode muito bem
+ter ido embora.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Do ponto de
+vista do implementador, uma forte ligação com o browser também é
+uma falha de design, apesar de não termos outra escolha. Isto
+consome um esforço significante para suportarmos um novo browser,  e
+frequentemente vários esforços necessitam ser feitos para que tudo
+ocorra bem. Como um exemplo concreto, o driver do Chrome foi
+reescrito quatro vezes, e o driver do IE, três. A vantagem de se
+estabelecer uma forte ligação com o browser é que se tem mais
+controle sobre o mesmo.</P>
 </BODY>
 </HTML>
