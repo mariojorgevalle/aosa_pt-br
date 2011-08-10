@@ -6,7 +6,8 @@
 	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Unix)">
 	<META NAME="CREATED" CONTENT="0;0">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
-	<META NAME="CHANGED" CONTENT="20110809;15282500">
+	<META NAME="CHANGED" CONTENT="20110810;15480400">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
@@ -647,7 +648,7 @@ driver HtmlUnit não expunha as informações desejadas, mas os
 drivers do Firefox e do IE expuseram. Originalmente havia apenas o
 primeiro conjunto de metodos mas nós adicionamos os outros métodos
 antes de eu ter pensado muito sobre como eu queria que a API
-evoluísse. A interface é bem conhecida agora, e  a escolha mais
+evoluísse. A interface é bem conhecida agora, e a escolha mais
 difícil é se mantemos esta extremidade feia da API dado que esta é
 amplamente usada, ou se tentamos deletá-la. Minha preferencia é não
 deixar uma “janela quebrada” para trás, então é importante
@@ -659,11 +660,60 @@ ter ido embora.</P>
 <P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Do ponto de
 vista do implementador, uma forte ligação com o browser também é
 uma falha de design, apesar de não termos outra escolha. Isto
-consome um esforço significante para suportarmos um novo browser,  e
+consome um esforço significante para suportarmos um novo browser, e
 frequentemente vários esforços necessitam ser feitos para que tudo
 ocorra bem. Como um exemplo concreto, o driver do Chrome foi
 reescrito quatro vezes, e o driver do IE, três. A vantagem de se
 estabelecer uma forte ligação com o browser é que se tem mais
 controle sobre o mesmo.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">16.5. Camadas e
+Javascript</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Uma ferramenta
+de automação de navegadores é costituida essencialmente por três
+partes:</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Uma maneira
+	de interrogar o DOM</P>
+	<LI><P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Um
+	mecanismo para executar o Javascript</P>
+	<LI><P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Alguns
+	métodos para simular a entrada do usuário</P>
+</UL>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Esta sessão
+foca na primeira parte: provendo um mecanismo para interrogar o DOM.
+A língua franca do navegador é o Javascript, e esta parece ser a
+linguagem ideal a ser usada ao interrogar o DOM. Embora esta escolha
+pareça obvia, utilizá-la nos leva a alguns desafios e requisitos
+concorrentes que precisam ser equilibrados quando pensamos sobre
+Javascript.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Como muitos
+grandes projetos, Selenium faz uso de um conjunto de bibliotecas em
+camadas. A camada inferior é a biblioteca Clojure do Google, que
+prove suprimentos primitivos e um mecanismo de modularização
+permitindo que os arquivos-fonte sejam mantidos no foco e tão
+pequenos quanto possível. Acima desta, há uma  biblioteca de
+utilitários fornecendo funções que vão desde simples tarefas,
+como pegar o valor de um atributo, determinando se um elemento seria
+visível a um usuário final, para ações muito mais complexas como
+simular um click usando eventos sintetizados. Dentro do projeto,
+estes são vistos como oferecendo as menores unidades de automação
+de navegadores, e assim são chamados de Átomos de Automção de
+Navegadores ou somente átomos. Finalmente, existem camadas de
+adaptação que compõem os átomos, a fim de atender os contratos da
+API de ambos WebDriver e Core.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Figura 16.3:
+Camadas da biblioteca de Javascript do Selenium</P>
 </BODY>
 </HTML>
