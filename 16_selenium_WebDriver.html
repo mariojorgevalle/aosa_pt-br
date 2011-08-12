@@ -6,7 +6,9 @@
 	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Unix)">
 	<META NAME="CREATED" CONTENT="0;0">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
-	<META NAME="CHANGED" CONTENT="20110810;15480400">
+	<META NAME="CHANGED" CONTENT="20110812;9340600">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
@@ -23,6 +25,8 @@
 	<!--
 		@page { margin: 2cm }
 		P { margin-bottom: 0.21cm; color: #000000; font-family: "Times New Roman", serif; font-size: 12pt; font-style: normal; font-weight: normal; line-height: 100%; text-align: left; widows: 2; orphans: 2; text-decoration: none; page-break-before: auto; page-break-after: auto }
+		PRE { color: #000000 }
+		PRE.cjk { font-family: "DejaVu Sans", monospace }
 	-->
 	</STYLE>
 </HEAD>
@@ -701,7 +705,7 @@ grandes projetos, Selenium faz uso de um conjunto de bibliotecas em
 camadas. A camada inferior é a biblioteca Clojure do Google, que
 prove suprimentos primitivos e um mecanismo de modularização
 permitindo que os arquivos-fonte sejam mantidos no foco e tão
-pequenos quanto possível. Acima desta, há uma  biblioteca de
+pequenos quanto possível. Acima desta, há uma biblioteca de
 utilitários fornecendo funções que vão desde simples tarefas,
 como pegar o valor de um atributo, determinando se um elemento seria
 visível a um usuário final, para ações muito mais complexas como
@@ -715,5 +719,77 @@ API de ambos WebDriver e Core.</P>
 </P>
 <P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Figura 16.3:
 Camadas da biblioteca de Javascript do Selenium</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">A biblioteca
+Clojure foi escolhida por muitas razões. A principal delas era que o
+compilador do Clojure compreendia a técnica de modularização da
+biblioteca utilizada. O compilador Clojure direciona o Javascript
+como uma linguagem de saída. “Compilação” pode ser tão
+simples quanto ordenar arquivos de entrada pela ordem das
+dependências, concatenando e imprimindo-os, ou tão complexo como
+fazer uma minificação avançada e remove código morto. Outra
+vantagem inegável era que muitos membros da equipe que trabalhava no
+código Javascript estavam familiarizados com a biblioteca Clojure.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Esta biblioteca
+“atômica” de código é profundamente usada em toda parte do
+projeto onde existe a necessidade de interrogar o DOM. Para o RC e
+aqueles driver compostos, em grande parte, de Javascript, a
+biblioteca é usada diretamente, tipicamente compilada como um script
+monolítico. Para drivers escritos em Java, funções individuais da
+camada de adaptação do WebDriver são compiladas com a otimização
+plena habilitada, e o Javascript gerado é incluido como um recurso
+nos JARs. Para drivers escritos nas variações do C, como o Iphone e
+os drivers do IE, não só as funções individuais são compiladas
+com otimização plena, mas a saída gerada é convertida para uma
+constante definida no cabeçalho que é executado pelo mecanismo de
+execução do Javascript sempre que necessário. 
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Pelo fato dos
+átomos serem amplamente usados, é possível garantir um
+comportamento consistente entre os diferentes navegadores, e porque a
+biblioteca é escrita em Javascript e não exige privilégios
+elevados para executar o ciclo de desenvolvimento, é fácil e
+rápido. A biblioteca Clojure pode carregar dependências
+dinamicamente, então o desenvolvedor do Selenium só precisa
+escrever um teste e carregá-lo em um navegador, modificando o código
+e pressionando o botão de refresh conforme necessário. Uma vez que
+os testes estão passando em um navegador, é fácil carregá-los em
+outro navegador e confirmar que este passa também. Porque a
+biblioteca Clojure faz um bom trabalho abstraindo as diferenças
+entre os navegadores, isso muitas fezes é suficiente, apesar disso,
+é reconfortante saber que existem construções continuas que irão
+executar o conjunto de teste em todos os navegadores suportados.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Originalmente o
+Core e o WebDriver possuíam muitas áreas de códigos congruentes –
+códigos que realizavam a mesma função de maneiras ligeiramente
+diferentes. Quando começamos a trabalhar nos átomos, foi vasculhado
+para tentarmos encontrar a funcionalidade “mais educada”. Afinal,
+ambos os projetos foram amplamente usados e seus códigos eram muito
+robustos para jogarmos tudo fora e começar do zero não só teria
+sido um desperdício, mas também um tolice. Como cada átomo foi
+extraído, os locais em que seriam usados foram identificados e
+passou a usar o átomo. Por exemplo, o método <FONT FACE="Courier 10 Pitch">getAttribute</FONT>
+do driver do Firefox encolheu em cerca de 50 linhas de código para 6
+linhas longas, incluindo linhas em branco:</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<PRE CLASS="western" STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2"><FONT FACE="sans-serif">FirefoxDriver.prototype.getElementAttribute =</FONT>
+  <FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">function(respond, parameters) {</SPAN></SPAN></FONT>
+  <FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">var element = Utils.getElementAt(parameters.id,</SPAN></SPAN></FONT>
+                                   <FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">respond.session.getDocument());</SPAN></SPAN></FONT>
+  <FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">var attributeName = parameters.name;</SPAN></SPAN></FONT>
+
+  <FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">respond.value = webdriver.element.getAttribute(element, attributeName);</SPAN></SPAN></FONT>
+  <FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">respond.send();</SPAN></SPAN></FONT>
+<FONT FACE="sans-serif">};</FONT></PRE><P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">
+<BR>
+</P>
 </BODY>
 </HTML>
