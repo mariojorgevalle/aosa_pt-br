@@ -7,7 +7,7 @@
 	<META NAME="AUTHOR" CONTENT="Mario Amaral">
 	<META NAME="CREATED" CONTENT="20110531;21293400">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
-	<META NAME="CHANGED" CONTENT="20110903;14553100">
+	<META NAME="CHANGED" CONTENT="20110903;15385200">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
@@ -30,6 +30,8 @@
 		H2 { margin-bottom: 0.21cm }
 		H2.cjk { font-family: "WenQuanYi Micro Hei" }
 		H2.ctl { font-family: "Lohit Hindi" }
+		H3.cjk { font-family: "WenQuanYi Micro Hei" }
+		H3.ctl { font-family: "Lohit Hindi" }
 		A:link { so-language: zxx }
 		CODE.cjk { font-family: "WenQuanYi Micro Hei", monospace }
 	-->
@@ -371,10 +373,10 @@ não-comercial esta disponível no GridCentric Inc [2]. </SPAN></SPAN></SPAN></F
 documentation and open source code for the original University of
 Toronto SnowFlock research project are available<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-1">1</A>&nbsp;If
 you'd prefer to take the industrial-strength version for a spin, a
-free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">
-</SPAN></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Devido
-ao SnowFlock incluir alterações ao </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hypervisor</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">
-</SPAN></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">e
+free, non-commercial license is available from GridCentric Inc.<A HREF="http://www.aosabook.org/en/snowflock.html#footnote-2">2</A>)</SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">
+</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Devido
+ao SnowFlock incluir alterações ao </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hypervisor</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">
+</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">e
 requerer acesso ao dom0, instala-lo requer acesso privilegiado nas
 máquinas de </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">host</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">.
 Por esta razão, você precisará usar seu próprio </SPAN></SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">hardware</SPAN></SPAN></I></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">,
@@ -573,20 +575,19 @@ resposta para todos os clones na primeira requisição para um
 página, os pedidos de cada clone atuam como uma pré-busca para seus
 irmãos, por causa de seus padrões de acesso semelhantes de memória.</SPAN></SPAN></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
-<FONT FACE="arial, sans-serif"><FONT COLOR="#000000">Diferente de
-outros sistemas de </FONT><FONT COLOR="#000000"><I>multicast</I></FONT><FONT COLOR="#000000">,
-o msdist não tem de ser confiável, não precisa entregar pacotes de
-forma ordenada e não necessita entregar atomicamente uma resposta
-para todos os receptores pretendidos. O </FONT><FONT COLOR="#000000"><I>multicast</I></FONT><FONT COLOR="#000000">
-é estritamente uma otimização e a entrega só precisa ser
-assegurada para o clone que explicitamente solicita uma página. O
-</FONT><FONT COLOR="#000000"><I>design </I></FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal">é</SPAN></FONT><FONT COLOR="#000000"><I>,</I></FONT><FONT COLOR="#000000">
-desta forma, elegantemente simples: o servidor simplesmente </FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffff00">envia
-respostas de forma </SPAN></FONT><FONT COLOR="#000000"><I><SPAN STYLE="background: #ffff00">multicast</SPAN></I></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffff00">(</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">multicasts
-responses</SPAN></SPAN></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="background: #ffff00">)</SPAN></FONT><FONT COLOR="#000000">,
-enquanto os clientes recebem um </FONT><FONT COLOR="#000000"><I><SPAN STYLE="background: #ffffff">time-out</SPAN></I></FONT><FONT COLOR="#000000">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Diferente de
+outros sistemas de <I>multicast</I>, o msdist não tem de ser
+confiável, não precisa entregar pacotes de forma ordenada e não
+necessita entregar atomicamente uma resposta para todos os receptores
+pretendidos. O <I>multicast</I> é estritamente uma otimização e a
+entrega só precisa ser assegurada para o clone que explicitamente
+solicita uma página. O <I>design </I><SPAN STYLE="font-style: normal">é</SPAN><I>,</I>
+desta forma, elegantemente simples: o servidor simplesmente <SPAN STYLE="background: #ffff00">envia
+respostas de forma </SPAN><I><SPAN STYLE="background: #ffff00">multicast</SPAN></I><SPAN STYLE="background: #ffff00">(</SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">multicasts
+responses</SPAN></SPAN></SPAN><SPAN STYLE="background: #ffff00">)</SPAN>,
+enquanto os clientes recebem um <I><SPAN STYLE="background: #ffffff">time-out</SPAN></I>
 se eles não receberem uma resposta para uma solicitação e reenviam
-a requisição. </FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">the
+a requisição. <SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">the
 server simply multicasts responses, while clients time-out if they
 have not received a reply for a request, and retry the request.</SPAN></SPAN></SPAN></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
@@ -594,36 +595,36 @@ have not received a reply for a request, and retry the request.</SPAN></SPAN></S
 otimizações específicas para o SnowFlock estão incluídas no
 mcdist:</SPAN></FONT></FONT></P>
 <UL>
-	<LI><P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT FACE="arial, sans-serif"><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Detecção
-	de bloqueio (</SPAN></SPAN></SPAN></FONT><FONT COLOR="#000000"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Lockstep
-	Detection</SPAN></SPAN></I></FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">):
+	<LI><P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Detecção
+	de bloqueio (</SPAN></SPAN></SPAN><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Lockstep
+	Detection</SPAN></SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">):
 	quando a localização temporal acontece, muitos clones solicitam a
 	mesma página em uma curta sequência de tempo. O servidor mcdist
 	ignora todos, mas o primeiro dessas solicitação.</SPAN></SPAN></SPAN></FONT></FONT></P>
 	<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">(Lockstep
 	Detection: When temporal locality does happen, multiple clones
-	request the same page in very close succession. The&nbsp;</SPAN></SPAN></SPAN></FONT></FONT><CODE CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">mcdist</SPAN></SPAN></SPAN></FONT></FONT></CODE><FONT COLOR="#000000"><SPAN STYLE="background: #ffff00">&nbsp;</SPAN></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">server
+	request the same page in very close succession. The&nbsp;</SPAN></SPAN></SPAN></FONT></FONT><CODE CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">mcdist</SPAN></SPAN></SPAN></FONT></FONT></CODE><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffff00">&nbsp;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">server
 	ignores all but the first of such requests.)</SPAN></SPAN></SPAN></FONT></FONT></P>
 	<LI><P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Controle
 	de Fluxo: os rec</SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">eptores
 	adicionam suas taxas de recebimento nas solicitações. O servidor
-	</SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><I><SPAN STYLE="font-weight: normal">throttles</SPAN></I></FONT></FONT></FONT><FONT COLOR="#000000">
-	</FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">(==</SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">mechanism
+	</SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><I><SPAN STYLE="font-weight: normal">throttles</SPAN></I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">
+	</FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">(==</SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">mechanism
 	by which the flow of a fluid is managed
-	by&nbsp;</SPAN></SPAN></SPAN></FONT></FONT></FONT><A HREF="http://en.wiktionary.org/wiki/constriction"><FONT COLOR="#3366bb"><SPAN STYLE="text-decoration: none"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">constriction</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></A><FONT COLOR="#000000"><SPAN STYLE="background: #ffff00">&nbsp;</SPAN></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">or&nbsp;</SPAN></SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#3366bb"><SPAN STYLE="text-decoration: none"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00"><A HREF="http://en.wiktionary.org/wiki/obstruction">obstruction</A>???</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">)
+	by&nbsp;</SPAN></SPAN></SPAN></FONT></FONT></FONT><A HREF="http://en.wiktionary.org/wiki/constriction"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">constriction</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></A><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffff00">&nbsp;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">or&nbsp;</SPAN></SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00"><A HREF="http://en.wiktionary.org/wiki/obstruction">obstruction</A>???</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">)
 	sua taxa de envio a uma média ponderada das taxas de recepção dos
 	clientes. </SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">(The
 	server throttles its sending rate to a weighted average of the
-	clients' receive rate.)</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="background: #ffffff">
-	</SPAN></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Caso
+	clients' receive rate.)</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="arial, sans-serif"><SPAN STYLE="background: #ffffff">
+	</SPAN></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Caso
 	contrário, os receptores serão afogados por muitas páginas
 	enviadas por um servidor ansioso.</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></P>
-	<LI><P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT FACE="arial, sans-serif"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Jogo
+	<LI><P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="text-decoration: none"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Jogo
 	final: quando o servidor enviou a maioria das páginas, ele volta
-	para respostas </SPAN></SPAN></SPAN></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT SIZE=3><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">unicast</SPAN></SPAN></I></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">.
+	para respostas </SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">unicast</SPAN></SPAN></I></FONT></SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">.
 	A maioria das solicitações neste momento são tentativas, e, assim
 	explodindo uma página através do fio para todos os clones é
-	desnecessário. </SPAN></SPAN></SPAN></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">(</SPAN></SPAN></SPAN></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">Most
+	desnecessário. </SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="text-decoration: none"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">(</SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">Most
 	requests at this point are retries, and thus blasting a page through
 	the wire to all clones is unnecessary.)</SPAN></SPAN></SPAN></FONT></FONT></P>
 </UL>
@@ -635,31 +636,28 @@ Virtual</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
 <BR>
 </P>
-<P STYLE="margin-bottom: 0cm"><FONT FACE="arial, sans-serif"><FONT COLOR="#000000"><SPAN STYLE="font-style: normal">Os
+<P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal">Os
 clones SnowFlock, devido à sua vida curta e destino determinista,
 raramente utilizam seu disco. O disco virtual para uma MV SnowFlock
 reside na partição raiz com binários, bibliotecas e arquivos de
 configuração. O processamento de dados pesados é feito através de
 sistemas de arquivos adequados, tais como HDFS ou PVFS. Assim, quando
 os clones SnowFlock decidem ler a partir de seus discos de origem,
-eles normalmente </SPAN></FONT><FONT COLOR="#000000">têm suas
-solicitações satisfeitas pelo cache de página do kernel do sistema
-de arquivos.</FONT></FONT></P>
-<P STYLE="margin-bottom: 0cm"><FONT FACE="arial, sans-serif"><FONT COLOR="#000000"><SPAN STYLE="font-style: normal">Tendo
+eles normalmente </SPAN>têm suas solicitações satisfeitas pelo
+cache de página do kernel do sistema de arquivos.</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal">Tendo
 dito isto, ainda precisamos prover acesso ao disco virtual para os
 clones, no caso raro que tal acesso é necessário. Nós adotamos o
 caminho de menor resistência aqui, e implementamos o disco seguindo
-estritamente o </SPAN></FONT><FONT COLOR="#000000"><I>design</I></FONT><FONT COLOR="#000000">
-</FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal">de
+estritamente o </SPAN><I>design</I> <SPAN STYLE="font-style: normal">de
 replicação de memória.</SPAN></FONT></FONT></P>
-<P STYLE="margin-bottom: 0cm"><FONT FACE="arial, sans-serif"><FONT COLOR="#000000"><SPAN STYLE="font-style: normal">Primeiro,
+<P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal">Primeiro,
 o estado do disco é congelado no momento de clonagem. As MV pai
 continua usando seu disco em um modo CoW: escritas são enviadas para
 um local separado em um armazenamento de apoio, enquanto que a
 visualização do disco que o clone espera continua imutável. Em
-segundo lugar, o estado do disco é </SPAN></FONT><FONT COLOR="#000000"><I>multicast</I></FONT><FONT COLOR="#000000">
-</FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal">para
-todos os clones, utilizando </SPAN></FONT><FONT COLOR="#000000"><I>mcdist</I></FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal">,
+segundo lugar, o estado do disco é </SPAN><I>multicast</I> <SPAN STYLE="font-style: normal">para
+todos os clones, utilizando </SPAN><I>mcdist</I><SPAN STYLE="font-style: normal">,
 com os mesmos 4KB de granularidade de página, e sob as mesmas
 expectativas de localidade temporal. Em terceiro lugar, o estado do
 disco replicado para uma MV clone é estritamente transitório: é
@@ -700,19 +698,17 @@ pergunta ao servidor de memória por páginas de falhas, mas há
 situações mais complicadas também. Primeiramente, <I>helpers
 memtap</I> utilizam <I>mcdist</I>. Isto significa que a qualquer
 momento, qualquer página pode chegar, em virtude de ter sido
-requisitada por outro clone – a beleza do <FONT FACE="sans-serif"><I><SPAN STYLE="font-weight: normal">prefetching</SPAN></I></FONT>
-<FONT FACE="sans-serif"><SPAN STYLE="font-weight: normal">assíncrono.
-Segundo, nós permitimos que MVs SnowFlock sejam MVs
-multiprocessadas. Não seria muito divertido de qualquer forma. Isto
-significa que diferentes falhas precisam ser tratadas em paralelo,
-talvez até para a mesma página. Terceiro, nas últimas versões os
-ajudantes </SPAN></FONT><FONT FACE="sans-serif"><I><SPAN STYLE="font-weight: normal">memtap</SPAN></I></FONT>
-<FONT FACE="sans-serif"><SPAN STYLE="font-weight: normal">podem
-explicitamente “</SPAN></FONT><FONT FACE="sans-serif"><I><SPAN STYLE="font-weight: normal">prefetch”</SPAN></I></FONT><FONT FACE="sans-serif"><SPAN STYLE="font-weight: normal">
+requisitada por outro clone – a beleza do <I><SPAN STYLE="font-weight: normal">prefetching</SPAN></I>
+<SPAN STYLE="font-weight: normal">assíncrono. Segundo, nós
+permitimos que MVs SnowFlock sejam MVs multiprocessadas. Não seria
+muito divertido de qualquer forma. Isto significa que diferentes
+falhas precisam ser tratadas em paralelo, talvez até para a mesma
+página. Terceiro, nas últimas versões os ajudantes </SPAN><I><SPAN STYLE="font-weight: normal">memtap</SPAN></I>
+<SPAN STYLE="font-weight: normal">podem explicitamente “</SPAN><I><SPAN STYLE="font-weight: normal">prefetch”</SPAN></I><SPAN STYLE="font-weight: normal">
 um lote de páginas, que pode chegar em qualquer ordem, dada a falta
-de garantia do servidor </SPAN></FONT><FONT FACE="sans-serif"><I><SPAN STYLE="font-weight: normal">mcdist</SPAN></I></FONT><FONT FACE="sans-serif"><SPAN STYLE="font-weight: normal">.
+de garantia do servidor </SPAN><I><SPAN STYLE="font-weight: normal">mcdist</SPAN></I><SPAN STYLE="font-weight: normal">.
 Qualquer um destes fatores pode ter levado a um pesadelo de
-concorrência, e temos todos eles.</SPAN></FONT></FONT></FONT></P>
+concorrência, e temos todos eles.</SPAN></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Todo
 os centros <I>design</I> <I>memtap</I> em uma página tem a presença
 de <I>bitmap</I><SPAN STYLE="font-style: normal"><SPAN STYLE="background: #ffff00">(</SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">The
@@ -720,13 +716,13 @@ entire&nbsp;</SPAN></SPAN></SPAN><CODE CLASS="western"><FONT FACE="arial, sans-s
 centers on a page presence bitmap.</SPAN></SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="background: #ffff00">)</SPAN></SPAN>.
 O <I>bitmap</I> é criado e inicializado quando o descritor de
 arquitetura é processado para criar uma MV clone. O <I>bitmap</I> é
-uma matriz de bits <SPAN STYLE="background: #ffff00">(</SPAN><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">flat
-bit array)</SPAN></SPAN></SPAN></FONT> medido pelo número de páginas
-de memória que a MV pode suportar. Processadores Intel possuem
+uma matriz de bits <SPAN STYLE="background: #ffff00">(</SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">flat
+bit array)</SPAN></SPAN></SPAN> medido pelo número de páginas de
+memória que a MV pode suportar. Processadores Intel possuem
 instruções acessíveis de mutação atômica: bit de
-definição<SPAN STYLE="background: #ffff00">(</SPAN><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">setting
-a bit)</SPAN></SPAN></SPAN></FONT>, ou fazer um teste e definição,
-pode acontecer com a garantia de atomicidade com relação a outros
+definição<SPAN STYLE="background: #ffff00">(</SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">setting
+a bit)</SPAN></SPAN></SPAN>, ou fazer um teste e definição, pode
+acontecer com a garantia de atomicidade com relação a outros
 processadores na mesma caixa. Isto nos permite evitar bloqueios na
 maioria dos casos, e assim prover acesso ao <I>bitmap</I> por
 diferentes entidades em diferentes domínios de proteção: o
@@ -740,8 +736,8 @@ Ele também usa o </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">bitmap</SPA
 para enfileirar múltiplas falhas de processadores virtuais como
 dependente da mesma página ausente. Páginas de </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">buffer</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
 </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">memtap</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
-como elas chegam </SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">(</SPAN></SPAN></SPAN><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">Memtap
-buffers pages as they arrive.</SPAN></SPAN></SPAN></FONT><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">)</SPAN></SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">.
+como elas chegam </SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">(</SPAN></SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">Memtap
+buffers pages as they arrive.</SPAN></SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">)</SPAN></SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">.
 Quando o </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">buffer</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
 esta cheio ou uma solicitação explícita de página chega, a MV é
 pausada e o </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">bitmap</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
@@ -752,7 +748,48 @@ de </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">bitmap</SPAN></I><SPAN STY
 apropriados são definidos.</SPAN></SPAN></FONT></FONT></P>
 <P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
 </P>
-<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">18.6.2.
+Clones inteligentes evitam esforços desnecessários</SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Nós
+acabamos de mencionar que a página </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">bitmap</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+presente é visível para o </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">kernel</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+em execução dentro do clone, e que nenhum bloqueio é necessário
+para modificá-lo. Isto dá aos clone uma poderosa ferramente de
+“iluminação”: eles podem impedir a busca de páginas por
+modificar o bitmap e fingir que elas estão presentes. Isto é
+extremamente útil em termos de performance, e seguro fazer quando as
+páginas serão completamente sobrescritas antes de serem utilizadas.</SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">É
+uma situação comum quando isto acontece e buscas podem ser
+evitadas. Todas as alocações de memória no </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">kernel</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+(usando </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">vmalloc</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">,
+</SPAN></SPAN><I><SPAN STYLE="font-weight: normal">kzalloc</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">,
+</SPAN></SPAN><I><SPAN STYLE="font-weight: normal">get_free_page</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">,
+espaço de usuário brk e assim por diante) são, em última análise,
+tratadas pelo alocador de página do </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">kernel</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">.</SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Normalmente
+as páginas são solicitadas por alocadores intermediários que
+gerenciam pedaços mais refinados: o alocador </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">slab</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">,
+o alocador </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">glibc
+malloc</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+para um processo de espaço de usuário, etc. Contudo, se a alocação
+é explícita ou implícita, uma implicação de chave semântica
+sempre é verdadeira: ninguém se preocupa com o que a página
+continha, pois seu conteúdo será arbitrariamente substituído. Por
+que buscar este tipo de página então? Não há nenhuma razão para
+fazê-lo, e a experiência empírica mostra que evitar buscas é
+tremendamente vantajoso.</SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<H3 CLASS="western" ALIGN=JUSTIFY STYLE="font-weight: normal; widows: 2; orphans: 2">
+<BR><BR>
+</H3>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<BR>
 </P>
 </BODY>
 </HTML>
