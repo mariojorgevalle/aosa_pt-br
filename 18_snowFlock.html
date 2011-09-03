@@ -7,7 +7,7 @@
 	<META NAME="AUTHOR" CONTENT="Mario Amaral">
 	<META NAME="CREATED" CONTENT="20110531;21293400">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
-	<META NAME="CHANGED" CONTENT="20110903;15591000">
+	<META NAME="CHANGED" CONTENT="20110903;16012100">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
@@ -803,8 +803,21 @@ o sistema: aplicações.</SPAN></SPAN></FONT></FONT></FONT></P>
 <H2 CLASS="western" STYLE="font-weight: normal; widows: 2; orphans: 2">
 <BR><BR>
 </H2>
+<H3 CLASS="western" STYLE="font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><I>18.7.1. API
+Implementation</I></FONT></FONT></H3>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR>
-</P>
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><FONT FACE="sans-serif">VM
+Cloning is offered to the application via the simple SnowFlock API,
+depicted in&nbsp;</FONT><A HREF="http://www.aosabook.org/en/snowflock.html#fig.snowflock.cloningapi">Figure&nbsp;18.1</A><FONT FACE="sans-serif">.
+Cloning is basically a two-stage process. You first request an
+allocation for the clone instances, although due to the system
+policies that are in effect, that allocation may be smaller than
+requested. Second, you use the allocation to clone your VM. A key
+assumption is that your VM focuses on a single operation. VM Cloning
+is appropriate for single-application VMs such as a web server or a
+render farm component. If you have a hundred-process desktop
+environment in which multiple applications concurrently call VM
+cloning, you're headed for chaos.</FONT></FONT></FONT></FONT></P>
 </BODY>
 </HTML>
