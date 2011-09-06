@@ -7,7 +7,7 @@
 	<META NAME="AUTHOR" CONTENT="Mario Amaral">
 	<META NAME="CREATED" CONTENT="20110531;21293400">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
-	<META NAME="CHANGED" CONTENT="20110905;23244400">
+	<META NAME="CHANGED" CONTENT="20110905;23273300">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
@@ -1035,16 +1035,16 @@ os clones falado somente um com o outro pode ser divertido, mas não
 responder a requisições HTTP da Internet, ou montar repositórios
 de dados públicos. Nós equipamos qualquer conjunto de pai e clones
 com uma MV de rota dedicada. Esta pequena MV age como firewall, como 
-<FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">throttling</SPAN></SPAN></SPAN></FONT><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
+<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">throttling</SPAN></SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
 e como NAT de trafego dos clones para a Internet. Ela também limita
-conexões </SPAN></SPAN></SPAN></FONT><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">de
-entrada</SPAN></SPAN></SPAN></FONT><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
+conexões </SPAN></SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">de
+entrada</SPAN></SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
 para a MV pai e portas bem conhecidas. A MV de rota é leve, mas
 representa um único ponto de centralização para tráfego de rede,
 o que pode limitar seriamente a escalabilidade. As mesmas regras de
-rede poderiam ser aplicadas em um modelo distribuído para cada </SPAN></SPAN></SPAN></FONT><FONT FACE="sans-serif"><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">host</SPAN></SPAN></I></FONT><FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
+rede poderiam ser aplicadas em um modelo distribuído para cada </SPAN></SPAN></SPAN><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">host</SPAN></SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
 em que uma MV clone executa. Nós não lançamos este patch
-experimental.</SPAN></SPAN></SPAN></FONT></FONT></FONT></P>
+experimental.</SPAN></SPAN></SPAN></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">O
 SFLD atribui IDs e ensina aos </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">drivers</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
 de rede virtuais como eles devem se configurar: MAC interno e
@@ -1058,7 +1058,7 @@ Conclusão</SPAN></SPAN></FONT></FONT></P>
 <BR><BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif">Por ajustar o
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Por ajustar o
 <I>hypervisor</I> Xen e preguiçosamente transferir o estado da MV, o
 SnowFlock pode produzir dezenas de clones de uma MV em execução em
 poucos segundos. A clonagem de MV com SnowFlock é, portanto,
@@ -1076,7 +1076,7 @@ estados. Tudo o que custou foi uma aplicação inteligente de umas
 poucas técnicas tentativa-e-acerto, algumas prestidigitações, e
 uma ajuda generosa da força-industrial de depuração.</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Aprendemos
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Aprendemos
 duas lições importantes ao longo da experiência com o SnowFlock. A
 primeira é o valor muitas vezes subestimado do teorema KISS.
 Estávamos esperando implementar técnicas de busca complicadas para
@@ -1085,29 +1085,30 @@ um clone expediria na inicialização. Isto foi, talvez
 surpreendentemente, desnecessário. A sistema executa muito bem
 muitas cargas de trabalho baseado em um único princípio: trazer a
 memória o for necessário. Outro exemplo do valor da simplicidade é
-a presença de </FONT></FONT><FONT FACE="arial, sans-serif"><FONT SIZE=3><I>bitmap</I></FONT></FONT><FONT FACE="arial, sans-serif"><FONT SIZE=3>
+a presença de </FONT><FONT SIZE=3><I>bitmap</I></FONT><FONT SIZE=3>
 na página. Uma estrutura de dados simples com semântica de acesso
 atômico claro simplifica muito o que poderia ter sido um problema
 horrível de simultaneidade, com múltiplas CPUs virtuais competindo
 para atualizações de página com a chegada assíncrona de páginas
-via </FONT></FONT><FONT FACE="arial, sans-serif"><FONT SIZE=3><I>multicast</I></FONT></FONT><FONT FACE="arial, sans-serif"><FONT SIZE=3>.</FONT></FONT></FONT></FONT></P>
+via </FONT><FONT SIZE=3><I>multicast</I></FONT><FONT SIZE=3>.</FONT></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif">A segunda lição é
-que a escala não mente. Em outras palavras, estar preparado para ter
-seu sistema destruído e novos gargalos descobertos toda vez que você
-colide sua escala por uma potência de dois. Esta esta intimamente
-ligada com a lição anterior: soluções simples e elegantes escalam
-bem e não escondem surpresas desagradáveis como o aumento de carga.
-Um bom exemplo deste princípio é nosso sistema <I>mcdist</I>. Em
-testes de larga escala, um mecanismo de distribuição de página
-baseado em TCP/IP falham miseravelmente para centenas de clones. O
-<I>Mcdist</I> tem sucesso em virtude de seus papéis extremamente
-restritos e bem definidos: clientes só se preocupam com suas
-próprias páginas; o servidor só se preocupa com a manutenção de
-um controle de fluxo global. Mantendo o <I>mcdist </I>humilde e
-simples, o SnowFlock é capaz de escalar extremamente bem.</FONT></FONT></P>
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">A segunda lição
+é que a escala não mente. Em outras palavras, estar preparado para
+ter seu sistema destruído e novos gargalos descobertos toda vez que
+você colide sua escala por uma potência de dois. Esta esta
+intimamente ligada com a lição anterior: soluções simples e
+elegantes escalam bem e não escondem surpresas desagradáveis como o
+aumento de carga. Um bom exemplo deste princípio é nosso sistema
+<I>mcdist</I>. Em testes de larga escala, um mecanismo de
+distribuição de página baseado em TCP/IP falham miseravelmente
+para centenas de clones. O <I>Mcdist</I> tem sucesso em virtude de
+seus papéis extremamente restritos e bem definidos: clientes só se
+preocupam com suas próprias páginas; o servidor só se preocupa com
+a manutenção de um controle de fluxo global. Mantendo o <I>mcdist
+</I>humilde e simples, o SnowFlock é capaz de escalar extremamente
+bem.</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<FONT COLOR="#000000"><FONT FACE="sans-serif">Se você estiver
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Se você estiver
 interessado em saber mais, você pode visitar o site da Universidade
 de Toronto [1] para os trabalhos acadêmicos e códigos <I>open-source</I>
 licenciados sob a GPLv2, e o GridCentric [4] para uma implementação
@@ -1116,13 +1117,22 @@ de força industrial.</FONT></FONT></P>
 <BR><BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR><BR>
-</P>
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Notas de Rodapé</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 <BR><BR>
 </P>
-<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR><BR>
-</P>
+<P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><CODE CLASS="western"><FONT FACE="arial, sans-serif">1.
+<A HREF="http://sysweb.cs.toronto.edu/projects/1">http://sysweb.cs.toronto.edu/projects/1</A></FONT></CODE></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><CODE CLASS="western"><FONT FACE="arial, sans-serif">2.
+<A HREF="http://www.gridcentriclabs.com/architecture-of-open-source-applications">http://www.gridcentriclabs.com/architecture-of-open-source-applications</A></FONT></CODE></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><CODE CLASS="western"><FONT FACE="arial, sans-serif">3.
+OUI, or Organizational Unique ID, is a range of MAC addresses
+assigned to a vendor.</FONT></CODE></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><CODE CLASS="western"><FONT FACE="arial, sans-serif">4.
+http://www.gridcentriclabs.com/</FONT></CODE></FONT></FONT></P>
 </BODY>
 </HTML>
