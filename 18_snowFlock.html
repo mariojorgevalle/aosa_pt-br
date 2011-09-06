@@ -7,7 +7,7 @@
 	<META NAME="AUTHOR" CONTENT="Mario Amaral">
 	<META NAME="CREATED" CONTENT="20110531;21293400">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
-	<META NAME="CHANGED" CONTENT="20110905;21421300">
+	<META NAME="CHANGED" CONTENT="20110905;23244400">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
@@ -1052,7 +1052,71 @@ endereços de IP, diretivas de DHCP, coordenadas da MV de rota,
 regras de filtragem, etc.</SPAN></SPAN></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><BR><BR>
 </P>
-<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><BR><BR>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">18.8.
+Conclusão</SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<BR><BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif">Por ajustar o
+<I>hypervisor</I> Xen e preguiçosamente transferir o estado da MV, o
+SnowFlock pode produzir dezenas de clones de uma MV em execução em
+poucos segundos. A clonagem de MV com SnowFlock é, portanto,
+instantânea e ao vivo – isso melhora a usabilidade da nuvem
+através da automatização do gerenciamento de <I>cluster</I> e
+dando maior controle programático a aplicações sobre os recursos
+da nuvem. O SnowFlock também melhora a agilidade da nuvem por
+acelerar a instanciação de MV por um fator de 20, e por melhorar a
+desempenho da maioria das MVs recém-criadas por alavancar o calor de
+seus pais, na memória do SO e no cache de aplicações. As chaves
+para a performance eficiente do SnowFlock são heurísticas que
+evitam buscas desnecessárias de página, e o sistema <I>multicast</I>
+que permite que os clones irmãos cooperativamente busquem seus
+estados. Tudo o que custou foi uma aplicação inteligente de umas
+poucas técnicas tentativa-e-acerto, algumas prestidigitações, e
+uma ajuda generosa da força-industrial de depuração.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Aprendemos
+duas lições importantes ao longo da experiência com o SnowFlock. A
+primeira é o valor muitas vezes subestimado do teorema KISS.
+Estávamos esperando implementar técnicas de busca complicadas para
+aliviar a inundação de solicitações de páginas de memória que
+um clone expediria na inicialização. Isto foi, talvez
+surpreendentemente, desnecessário. A sistema executa muito bem
+muitas cargas de trabalho baseado em um único princípio: trazer a
+memória o for necessário. Outro exemplo do valor da simplicidade é
+a presença de </FONT></FONT><FONT FACE="arial, sans-serif"><FONT SIZE=3><I>bitmap</I></FONT></FONT><FONT FACE="arial, sans-serif"><FONT SIZE=3>
+na página. Uma estrutura de dados simples com semântica de acesso
+atômico claro simplifica muito o que poderia ter sido um problema
+horrível de simultaneidade, com múltiplas CPUs virtuais competindo
+para atualizações de página com a chegada assíncrona de páginas
+via </FONT></FONT><FONT FACE="arial, sans-serif"><FONT SIZE=3><I>multicast</I></FONT></FONT><FONT FACE="arial, sans-serif"><FONT SIZE=3>.</FONT></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif">A segunda lição é
+que a escala não mente. Em outras palavras, estar preparado para ter
+seu sistema destruído e novos gargalos descobertos toda vez que você
+colide sua escala por uma potência de dois. Esta esta intimamente
+ligada com a lição anterior: soluções simples e elegantes escalam
+bem e não escondem surpresas desagradáveis como o aumento de carga.
+Um bom exemplo deste princípio é nosso sistema <I>mcdist</I>. Em
+testes de larga escala, um mecanismo de distribuição de página
+baseado em TCP/IP falham miseravelmente para centenas de clones. O
+<I>Mcdist</I> tem sucesso em virtude de seus papéis extremamente
+restritos e bem definidos: clientes só se preocupam com suas
+próprias páginas; o servidor só se preocupa com a manutenção de
+um controle de fluxo global. Mantendo o <I>mcdist </I>humilde e
+simples, o SnowFlock é capaz de escalar extremamente bem.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif">Se você estiver
+interessado em saber mais, você pode visitar o site da Universidade
+de Toronto [1] para os trabalhos acadêmicos e códigos <I>open-source</I>
+licenciados sob a GPLv2, e o GridCentric [4] para uma implementação
+de força industrial.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<BR><BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<BR><BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 <BR><BR>
