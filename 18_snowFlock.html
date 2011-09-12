@@ -7,7 +7,8 @@
 	<META NAME="AUTHOR" CONTENT="Mario Amaral">
 	<META NAME="CREATED" CONTENT="20110531;21293400">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
-	<META NAME="CHANGED" CONTENT="20110904;13062800">
+	<META NAME="CHANGED" CONTENT="20110905;23273300">
+	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
 	<META NAME="CHANGEDBY" CONTENT="Mario Amaral">
@@ -813,11 +814,12 @@ vantajoso.</SPAN></SPAN></FONT></FONT></FONT></P>
 Interface de aplicação da clonagem de MV</FONT></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
 </P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Até
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Até
 agora, temos focado no funcionamento interno da clonagem de uma MV de
 modo eficiente. Tão divertido quanto os sistemas solipsistas podem
 ser, nós precisamos voltar nossa atenção para aqueles que usarão
-o sistema: aplicações.</SPAN></SPAN></FONT></FONT></FONT></P>
+o sistema: aplicações.</FONT></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
@@ -853,7 +855,7 @@ para o caos.</FONT></FONT></FONT></P>
 			<P ALIGN=JUSTIFY STYLE="border: 1px solid #000000; padding: 0.1cm">
 			<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Solicita
 			uma alocação para n clones. Retorna um bilhete descrevendo uma
-			alocação para m</FONT></FONT></FONT><CODE CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>≤n
+			alocação para m</FONT></FONT></FONT><CODE CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">≤</FONT></FONT></CODE><CODE CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>n
 			clone.</FONT></FONT></FONT></CODE></P>
 		</TD>
 	</TR>
@@ -865,7 +867,7 @@ para o caos.</FONT></FONT></FONT></P>
 		<TD WIDTH=50% STYLE="; border: none; padding: 0cm">
 			<P ALIGN=JUSTIFY STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
 			<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Clones,
-			utilizam a alocação de bilhete. Retorna o ID do clone, 0</FONT></FONT></FONT><CODE CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>≤ID&lt;m.</FONT></FONT></FONT></CODE></P>
+			utilizam a alocação de bilhete. Retorna o ID do clone, 0</FONT></FONT></FONT><CODE CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">≤</FONT></FONT></CODE><CODE CLASS="western"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>ID&lt;m.</FONT></FONT></FONT></CODE></P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
@@ -889,8 +891,8 @@ para o caos.</FONT></FONT></FONT></P>
 		<TD WIDTH=50% STYLE="; border: none; padding: 0cm">
 			<P ALIGN=JUSTIFY STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
 			<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Igualmente
-			ao sf_clone, usa o </FONT><FONT SIZE=3><I>checkpoint</I></FONT><FONT SIZE=3>
-			C. Os clones irão começar a execução no momento em que o
+			ao sf_clone, usa o </FONT><FONT SIZE=3><I>checkpoint</I></FONT> <FONT SIZE=3>C.
+			Os clones irão começar a execução no momento em que o
 			correspondente sf_checkpoint_parent() foi invocado.</FONT></FONT></FONT></P>
 		</TD>
 	</TR>
@@ -951,42 +953,186 @@ executadas, e as solicitações são enviadas de volta.</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Os
 programas podem controlar diretamente a clonagem de MV através da
 API, que esta disponível para C, C++, Python e Java. <I>Shell
-scripts</I><SPAN STYLE="font-style: normal"> que aproveitam a
-execução de um programa podem utilizar, em vez disso, </SPAN><I>scripts</I><SPAN STYLE="font-style: normal">
-fornecidos de linha de comando. Estruturas paralelas tal como MPI
-podem incorporar a API: programas MPI podem então usar o SnowFlock,
-mesmo sem saber, e sem modificações à sua fonte. Balanceadores de
-cargas reunidos na web ou em servidores de aplicação podem utilizar
-a API para clonar os servidores que gerenciam.</SPAN></FONT></FONT></P>
+scripts</I> <SPAN STYLE="font-style: normal">que aproveitam a
+execução de um programa podem utilizar, em vez disso, </SPAN><I>scripts</I>
+<SPAN STYLE="font-style: normal">fornecidos de linha de comando.
+Estruturas paralelas tal como MPI podem incorporar a API: programas
+MPI podem então usar o SnowFlock, mesmo sem saber, e sem
+modificações à sua fonte. Balanceadores de cargas reunidos na web
+ou em servidores de aplicação podem utilizar a API para clonar os
+servidores que gerenciam.</SPAN></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal">SFLDs
 orquestram a execução das solicitações de clonagem de MV. Eles
 criam e transmitem descritores de arquitetura, criam MVs clonadas,
 iniciam discos e servidores de memória, e iniciam processos de
 ajudantes </SPAN><I>memtap</I><SPAN STYLE="font-style: normal">. Eles
 são uma miniatura de sistema distribuído encarregados de gerenciar
-as MVs em um </SPAN><I>cluster</I><SPAN STYLE="font-style: normal">
-físico.</SPAN></FONT></FONT></P>
+as MVs em um </SPAN><I>cluster</I> <SPAN STYLE="font-style: normal">físico.</SPAN></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">SFLDs
 adiam decisões de alocação para um Daemon SnowFlock mestre
-central(SFMD). SFMD simplesmente comunica com o </FONT><FONT FACE="arial, sans-serif"><I>software</I></FONT><FONT FACE="arial, sans-serif">
-adequado de gerenciamento de </FONT><FONT FACE="arial, sans-serif"><I>cluster</I></FONT><FONT FACE="arial, sans-serif">.
-Nós não vimos qualquer necessidade de reinventar a roda aqui, e as
-decisões adiadas na alocação de recursos, quotas, políticas, etc,
-para o software adequado, tal como Sun Grid Engine ou a plataforma
-EGO.</FONT></FONT></P>
+central(SFMD). SFMD simplesmente comunica com o <I>software</I>
+adequado de gerenciamento de <I>cluster</I>. Nós não vimos qualquer
+necessidade de reinventar a roda aqui, e as decisões adiadas na
+alocação de recursos, quotas, políticas, etc, para o software
+adequado, tal como Sun Grid Engine ou a plataforma EGO.</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><BR><BR>
 </P>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">18.7.2.
+Mutações necessárias</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><BR><BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Após
+a clonagem, a maioria dos processos de MVs clonadas não fazem ideia
+de que eles não são mais os pais, e que eles estão agora em
+execução em uma cópia. Na maioria dos aspectos, isso só funciona
+bem e não causa nenhum problema. Após tudo, a principal tarefa do
+SO é isolar aplicações de detalhes de baixo nível, tal como a
+identificação de rede. Não obstante, fazendo a transição
+suavemente requer um conjunto de mecanismos para ser inserido no
+lugar. O núcleo do problema esta em gerenciar a identidade das redes
+de clones; para evitar conflitos e confusão, devemos introduzir
+leves mutações durante o processo de clonagem. Também, devido a
+estes ajustes, podem exigir acomodações de alto nível, um gancho é
+inserido para permitir ao usuário configurar qualquer tarefa
+necessária, tal como (re)montagem de sistemas de arquivos de rede
+que dependem da identidade do clone.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Os
+clones são criados para um mundo que na maioria das vezes não os
+espera. A MV pai é parte de uma rede gerenciada provavelmente por um
+servidor DHCP, ou por qualquer outra das infinitas maneiras que os
+Sysadmins encontrem para realizar o seu trabalho. Ao invés de
+assumir um cenário necessariamente inflexível, nós colocamos o pai
+e todos os clones em suas próprias redes virtuais privadas. Clones
+do mesmo pai são todos atribuídos a um ID único, e seu endereço
+de IP nesta rede privada é automaticamente configurado na clonagem
+como uma função do ID. Isso garante que nenhuma intervenção de um
+Sysadmin é necessária, e que colisões de endereços de IP nunca
+irão acontecer.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">A
+reconfiguração de IP é realizada diretamente por um gancho que nós
+colocamos no <I>driver</I> de rede virtual. No entanto, nós também
+equipamos o <I>driver</I> para gerar automaticamente as respostas
+DHCP sintéticas. Assim, independentemente de sua escolha de
+distribuição, sua interface de rede virtual irá garantir que as
+coordenadas IP adequadas são propagadas para o SO convidado, mesmo
+quando você esta reiniciando do zero.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Para
+evitar clones de pais diferentes colidindo com redes virtuais
+privadas uns dos outros – e para prevenir ataques DdoS mútuos –
+as redes virtuais dos clones são isoladas no nível Ethernet (ou
+camada 2). Nós separamos uma gama de Ethernet MAC OUIs 3 e dedicamos
+a eles os clones. A OUI será uma função da MV pai. Bem como o ID
+de uma MV determina seu endereço de IP, ele também determina seu
+endereço Ethernet MAC não-OUI <SPAN STYLE="background: #ffff00">(non-OUI
+Ethernet MAC)</SPAN>. O <I>driver</I> de rede virtual traduz o
+endereço de MAC que a MV acredita que tem atribuído em função do
+seu ID, e filtra todo tráfego de e para a rede virtual privada com
+diferentes OUIs. Este isolamento é equivalente aos alcançáveis via
+<I>ebtables</I>, embora muito mais simples de implementar.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Tendo
+os clones falado somente um com o outro pode ser divertido, mas não
+é divertido o suficiente. Às vezes nós queremos nossos clones para
+responder a requisições HTTP da Internet, ou montar repositórios
+de dados públicos. Nós equipamos qualquer conjunto de pai e clones
+com uma MV de rota dedicada. Esta pequena MV age como firewall, como 
+<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffff00">throttling</SPAN></SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
+e como NAT de trafego dos clones para a Internet. Ela também limita
+conexões </SPAN></SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">de
+entrada</SPAN></SPAN></SPAN><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
+para a MV pai e portas bem conhecidas. A MV de rota é leve, mas
+representa um único ponto de centralização para tráfego de rede,
+o que pode limitar seriamente a escalabilidade. As mesmas regras de
+rede poderiam ser aplicadas em um modelo distribuído para cada </SPAN></SPAN></SPAN><I><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">host</SPAN></SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
+em que uma MV clone executa. Nós não lançamos este patch
+experimental.</SPAN></SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">O
+SFLD atribui IDs e ensina aos </SPAN></SPAN><I><SPAN STYLE="font-weight: normal">drivers</SPAN></I><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+de rede virtuais como eles devem se configurar: MAC interno e
+endereços de IP, diretivas de DHCP, coordenadas da MV de rota,
+regras de filtragem, etc.</SPAN></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><BR><BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">18.8.
+Conclusão</SPAN></SPAN></FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 <BR><BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
-<BR><BR>
-</P>
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Por ajustar o
+<I>hypervisor</I> Xen e preguiçosamente transferir o estado da MV, o
+SnowFlock pode produzir dezenas de clones de uma MV em execução em
+poucos segundos. A clonagem de MV com SnowFlock é, portanto,
+instantânea e ao vivo – isso melhora a usabilidade da nuvem
+através da automatização do gerenciamento de <I>cluster</I> e
+dando maior controle programático a aplicações sobre os recursos
+da nuvem. O SnowFlock também melhora a agilidade da nuvem por
+acelerar a instanciação de MV por um fator de 20, e por melhorar a
+desempenho da maioria das MVs recém-criadas por alavancar o calor de
+seus pais, na memória do SO e no cache de aplicações. As chaves
+para a performance eficiente do SnowFlock são heurísticas que
+evitam buscas desnecessárias de página, e o sistema <I>multicast</I>
+que permite que os clones irmãos cooperativamente busquem seus
+estados. Tudo o que custou foi uma aplicação inteligente de umas
+poucas técnicas tentativa-e-acerto, algumas prestidigitações, e
+uma ajuda generosa da força-industrial de depuração.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif"><FONT SIZE=3>Aprendemos
+duas lições importantes ao longo da experiência com o SnowFlock. A
+primeira é o valor muitas vezes subestimado do teorema KISS.
+Estávamos esperando implementar técnicas de busca complicadas para
+aliviar a inundação de solicitações de páginas de memória que
+um clone expediria na inicialização. Isto foi, talvez
+surpreendentemente, desnecessário. A sistema executa muito bem
+muitas cargas de trabalho baseado em um único princípio: trazer a
+memória o for necessário. Outro exemplo do valor da simplicidade é
+a presença de </FONT><FONT SIZE=3><I>bitmap</I></FONT><FONT SIZE=3>
+na página. Uma estrutura de dados simples com semântica de acesso
+atômico claro simplifica muito o que poderia ter sido um problema
+horrível de simultaneidade, com múltiplas CPUs virtuais competindo
+para atualizações de página com a chegada assíncrona de páginas
+via </FONT><FONT SIZE=3><I>multicast</I></FONT><FONT SIZE=3>.</FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">A segunda lição
+é que a escala não mente. Em outras palavras, estar preparado para
+ter seu sistema destruído e novos gargalos descobertos toda vez que
+você colide sua escala por uma potência de dois. Esta esta
+intimamente ligada com a lição anterior: soluções simples e
+elegantes escalam bem e não escondem surpresas desagradáveis como o
+aumento de carga. Um bom exemplo deste princípio é nosso sistema
+<I>mcdist</I>. Em testes de larga escala, um mecanismo de
+distribuição de página baseado em TCP/IP falham miseravelmente
+para centenas de clones. O <I>Mcdist</I> tem sucesso em virtude de
+seus papéis extremamente restritos e bem definidos: clientes só se
+preocupam com suas próprias páginas; o servidor só se preocupa com
+a manutenção de um controle de fluxo global. Mantendo o <I>mcdist
+</I>humilde e simples, o SnowFlock é capaz de escalar extremamente
+bem.</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Se você estiver
+interessado em saber mais, você pode visitar o site da Universidade
+de Toronto [1] para os trabalhos acadêmicos e códigos <I>open-source</I>
+licenciados sob a GPLv2, e o GridCentric [4] para uma implementação
+de força industrial.</FONT></FONT></P>
 <P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 <BR><BR>
 </P>
 <P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="arial, sans-serif">Notas de Rodapé</FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
 <BR><BR>
 </P>
+<P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><CODE CLASS="western"><FONT FACE="arial, sans-serif">1.
+<A HREF="http://sysweb.cs.toronto.edu/projects/1">http://sysweb.cs.toronto.edu/projects/1</A></FONT></CODE></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><CODE CLASS="western"><FONT FACE="arial, sans-serif">2.
+<A HREF="http://www.gridcentriclabs.com/architecture-of-open-source-applications">http://www.gridcentriclabs.com/architecture-of-open-source-applications</A></FONT></CODE></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><CODE CLASS="western"><FONT FACE="arial, sans-serif">3.
+OUI, or Organizational Unique ID, is a range of MAC addresses
+assigned to a vendor.</FONT></CODE></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#000000"><FONT FACE="sans-serif"><CODE CLASS="western"><FONT FACE="arial, sans-serif">4.
+http://www.gridcentriclabs.com/</FONT></CODE></FONT></FONT></P>
 </BODY>
 </HTML>
