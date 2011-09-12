@@ -6,7 +6,9 @@
 	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Unix)">
 	<META NAME="CREATED" CONTENT="0;0">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
-	<META NAME="CHANGED" CONTENT="20110812;9340600">
+	<META NAME="CHANGED" CONTENT="20110912;18571500">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
@@ -789,7 +791,24 @@ linhas longas, incluindo linhas em branco:</P>
   <FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">respond.value = webdriver.element.getAttribute(element, attributeName);</SPAN></SPAN></FONT>
   <FONT FACE="sans-serif"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">respond.send();</SPAN></SPAN></FONT>
 <FONT FACE="sans-serif">};</FONT></PRE><P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">
-<BR>
+Aquela penúltima linha, onde <FONT FACE="sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">respond.value</SPAN></SPAN></FONT></FONT>
+é atribuída, está usando a biblioteca atômica do WebDriver.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
 </P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Os atoms são
+uma demostração pratica de muitos dos temas arquiteturais do
+projeto. Naturalmente eles obrigam a obedecer a necessidade que um
+implementação de uma API tem de ser favorável à uma implementação
+em Javascript. O que é ainda melhor,  que a mesma biblioteca é
+compartilhada em toda o código-fonte; onde uma vez um bug teve de
+ser verificado e consertado em múltiplas implementações, agora,
+corrigir o bug em apenas um lugar já é suficiente, o que reduz o
+dispêndio de mudanças enquanto são melhoradas a instabilidade e a
+efetividade. Os atoms também fazem o bus factor do projeto mais
+favorável. Uma vez que um teste unitário normal em Javascript pode
+ser usado para verificar se uma correção funciona a barreira para a
+adesão ao projeto Open Source é consideravelmente menor do que era
+quando o conhecimento de cada piloto foi implementado como era
+necessário.</P>
 </BODY>
 </HTML>
