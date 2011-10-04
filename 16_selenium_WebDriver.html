@@ -6,7 +6,9 @@
 	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Unix)">
 	<META NAME="CREATED" CONTENT="0;0">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
-	<META NAME="CHANGED" CONTENT="20110912;18571500">
+	<META NAME="CHANGED" CONTENT="20111004;10394800">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
+	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
 	<META NAME="CHANGEDBY" CONTENT="Weslleymberg Lisboa">
@@ -799,7 +801,7 @@ Aquela penúltima linha, onde <FONT FACE="sans-serif"><FONT SIZE=2><SPAN STYLE="
 uma demostração pratica de muitos dos temas arquiteturais do
 projeto. Naturalmente eles obrigam a obedecer a necessidade que um
 implementação de uma API tem de ser favorável à uma implementação
-em Javascript. O que é ainda melhor,  que a mesma biblioteca é
+em Javascript. O que é ainda melhor, que a mesma biblioteca é
 compartilhada em toda o código-fonte; onde uma vez um bug teve de
 ser verificado e consertado em múltiplas implementações, agora,
 corrigir o bug em apenas um lugar já é suficiente, o que reduz o
@@ -810,5 +812,53 @@ ser usado para verificar se uma correção funciona a barreira para a
 adesão ao projeto Open Source é consideravelmente menor do que era
 quando o conhecimento de cada piloto foi implementado como era
 necessário.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Há outro
+beneficio em usar os atoms. Uma camada emulando uma implementação
+RC existente, mas apoiada pelo WebDriver, é uma importante
+ferramenta para as equipes que procuram migrar de forma controlada
+para a novas APIs do WebDriver. Como o Selenium Core é atomizado, se
+torna possível compilar cada função dele individualmente, tornando
+a tarefa de escrever a camada de emulação tanto mais fácil quanto
+mais preciso.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Continuamos sem
+dizer que há desvantagens para esta abordagem. Mais importainte
+ainda, compilar Javascript para uma const C, é uma coisa muito
+estranha de se fazer e sempre confunde novos colaboradores para o
+projeto que querem trabalhar no Código C. Também é raro um
+desenvolvedor que tem cada versão de cada navegador e é dedicado o
+suficiente  para rodar cada teste em todos aqueles navegadores – é
+possível que alguém, inadvertidamente, cause uma regressão em um
+lugar inesperado, e isso pode custar algum tempo para identificar o
+problema, especialmente se as compilações continuas estiverem
+esquisitas.</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">Por causa do
+átomos normalizarem os valores de retorno entre os navegadores,
+também podem haver valores de retorno inesperado. Por exemplo,
+considere este HTML:</P>
+<PRE CLASS="western" STYLE="font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT FACE="sans-serif">&lt;input name=&quot;example&quot; checked&gt;</FONT></PRE><P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2">O valor do
+atributo  <FONT COLOR="#000000"><FONT FACE="sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">checked
+</SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">dependerá
+do navegador que está sendo usado. Os atoms normalizam isso, e
+outros atributos Booleanos definidos nas especificações do HTML5,
+para ser “Verdadeiro” ou “Falso”. Quando esse atom foi
+introduzido para o códigos-fonte, nós descobrimos vários lugares
+onde as pessoas estavam fazendo suposições sobre qual deveria ser o
+valor de retorno, dependendo do navegador. Enquanto o valor foi agora
+consistente, ouve um longo período onde nós explicamos para a
+comunidade o que havia acontecido e porque.</SPAN></SPAN></FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm; widows: 2; orphans: 2"><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">16.6.
+O Driver Remoto e o Driver do Firefox em Particular</SPAN></SPAN></FONT></FONT></FONT></P>
 </BODY>
 </HTML>
